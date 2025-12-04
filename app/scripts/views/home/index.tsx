@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import '../../scss/oziva-search-product-page.scss';
 import HeroBanner from '../../components/home/hero-banner';
-import { HomePageResponseModel } from '~/scripts/models/home';
+import { Banner, HomePageResponseModel } from '~/scripts/models/home';
 import { SentryProvider } from '~/scripts/context/errorTracking';
 // import '../../scss/oziva-site.scss';
 // import '../../scss/home-style.scss';
@@ -40,9 +40,8 @@ export default function HomeView() {
           <GAProvider>
             <MixpanelProvider>
               <UserContext>
-                {homePageData?.banners.map((item) => <img src={item.image} width={200} height={200} />)}
-                {/* <HeroBanner homepageData={homePageData?.banners as Banner[]} />
-                <CollectionContainer dataBlock={homePageData?.dataBlocks as DataBlock[]} /> */}
+                <HeroBanner homepageData={homePageData?.banners as Banner[]} />
+                {/* <CollectionContainer dataBlock={homePageData?.dataBlocks as DataBlock[]} /> */}
               </UserContext>
             </MixpanelProvider>
           </GAProvider>

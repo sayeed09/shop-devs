@@ -2,69 +2,57 @@ import { UserLoginValue } from '../../interface/product';
 import { getDomain, getEnvironmentValue } from '../helper';
 import Cookies from 'js-cookie';
 
-export const getUrlVariantId = () => {
-  let variantID = null;
+export const getUrlVariantId = (): number | null => {
+  if (typeof window === 'undefined') return null;
+
   const UrlParams = new URLSearchParams(window.location.search);
-  variantID = UrlParams.get('variant');
-  return parseInt(variantID);
+  const variantID = UrlParams.get('variant');
+  return variantID ? parseInt(variantID) : null;
 };
-export const getVariantIds = (productVaraint: any) => {
-  let ids = '';
-  productVaraint.variants.forEach((item: any, index: number) => {
-    ids = ids + item.id.toString();
-    if (index < productVaraint.variants.length - 1) {
-      ids = ids + ',';
-    }
-  });
-  return ids;
+
+export const getVariantIds = (productVariant: any) => {
+  return productVariant.variants.map((v: any) => v.id.toString()).join(',');
 };
+
 export const isValidUrl = (string: string) => {
-  let url_string;
   try {
-    url_string = new URL(string);
+    const url = new URL(string);
+    return url.protocol === 'http:' || url.protocol === 'https:';
   } catch (_) {
     return false;
   }
-  return url_string.protocol === 'http:' || url_string.protocol === 'https:';
 };
+
 export const hideScroll = () => {
-  const template = document.getElementsByClassName(
-    'template-product',
-  ) as HTMLCollectionOf<HTMLElement>;
-  if (template != null) {
-    for (let i = 0; i < template.length; i++) {
-      template[i].style.overflow = 'hidden';
-    }
-  }
+  if (typeof document === 'undefined') return;
+
+  const templates = document.getElementsByClassName('template-product') as HTMLCollectionOf<HTMLElement>;
+  Array.from(templates).forEach(t => (t.style.overflow = 'hidden'));
 };
+
 export const initialScroll = () => {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
   window.history.replaceState(null, '', ' ');
-  const template = document.getElementsByClassName(
-    'template-product',
-  ) as HTMLCollectionOf<HTMLElement>;
-  if (template != null) {
-    for (let i = 0; i < template.length; i++) {
-      template[i].style.overflow = 'initial';
-    }
-  }
+  const templates = document.getElementsByClassName('template-product') as HTMLCollectionOf<HTMLElement>;
+  Array.from(templates).forEach(t => (t.style.overflow = 'initial'));
 };
+
 export const getImageExt = (url: string) => {
-  return (url = url?.substr(1 + url.lastIndexOf('/')).split('?')[0])
-    ?.split('#')[0]
-    ?.substr(url.lastIndexOf('.'));
+  if (!url) return '';
+  const path = url.split('/').pop()?.split('?')[0]?.split('#')[0] || '';
+  return path.substring(path.lastIndexOf('.'));
 };
-export const convertImageSize = (
-  url: string,
-  width: number,
-  height: number,
-) => {
-  const imageExt = getImageExt(url);
-  const imageName = url?.split(imageExt)[0];
-  const newImageURL = `${imageName}_${width}X${height}${imageExt}`;
-  return newImageURL;
+
+export const convertImageSize = (url: string, width: number, height: number) => {
+  const ext = getImageExt(url);
+  const name = url.split(ext)[0];
+  return `${name}_${width}X${height}${ext}`;
 };
+
 export const maxMobileWidth = 767;
-export const hideThambnailSilder = 992;
+export const hideThumbnailSlider = 992;
+
 declare global {
   interface Window {
     usePreloadImagesData?: Record<string, unknown[]>;
@@ -75,38 +63,43 @@ declare global {
     gtag?: (...args: any[]) => void;
   }
 }
-export const usePreloadImages = (imageSrcs: any, documentWidth: number) => {
-  for (const imageArr of imageSrcs) {
+
+export const usePreloadImages = (imageSrcs: any[], documentWidth: number) => {
+  if (typeof window === 'undefined') return;
+
+  imageSrcs.forEach(imgObj => {
     const img = new Image();
     img.src =
       documentWidth < maxMobileWidth
-        ? convertImageSize(imageArr.src, 400, 400)
-        : convertImageSize(imageArr.src, 800, 800);
-  }
+        ? convertImageSize(imgObj.src, 400, 400)
+        : convertImageSize(imgObj.src, 800, 800);
+  });
 };
 
 export const getAccessToken = (): UserLoginValue | null => {
-  const authData: string | null = Cookies.get(`AUTH_DATA${getEnvironmentValue()}`)
-  if (authData) {
-    return JSON.parse(authData);
-  }
-  return null;
-}
+  if (typeof window === 'undefined') return null;
+
+  const authData = Cookies.get(`AUTH_DATA${getEnvironmentValue()}`);
+  return authData ? JSON.parse(authData) : null;
+};
 
 export const formatToPrice = (price: number | string) => {
   return Math.trunc(Number(price));
 };
 
 export const getFromCookie = (key: string) => {
+  if (typeof window === 'undefined') return null;
   return Cookies.get(key);
 };
 
 export const setCookie = (name: string, value: string, expiry?: string) => {
-  const setExpiry = expiry ? `expires=${expiry};` : ''
-  document.cookie = name + '=' + value + ';' + setExpiry + 'path=/; domain=' + getDomain() + ';';
+  if (typeof document === 'undefined') return;
+
+  const setExpiry = expiry ? `expires=${expiry};` : '';
+  document.cookie = `${name}=${value};${setExpiry}path=/; domain=${getDomain()};`;
 };
 
-{/* UDS-645 Experiment Start */ }
+/* UDS-645 Experiment Start */
 export const getFlavourImage = (itemName: string) => {
   switch (itemName) {
     case "Guava Glow":
@@ -116,7 +109,7 @@ export const getFlavourImage = (itemName: string) => {
     case "Berry Orange":
       return "https://cdn.shopify.com/s/files/1/2393/2199/files/grapes_1.png?v=1747371700";
     case "Watermelon":
-      return "https://cdn.shopify.com/s/files/1/2393/2199/files/image_659.png?v=1747370196"
+      return "https://cdn.shopify.com/s/files/1/2393/2199/files/image_659.png?v=1747370196";
     case "Strawberry Swirl":
       return "https://cdn.shopify.com/s/files/1/2393/2199/files/strawberry_1.png?v=1747994460";
     case "Orange Zing":
@@ -124,5 +117,5 @@ export const getFlavourImage = (itemName: string) => {
     default:
       return "";
   }
-}
-{/* UDS-645 Experiment End */ }
+};
+/* UDS-645 Experiment End */

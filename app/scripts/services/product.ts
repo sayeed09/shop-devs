@@ -7,11 +7,11 @@ import {
   GetDeliveryDetailResponseModel,
 } from '../interface/product';
 import { AddCartItemResponse } from '../models/cart/get-response';
-import { axiosClient, axiosSubscriptionClient } from '../utils/axios-client';
 import { ICollectionQuery } from '../interface/cart';
 import axios from 'axios';
 import { IConcernCategoryResponse } from '../interface/concern-categories';
 import { FetchByPincodeDetailModel } from '../models/cart/checkout';
+import { axiosClient, axiosSubscriptionClient } from '../utils/axios-client';
 
 export const getProductDetails = async (
   productId: string,
@@ -328,6 +328,7 @@ export const getFertilityData = async () => {
 
 export const downloadPDF = async (reportUrl) => {
   try {
+    if (typeof window == "undefined") return
     const response = await fetch(reportUrl);
     const blob = await response.blob();
     const blobUrl = URL.createObjectURL(blob);
@@ -342,7 +343,7 @@ export const downloadPDF = async (reportUrl) => {
     // Clean up the blob URL
     URL.revokeObjectURL(blobUrl);
   } catch (error) {
-      console.error("Error downloading file:", error);
+    console.error("Error downloading file:", error);
   }
 };
 
