@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Banner } from "../../models/home";
 import { isMobile as checkIsMobile } from "../../utils/helper";
+import { ResponsiveImage } from "../productCard/responsive-image";
+import { bannerBreakPoints } from "~/scripts/utils/data-provider";
 
 interface IProps {
     homepageData: Banner[];
@@ -76,10 +78,8 @@ export default function HeroBanner({ homepageData }: IProps) {
                                 />
                             </video>
                         ) : (
-                            <img
-                                src={isMobile ? item.mobileImage : item.image}
-                                alt={`OZiva: ${item.title}`}
-                            />
+                            <ResponsiveImage imageURL={isMobile ? item.mobileImage : item.image}
+                                widthHeightObject={bannerBreakPoints} altText={`OZiva: ${item.title}`} />
                         )}
                     </a>
                 );
