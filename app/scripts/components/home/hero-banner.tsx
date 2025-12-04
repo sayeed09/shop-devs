@@ -47,41 +47,6 @@ export default function HeroBanner({ homepageData }: IProps) {
     const isMobile = checkIsMobile(); // safe because now on client
 
     return (
-        <FlickityComponent
-            className="carousel carousel-main hero-banner-home"
-            elementType="div"
-            options={flickityOptionsMain}
-            reloadOnUpdate
-            flickityRef={(c: any) => (flickityRef.current = c)}
-        >
-            {homepageData.map((item, index) => {
-                const itemLink = clientLinks[index];
-                return (
-                    <a
-                        href={itemLink?.href || "#"}
-                        className="carousel-cell"
-                        key={item.image}
-                    >
-                        {item.mobileImage.includes(".mp4") ? (
-                            <video
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                controls={false}
-                                onLoadedMetadata={() => flickityRef?.current?.resize?.()}
-                            >
-                                <source
-                                    src={isMobile ? item.mobileImage : item.image}
-                                    type="video/mp4"
-                                />
-                            </video>
-                        ) : (
-                            <></>
-                        )}
-                    </a>
-                );
-            })}
-        </FlickityComponent>
+        <></>
     );
 }
