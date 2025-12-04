@@ -44,7 +44,7 @@ export default function HeroBanner({ homepageData }: IProps) {
     //     prevNextButtons: homepageData.length > 1,
     // };
 
-    // const isMobile = checkIsMobile(); // safe because now on client
+    const isMobile = checkIsMobile(); // safe because now on client
 
     return (
         <></>
