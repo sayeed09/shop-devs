@@ -2,43 +2,69 @@ const environments = {
   development: 'dev',
   production: 'prod',
 };
-const currentEnv =
-  window && window.ENVIRONMENT == "dev"
-    ? 'development'
-    : 'production';
 
+const currentEnv = 'production';
 const env = environments[currentEnv];
-export const hostDomain = window.location.hostname.split(".").splice(-2).join('.');
-const hostDomainUrl = `https://${window.location.hostname}/`;
-const isDotCom = window.location.hostname.endsWith('.com');
-const pulseUrl = `https://pulse.${window.ENVIRONMENT}.oziva${isDotCom ? '.com' : '.in'}`;
 
-export const checkoutRedirectURL = env === environments.development ? `https://checkout.dev.${hostDomain}` : `https://checkout.${hostDomain}`;
+// ----------
+// Safe window helpers
+// ----------
+const hasWindow = typeof window !== 'undefined';
+const hostname = hasWindow ? window.location.hostname : 'oziva.in';
+const environmentFlag = hasWindow ? (window as any).ENVIRONMENT : 'prod';
+const shopifyThemeId = hasWindow && (window as any).Shopify ? (window as any).Shopify.theme.id : null;
+
+// ----------
+// Host domain
+// ----------
+export const hostDomain = hostname.split('.').splice(-2).join('.');
+export const hostDomainUrl = `https://${hostname}/`;
+export const isDotCom = hostname.endsWith('.com');
+
+export const pulseUrl = hasWindow
+  ? `https://pulse.${environmentFlag}.oziva${isDotCom ? '.com' : '.in'}`
+  : `https://pulse.prod.oziva.in`; // fallback for SSR
+
+// ----------
+// Checkout redirects
+// ----------
+export const checkoutRedirectURL =
+  env === environments.development
+    ? `https://checkout.dev.${hostDomain}`
+    : `https://checkout.${hostDomain}`;
+
 export const redirectUrl = hostDomainUrl;
-// env == environments.development
-//   ? 'https://web.oziva.in/'
-//   : hostDomainUrl;
 
+// ----------
+// Paths
+// ----------
 let parentPath = 'api.prod';
 let policyPath = 'oziva';
 let zeviParentPath = 'search';
-if (typeof window != 'undefined' && (window as any).Shopify) {
-  let themeId = (window as any).Shopify.theme.id;
-  // Preprod theme ID available to other teams also
-  if (themeId == 120350801979) {
+
+// Only run these on client:
+if (hasWindow && shopifyThemeId) {
+  if (shopifyThemeId == 120350801979) {
     parentPath = 'api-preprod.prod';
     zeviParentPath = 'search';
   }
 }
-if (window.ENVIRONMENT == "dev") {
+
+if (environmentFlag === 'dev') {
   parentPath = 'api.dev';
   zeviParentPath = 'search';
   policyPath = 'dev-oziva';
 }
 
+// ----------
+// Base URLs
+// ----------
 const baseUrl = `https://${parentPath}.oziva.in`;
 const zeviBaseUrl = `https://${zeviParentPath}.zevi.in`;
 
+// ----------
+// Endpoints
+// ----------
 export const baseEndpoints = {
   freebie: `${baseUrl}/radium/freebie/list`,
   upsell: `${baseUrl}/catalog/product`,
@@ -56,19 +82,19 @@ export const baseEndpoints = {
   config: `https://config.${env}.oziva.in/config`,
   deliverySpeed: `${baseUrl}/checkout/delivery-speed`,
   subscriptionPaymentAPi:
-    env == environments.development
+    env === environments.development
       ? `https://dh6v97ke5i.execute-api.ap-south-1.amazonaws.com/${env}`
       : `https://81r9kdn9mb.execute-api.ap-south-1.amazonaws.com/${env}`,
   judgeMeDomain:
-    env == environments.development
+    env === environments.development
       ? 'dev-oziva.myshopify.com'
       : 'oziva.myshopify.com',
   judgeMeApiToken:
-    env == environments.development
+    env === environments.development
       ? 'R1q3lOuECyUVTJ8tJgQCSZu_iac'
       : 'zpw7jJDr0WepgN7iYZnZpJLw8Y4',
   razorPayKey:
-    env == environments.development
+    env === environments.development
       ? 'rzp_test_m3bGSBGDkT5IGE'
       : 'rzp_live_qaFUwm4d5Z66hx',
   address: `${baseUrl}/nitro/user/address`,
@@ -79,7 +105,7 @@ export const baseEndpoints = {
   sessionIdentifierZevi: `${zeviBaseUrl}/sessionIdentifier`,
   searchProductZevi: `${zeviBaseUrl}/search/`,
   experimentalAnalytics:
-    env == environments.development
+    env === environments.development
       ? `https://9gfwak34s6.execute-api.ap-south-1.amazonaws.com/dev/abtesting/params`
       : `https://rrsy3t8pp9.execute-api.ap-south-1.amazonaws.com/prod/abtesting/params`,
   chatWoot: `https://carbon.${env}.oziva.in/chatbot/chatwoot/auth-check/`,
@@ -90,10 +116,13 @@ export const baseEndpoints = {
   collectionByHandle: `${baseUrl}/catalog/collection`,
   subscription: `${baseUrl}/subscription`,
   policyURL: `https://${policyPath}.myshopify.com/api/2022-04/graphql`,
-  policyToken: env === environments.development ? '396634c1ce60f5ea2593342adb2991bd' : '2edc93cb80d2e079172d67f0f61a9812',
+  policyToken:
+    env === environments.development
+      ? '396634c1ce60f5ea2593342adb2991bd'
+      : '2edc93cb80d2e079172d67f0f61a9812',
   quiz: `https://quiz.${env}.oziva.in/quiz`,
   search: `https://api.wizzy.ai/v1`,
   addressFetchProgress: `${baseUrl}/nitro/address/progress`,
-  checkoutURL: `https://checkout.${checkoutRedirectURL}/`,
-  analytics: `${pulseUrl}/session`
+  checkoutURL: `https://checkout.${hostDomain}/`,
+  analytics: `${pulseUrl}/session`,
 };

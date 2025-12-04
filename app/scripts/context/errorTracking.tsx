@@ -25,9 +25,7 @@ export const SentryProvider = ({ children }: any) => {
     if (typeof window === 'undefined') return;
 
     if (
-      window &&
-      window.location.href.indexOf('dev') === -1 &&
-      (window as any).Shopify.theme.id == '98022850619' //prod theme id
+      window
     )
       //allow only for production
       Sentry.init({

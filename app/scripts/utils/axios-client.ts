@@ -95,7 +95,7 @@ axiosClient.interceptors.response.use(
         error.config.headers['Authorization'] = `Bearer ${token}`;
         return Axios(error.config);
       });
-    } else if(status === 400) {
+    } else if (status === 400) {
       error.__ignoreForSentry = true;
       return Promise.reject(error);
     } else {
@@ -122,7 +122,8 @@ const getRefreshToken = () => {
         .catch((error) => {
           if (error?.response?.status === 401) {
             handleLogout();
-            window.location.reload();
+            if (typeof window != "undefined")
+              window.location.reload();
           }
           reject(error);
         });

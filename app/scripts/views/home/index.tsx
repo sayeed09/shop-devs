@@ -14,6 +14,7 @@ import { SentryProvider } from '~/scripts/context/errorTracking';
 import { Provider as GAProvider } from '../../context/gatracking';
 import { Provider as MixpanelProvider } from '../../context/mixpanelContext';
 import { Provider as UserContext } from '../../context/user';
+import { homeService } from '~/scripts/services/home';
 // import { SentryProvider } from '../../context/errorTracking';
 // import HomeSkeleton from '../../components/loaders/home-skeleton';
 // import { CollectionContainer } from '../../components/home/collection-container';
@@ -23,14 +24,14 @@ export default function HomeView() {
   const [homePageData, setHomePageDate] = useState<HomePageResponseModel>();
 
   useEffect(() => {
-    // fetchHomePageData();
+    fetchHomePageData();
   }, []);
-  // const fetchHomePageData = async () => {
-  //   setIsLoading(true);
-  //   const data = await homeService.fetchHomePageData();
-  //   setHomePageDate(data);
-  //   setIsLoading(false);
-  // };
+  const fetchHomePageData = async () => {
+    setIsLoading(true);
+    const data = await homeService.fetchHomePageData();
+    setHomePageDate(data);
+    setIsLoading(false);
+  };
 
   if (!isLoading) {
     return (
@@ -39,6 +40,7 @@ export default function HomeView() {
           <GAProvider>
             <MixpanelProvider>
               <UserContext>
+                {homePageData?.banners.map((item) => <img src={item.image} width={200} height={200} />)}
                 {/* <HeroBanner homepageData={homePageData?.banners as Banner[]} />
                 <CollectionContainer dataBlock={homePageData?.dataBlocks as DataBlock[]} /> */}
               </UserContext>

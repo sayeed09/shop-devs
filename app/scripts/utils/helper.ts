@@ -43,13 +43,7 @@ export const hostDomainUrl = isBrowser
 
 export const getEnvironmentValue = (): string | undefined => {
   if (!isBrowser) return undefined;
-  const win: any = window;
-
-  if (win.ENVIRONMENT === "dev") return "_DEV";
-  if (win.ENVIRONMENT === "prod" && win.Shopify?.theme?.id !== 120350801979) {
-    return "";
-  }
-  if (win.Shopify?.theme?.id === 120350801979) return "_PREPROD";
+  return "";
 };
 
 // ---------------------- AUTH TOKEN ----------------------
