@@ -5,20 +5,11 @@ import { Banner, DataBlock, HomePageResponseModel } from '~/scripts/models/home'
 import { SentryProvider } from '~/scripts/context/errorTracking';
 import '../../scss/oziva-site.scss';
 import '../../scss/home-style.scss';
-// import { homeService } from '../../services/home';
-// import {
-//   Banner,
-//   DataBlock,
-//   HomePageResponseModel,
-// } from '../../models/home';
 import { Provider as GAProvider } from '../../context/gatracking';
 import { Provider as MixpanelProvider } from '../../context/mixpanelContext';
 import { Provider as UserContext } from '../../context/user';
 import { homeService } from '~/scripts/services/home';
 import { CollectionContainer } from '~/scripts/components/home/collection-container';
-// import { SentryProvider } from '../../context/errorTracking';
-// import HomeSkeleton from '../../components/loaders/home-skeleton';
-// import { CollectionContainer } from '../../components/home/collection-container';
 
 export default function HomeView() {
   const [isLoading, setIsLoading] = useState(true);
