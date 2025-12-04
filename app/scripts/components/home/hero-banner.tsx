@@ -1,48 +1,54 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Banner } from "../../models/home";
 import { isMobile } from "../../utils/helper";
-// import { ResponsiveImage } from "../productCard/responsive-image";
-// import { bannerBreakPoints } from "../../utils/data-provider";
 
 interface IProps {
     homepageData: Banner[];
 }
 
-export default function HeroBanner(props: IProps) {
+export default function HeroBanner({ homepageData }: IProps) {
     const flickityRef = useRef<any>(null);
     const [FlickityComponent, setFlickityComponent] = useState<any>(null);
-    const [clientLinks, setClientLinks] = useState<(URL | null)[]>([]);
+    const [clientLinks, setClientLinks] = useState<(URL | null)[] | null>(null);
 
-    // Load Flickity ONLY on client
+    // Load Flickity and compute links only on client
     useEffect(() => {
+        let isMounted = true;
+
         import("react-flickity-component").then((mod) => {
-            setFlickityComponent(() => mod.default);
+            if (isMounted) setFlickityComponent(() => mod.default);
         });
         import("flickity-fullscreen");
 
-        // Compute links safely on client
-        const links = props.homepageData.map((item) => {
-            if (typeof window === "undefined") return null;
-            if (item.link && item.link.indexOf("blog.oziva.in") === -1) {
-                const u = new URL(item.link);
-                u.hostname = window.location.hostname;
-                return u;
-            } else if (item.link) {
-                return new URL(item.link);
+        const links = homepageData.map((item) => {
+            if (!item.link) return null;
+            try {
+                const url = new URL(item.link);
+                if (url.hostname !== "blog.oziva.in") {
+                    url.hostname = window.location.hostname;
+                }
+                return url;
+            } catch {
+                return null;
             }
-            return null;
         });
-        setClientLinks(links);
-    }, [props.homepageData]);
 
-    if (!FlickityComponent) return null; // Avoid SSR
+        if (isMounted) setClientLinks(links);
+
+        return () => {
+            isMounted = false;
+        };
+    }, [homepageData]);
+
+    // Avoid rendering anything until clientLinks & Flickity are ready
+    if (!FlickityComponent || !clientLinks) return null;
 
     const flickityOptionsMain = {
         initialIndex: 0,
         pageDots: false,
         lazyLoad: 1,
         adaptiveHeight: true,
-        prevNextButtons: props.homepageData.length > 1,
+        prevNextButtons: homepageData.length > 1,
     };
 
     return (
@@ -53,11 +59,11 @@ export default function HeroBanner(props: IProps) {
             reloadOnUpdate
             flickityRef={(c: any) => (flickityRef.current = c)}
         >
-            {props.homepageData?.map((item, index) => {
+            {homepageData.map((item, index) => {
                 const itemLink = clientLinks[index];
                 return (
                     <a
-                        href={itemLink?.href || "javascript:void(0)"}
+                        href={itemLink?.href || "#"}
                         className="carousel-cell"
                         key={item.image}
                     >
@@ -68,9 +74,7 @@ export default function HeroBanner(props: IProps) {
                                 muted
                                 playsInline
                                 controls={false}
-                                onLoadedMetadata={() => {
-                                    flickityRef?.current?.resize();
-                                }}
+                                onLoadedMetadata={() => flickityRef?.current?.resize?.()}
                             >
                                 <source
                                     src={isMobile() ? item.mobileImage : item.image}
@@ -79,11 +83,7 @@ export default function HeroBanner(props: IProps) {
                             </video>
                         ) : (
                             <></>
-                            // <ResponsiveImage
-                            //     imageURL={isMobile() ? item.mobileImage : item.image}
-                            //     widthHeightObject={bannerBreakPoints}
-                            //     altText={`OZiva: ${item.title}`}
-                            // />
+                            // Replace with your <ResponsiveImage /> if needed
                         )}
                     </a>
                 );
