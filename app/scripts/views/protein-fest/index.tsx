@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroBanner from '../../components/home/hero-banner';
+import HeroBanner from '../../components/home/hero-banner.client';
 import { Banner } from '../../models/home';
 import '../../scss/import/_supersale.scss';
 import '../../scss/import/_cart-abs.scss';

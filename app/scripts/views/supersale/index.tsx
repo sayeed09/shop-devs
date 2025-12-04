@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import HeroBanner from '../../components/home/hero-banner';
+import HeroBanner from '../../components/home/hero-banner.client';
 import { Banner } from '../../models/home';
 import '../../scss/import/_supersale.scss';
 import { SuperSaleJSON } from '../../utils/supersale/constant';

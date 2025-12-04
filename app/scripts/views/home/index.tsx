@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import '../../scss/oziva-search-product-page.scss';
-import HeroBanner from '../../components/home/hero-banner';
+import HeroBanner from '../../components/home/hero-banner.client';
 import { Banner, HomePageResponseModel } from '~/scripts/models/home';
 import { SentryProvider } from '~/scripts/context/errorTracking';
 // import '../../scss/oziva-site.scss';
