@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import HomeView from "~/scripts/views/home";
+import HomeView from "~/scripts/views/home/index.client";
 
 
 const HomepageV1 = () => {
