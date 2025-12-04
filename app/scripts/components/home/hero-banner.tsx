@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Banner } from "../../models/home";
 import { isMobile } from "../../utils/helper";
-import { ResponsiveImage } from "../productCard/responsive-image";
-import { bannerBreakPoints } from "../../utils/data-provider";
+// import { ResponsiveImage } from "../productCard/responsive-image";
+// import { bannerBreakPoints } from "../../utils/data-provider";
 
 interface IProps {
     homepageData: Banner[];
@@ -78,11 +78,12 @@ export default function HeroBanner(props: IProps) {
                                 />
                             </video>
                         ) : (
-                            <ResponsiveImage
-                                imageURL={isMobile() ? item.mobileImage : item.image}
-                                widthHeightObject={bannerBreakPoints}
-                                altText={`OZiva: ${item.title}`}
-                            />
+                            <></>
+                            // <ResponsiveImage
+                            //     imageURL={isMobile() ? item.mobileImage : item.image}
+                            //     widthHeightObject={bannerBreakPoints}
+                            //     altText={`OZiva: ${item.title}`}
+                            // />
                         )}
                     </a>
                 );
