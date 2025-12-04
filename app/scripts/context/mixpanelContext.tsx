@@ -9,7 +9,7 @@ export const Provider = ({ children, disableSdk }: any) => {
   const [mixpanelExp, setMixpanelExp] = useState<string | undefined>();
 
   const trackMixpanelEvent = (event_name: string, attribute: any) => {
-    if (!disableSdk && (window as any).ENVIRONMENT === 'prod') {
+    if (!disableSdk) {
       mixpanel.track(event_name, attribute);
     }
   };
