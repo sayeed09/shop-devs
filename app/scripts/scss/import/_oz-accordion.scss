@@ -1,0 +1,116 @@
+/*_________________  Accordion
+  ________________________________________*/
+.accordion {
+  position: relative;
+}
+
+[id*='open-accordion'],
+[id*='close-accordion'] {
+  background: $white;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  width: 99%;
+}
+
+[id*='close-accordion'] {
+  display: none;
+}
+
+.accordion {
+  .tabs {
+    .tab {
+      border: 1px solid $border-gray;
+      margin-bottom: 16px;
+      border-radius: 4px;
+    }
+  }
+  a {
+    padding: 23.5px 16px;
+    background: $white;
+    color: $black;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+[id*='open-accordion']:after,
+[id*='close-accordion']:after {
+  content: '';
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #333030;
+  position: absolute;
+  right: 5px;
+  top: 15px;
+  z-index: 999;
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+}
+
+.target-fix {
+  display: block;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+.accordion-content {
+  height: 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.1s ease;
+  -webkit-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+  ol {
+    padding: 0 0 0 16px;
+    list-style: auto;
+    li {
+      margin-bottom: 32px;
+      h4 {
+        margin-bottom: 8px;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .product-info {
+    table {
+      width: 100%;
+      tr {
+        td {
+          padding: 16px;
+          border-top: 1px solid $border-gray;
+          border-right: 1px solid $border-gray;
+          &:first-child {
+            background: $light-gray;
+          }
+          &:last-child {
+            border-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.accordion span:target ~ .accordion-content {
+  height: auto;
+  padding-bottom: 25px;
+  padding-top: 10px;
+}
+
+.accordion span:target ~ [id*='close-accordion'] {
+  display: block;
+}
+
+.accordion span:target ~ [id*='open-accordion'] {
+  display: none;
+}
+
+.accordion span:target ~ [id*='close-accordion']:after {
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+}

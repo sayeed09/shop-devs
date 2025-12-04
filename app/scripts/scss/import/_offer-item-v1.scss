@@ -1,0 +1,150 @@
+.disabled-button{
+    background: #7E7E7E;
+}
+.coupon-card:last-child {
+    margin-right: 16px;
+}
+
+.coupon-card {
+    display: inline-block;
+    margin-left: 16px;
+    min-width: 340px;
+    padding: 16px 0;
+    z-index: 1;
+    position: relative;
+    min-height: 180px;
+
+    .coupon-card-background {
+        background-color: #B0DDA7;
+        width: 320px;
+        transform: rotate(3deg);
+        height: 165px;
+        position: absolute;
+        z-index: -1;
+        left: 13px;
+        border-radius: 8px;
+        height: 190px;
+
+    }
+
+    .coupon-card-container::before {
+        content: "";
+        width: 21px;
+        height: 190px;
+        background: url(https://cdn.shopify.com/s/files/1/2393/2199/files/left.svg?v=1755168104);
+        position: absolute;
+        left: 0px;
+        top: 16px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .coupon-card-container::after {
+        content: "";
+        width: 21px;
+        height: 190px;
+        background: url(https://cdn.shopify.com/s/files/1/2393/2199/files/right.svg?v=1755168104);
+        position: absolute;
+        right: 0px;
+        top: 16px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .coupon-card-container {
+        padding: 16px 24px;
+        border-top: 2px solid #B0DDA7;
+        border-bottom: 2px solid #B0DDA7;
+        border-radius: 8px;
+        background: #FFF;
+        height: 190px;
+
+        .coupon-card-top {
+            display: flex;
+            gap: 8px;
+            min-height: 90px;
+
+            .coupon-card-product-image {
+                width: 60px;
+                height: 60px;
+            }
+
+            .coupon-card-product-text {
+                height: 106px;
+                .coupon-card-title {
+                    font-size: 16px;
+                    font-weight: 700;
+                    margin-bottom: 8px;
+                    line-height: 22px;
+                }
+
+                .coupon-card-description {
+                    color: #7E7E7E;
+                    font-size: 13px;
+                    margin-bottom: 8px;
+                    line-height: 18px;
+                }
+
+                .coupon-details {
+                    color: #6BBD58;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .coupon-card-bottom {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            align-items: center;
+
+            .popup-tag{
+                font-size: 14px !important;
+            }
+
+            .coupon-code-container {
+                display: flex;
+                border-radius: 4px;
+                border: 1px dashed #B0DDA7;
+                background: #F1FFEE;
+                padding: 8px;
+                color: #6BBD58;
+                align-items: center;
+                gap: 4px;
+
+                .brand-logo {
+                    width: 20px;
+                }
+            }
+
+            .coupon-card-apply-btn {
+                border-radius: 8px;
+                background: #FE6F00;
+                color: #FFF;
+                border: none;
+                padding: 8px;
+                width: 100px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 800;
+                font-size: 14px;
+            }
+            .coupon-card-apply-btn-disabled{
+                background: #E0E0E0;
+                color: #BDBDBD;
+            }
+
+            .coupon-card-applied {
+                color: #6BBD58;
+                font-weight: 500;
+                font-size: 12px;
+                display: flex;
+                gap: 4px;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}

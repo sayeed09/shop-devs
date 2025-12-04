@@ -1,0 +1,73 @@
+@mixin clearfix() {
+  &::after {
+    display: block;
+    clear: both;
+    content: '';
+  }
+}
+@mixin imgFluid() {
+  max-width: 100%;
+}
+
+.img-fluid {
+  @include imgFluid;
+}
+.clearfix {
+  @include clearfix;
+}
+
+@keyframes blink {
+  0% {
+    -webkit-box-shadow: 0px 0px 0px 5px $primaryGreenSG400,
+      inset 0px 10px 27px -8px $primaryGreen,
+      inset 0px -10px 27px -8px $primaryGreen, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: 0px 0px 0px 5px $primaryGreenSG400,
+      inset 0px 10px 27px -8px $primaryGreen,
+      inset 0px -10px 27px -8px $primaryGreen, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  }
+  50% {
+    box-shadow: none;
+  }
+  100% {
+    -webkit-box-shadow: 0px 0px 0px 5px $primaryGreenSG400,
+      inset 0px 10px 27px -8px $primaryGreen,
+      inset 0px -10px 27px -8px $primaryGreen, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: 0px 0px 0px 5px $primaryGreenSG400,
+      inset 0px 10px 27px -8px $primaryGreen,
+      inset 0px -10px 27px -8px $primaryGreen, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  }
+}
+@-webkit-keyframes blink {
+  0% {
+    -webkit-box-shadow: 0px 0px 0px 5px $primaryGreenSG400,
+      inset 0px 10px 27px -8px $primaryGreen,
+      inset 0px -10px 27px -8px $primaryGreen, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: 0px 0px 0px 5px $primaryGreenSG400,
+      inset 0px 10px 27px -8px $primaryGreen,
+      inset 0px -10px 27px -8px $primaryGreen, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  }
+  50% {
+    box-shadow: 0 0 0;
+  }
+  100% {
+    -webkit-box-shadow: 0px 0px 0px 5px $primaryGreenSG400,
+      inset 0px 10px 27px -8px $primaryGreen,
+      inset 0px -10px 27px -8px $primaryGreen, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: 0px 0px 0px 5px $primaryGreenSG400,
+      inset 0px 10px 27px -8px $primaryGreen,
+      inset 0px -10px 27px -8px $primaryGreen, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  }
+}
+@mixin blink() {
+  -webkit-box-shadow: 0px 0px 0px 5px $primaryGreenSG400,
+    inset 0px 10px 27px -8px $primaryGreen,
+    inset 0px -10px 27px -8px $primaryGreen, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 0px 5px $primaryGreenSG400,
+    inset 0px 10px 27px -8px $primaryGreen,
+    inset 0px -10px 27px -8px $primaryGreen, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  /* -webkit-animation: blink 1.0s linear infinite;
+    -moz-animation: blink 1.0s linear infinite;
+    -ms-animation: blink 1.0s linear infinite;
+    -o-animation: blink 1.0s linear infinite;
+    animation: blink 1.0s linear infinite; */
+}

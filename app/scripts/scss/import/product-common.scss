@@ -1,0 +1,603 @@
+.uds-564-v2,
+.uds-564-v1,
+.gcsk-1578-v1,
+.gcsk-1578-v2 {
+    display: none;
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.d-flex-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.product-container {
+    color: #333030;
+}
+
+.offers-dis {
+    color: #424242;
+}
+
+.offer-item {
+    color: #006E5A;
+}
+
+.value-communication {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+
+    .value-communication-container {
+        background-color: #FFFBE5;
+        padding: 12px 8px;
+        border: 1px solid #FFF3C9;
+        border-radius: 4px;
+        display: block;
+        margin-top: 16px;
+
+        .value-communication-heading {
+            color: #006E5A;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .dynamic-variant-item {
+            padding: 0;
+            margin-bottom: 16px;
+            margin-top: 16px;
+            align-items: center !important;
+        }
+
+        .value-communication-items {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+
+            .item-image-title {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                .item-variant-image {
+                    width: 62px;
+                    height: 62px;
+                    border-radius: 4px;
+                    border: 1px solid #FFF3C9;
+                }
+
+                .item-gift-gif {
+                    width: 24px;
+                    height: 24px;
+                }
+
+                .item-title {
+                    color: #333030;
+                    font-weight: 500;
+                    font-size: 14px;
+                }
+
+                .item-sub-title {
+                    color: #7E7E7E;
+                    font-size: 12px;
+                }
+            }
+
+            .item-pricing {
+                text-align: right;
+
+                .item-mrp {
+                    color: #7E7E7E;
+                    font-size: 11px;
+
+                    s {
+                        font-size: 13px;
+                    }
+                }
+
+                .item-price {
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+
+                .item-free-gift-gif {
+                    width: 52px;
+                    height: 52px;
+                }
+            }
+        }
+
+        .pay-only-box {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            background: #FFF2BB;
+            padding: 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+
+            .pay-only-text {
+                color: #424242;
+                font-weight: 500;
+                font-size: 14px;
+            }
+
+            .pay-only-mrp {
+                color: #7E7E7E;
+                margin-right: 4px;
+                font-size: 14px;
+            }
+
+            .pay-only-price {
+                color: #006E5A;
+                font-weight: 700;
+                font-size: 18px;
+            }
+        }
+    }
+
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .oziva-pdp-web {
+        .sticky-top {
+            .thumbnail-images {
+                padding: 0 32px;
+                display: block !important;
+
+                .flickity-viewport {
+                    height: 60px !important;
+
+                    .carousel-cell {
+                        width: 60px;
+
+                        .non-selected-img {
+                            width: 60px;
+                            height: 60px;
+                            opacity: 0.5;
+                            border: none;
+                        }
+
+                        .selected-img {
+                            opacity: 1;
+                            border: 2px solid #006E5A;
+                            width: 60px;
+                            height: 60px;
+                            border-radius: 4px;
+                        }
+                    }
+                }
+
+                .flickity-button {
+                    display: none;
+                }
+            }
+
+            .images-count {
+                position: absolute;
+                right: 10px;
+                bottom: 23px;
+                font-weight: 500;
+                font-size: 12px;
+                display: block;
+            }
+        }
+    }
+
+}
+
+.oziva-mob-footer-1 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+
+    .image-container {
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 44px;
+            height: 44px;
+            margin-right: 2px;
+        }
+
+        .product-ratings {
+            display: flex;
+            gap: 2px;
+
+            .ratings-number {
+                color: #7E7E7E;
+                font-size: 11px;
+            }
+
+            svg {
+                height: 14px;
+                width: 14px;
+
+                path {
+                    fill: #FECC0E;
+                }
+            }
+        }
+    }
+
+    .pdp-v2-cta-btn {
+        flex: 1;
+        border-radius: 4px;
+        background: var(--primary-PC_500, #FF6F00);
+        border: 0;
+        color: var(--neutral_clear_white, #FFF);
+        font-size: 14px;
+        font-weight: 800;
+        padding: 8px;
+        margin-left: 4px;
+        height: 48px;
+
+        .buy-now-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .mrp-information {
+                display: flex;
+                gap: 4px;
+                align-items: center;
+
+                .pricing {
+                    display: flex;
+                    align-items: center;
+
+                    .mrp-price {
+                        font-size: 11px;
+                        margin-right: 4px;
+                        font-weight: 500;
+                        color: #E0E0E0;
+                    }
+
+                    .selling-price {
+                        font-size: 13px;
+                        font-weight: 500;
+                        color: #E0E0E0;
+                    }
+
+                    .mrp-text {
+                        font-size: 11px;
+                        font-weight: 500;
+                        color: #E0E0E0;
+                    }
+                }
+
+                .vertical-line {
+                    border-left: 1px solid #E0E0E0;
+                    height: 20px;
+                }
+
+                .save-text {
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #E0E0E0;
+                }
+            }
+
+            .buy-now-text {
+                font-size: 13px;
+            }
+        }
+
+    }
+
+    .footer-msg {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        align-items: center;
+        background: #F9D2C7;
+        box-shadow: 0 -16px 20px rgba(0, 0, 0, 0.06);
+        border-radius: 0;
+        color: #FF6F00;
+        font-size: 14px;
+        font-weight: 500;
+        height: 28px;
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .footer-container {
+        width: 100%;
+        display: flex;
+        padding: 8px;
+        background-color: white;
+    }
+}
+
+.oziva-mob-footer-a {
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+
+    .footer-msg {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        align-items: center;
+        background: #F9D2C7;
+        box-shadow: 0 -16px 20px rgba(0, 0, 0, 0.06);
+        border-radius: 0;
+        color: #FF6F00;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .footer-container {
+        width: 100%;
+        display: flex;
+        padding: 8px;
+        background-color: white;
+    }
+
+    .pricing-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 0.6;
+    }
+
+    .mrp-text {
+        color: var(--grey_scale_grey, #7E7E7E);
+        font-family: Roboto;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0.044px;
+        display: flex;
+        gap: 2px;
+        align-items: center;
+    }
+
+    .selling-price {
+        color: #000;
+        font-family: Roboto;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 23px;
+        /* 115% */
+        letter-spacing: 0.03px;
+        margin-left: 2px;
+
+    }
+
+    .pdp-v2-cta-btn {
+        border-radius: 8px;
+        background: #FF6F00;
+        display: flex;
+        width: 175px;
+        padding: 16px 30px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border: 0;
+        color: var(--neutral_clear_white, #FFF);
+        font-family: Roboto;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0.014px;
+        margin-left: auto;
+        height: 48px;
+        flex: 0.4;
+    }
+
+    .save-today-price {
+        border-radius: 4px;
+        background: #F35B04;
+        color: #FFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        padding: 4px;
+        font-size: 13px;
+
+        .save-price-variant {
+            animation: weightChange 3s forwards infinite;
+        }
+    }
+}
+
+@keyframes weightChange {
+    0% {
+        font-weight: 400;
+    }
+
+    50% {
+        font-weight: 700;
+    }
+
+    100% {
+        font-weight: 400;
+    }
+}
+
+.product-dtl {
+    .value-communication {
+        .value-communication-container {
+            padding: 8px 4px;
+            margin-top: 0px;
+
+            .value-communication-heading {
+                font-size: 14px;
+            }
+
+            .dynamic-variant-item {
+                padding: 0;
+                margin-bottom: 16px;
+                margin-top: 16px;
+            }
+
+            .value-communication-items {
+                .item-image-title {
+                    gap: 8px;
+
+                    .item-variant-image {
+                        width: 54px;
+                        height: 54px;
+                    }
+
+                    .item-gift-gif {
+                        width: 24px;
+                        height: 24px;
+                    }
+
+                    .item-title {
+                        font-size: 13px;
+                    }
+
+                    .item-sub-title {
+                        font-size: 12px;
+                    }
+                }
+
+                .item-pricing {
+                    text-align: right;
+
+                    .item-price {
+                        font-size: 14px;
+                    }
+
+                    .item-free-gift-gif {
+                        width: 48px;
+                        height: 46px;
+                    }
+                }
+            }
+
+            .pay-only-box {
+                margin-top: 16px;
+                padding: 8px;
+                margin-top: 8px;
+
+                .pay-only-text {
+                    font-size: 13px;
+                }
+
+                .pay-only-mrp {
+                    margin-right: 4px;
+                    font-size: 13px;
+                }
+
+                .pay-only-price {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 389px) {
+    .product-dtl {
+        .value-communication {
+            .value-communication-container {
+                .value-communication-heading {
+                    font-size: 13px;
+                }
+
+                .value-communication-items {
+                    .item-image-title {
+                        .item-title {
+                            font-size: 12px;
+                        }
+
+                        .item-variant-image {
+                            width: 42px;
+                            height: 42px;
+                        }
+
+                        .item-sub-title {
+                            font-size: 11px;
+                        }
+                    }
+
+                    .item-pricing {
+                        .item-mrp {
+                            font-size: 10px;
+
+                            s {
+                                font-size: 12px;
+                            }
+                        }
+
+                        .item-price {
+                            font-size: 13px;
+                        }
+
+                        .item-free-gift-gif {
+                            width: 42px;
+                            height: 40px;
+                        }
+                    }
+                }
+
+                .pay-only-box {
+                    .pay-only-price {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 359px) {
+    .oziva-mob-footer-a {
+        .selling-price {
+            font-size: 16px;
+        }
+    }
+
+    .value-communication {
+        .value-communication-container {
+            .value-communication-heading {
+                font-size: 13px;
+            }
+
+            .dynamic-variant-item {
+                padding: 0;
+            }
+
+            .value-communication-items {
+                .item-image-title {
+                    gap: 4px;
+
+                    .item-gift-gif {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                .item-pricing {
+                    .item-free-gift-gif {
+                        width: 36px;
+                        height: 34px;
+                    }
+                }
+            }
+        }
+    }
+}

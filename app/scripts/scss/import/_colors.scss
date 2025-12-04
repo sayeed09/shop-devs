@@ -1,0 +1,156 @@
+/* IMPORT SCSS FILS */
+@import 'variables';
+
+/* Text Colors */
+.text-primaryGreen {
+  color: $primaryGreen !important;
+}
+.text-primaryPahadiCitrus {
+  color: $primaryPahadiCitrus !important;
+}
+.text-orangeVibrantShade{
+  color: #FF6F00 !important;
+}
+.text-primaryGreenSG300 {
+  color: $primaryGreenSG300 !important;
+}
+.text-primaryGreenSG200 {
+  color: $primaryGreenSG200 !important;
+}
+.text-primaryGreenSG100 {
+  color: $primaryGreenSG100 !important;
+}
+.text-primaryPahadiCitrusPC400 {
+  color: $primaryPahadiCitrusPC400 !important;
+}
+.text-primaryPahadiCitrusPC300 {
+  color: $primaryPahadiCitrusPC300 !important;
+}
+.text-primaryPahadiCitrusPC200 {
+  color: $primaryPahadiCitrusPC200 !important;
+}
+.text-dprimaryPahadiCitrusPC100 {
+  color: $primaryPahadiCitrusPC100 !important;
+}
+.text-secondaryDeepGreen {
+  color: $secondaryDeepGreen !important;
+}
+.text-secondaryCandyPink {
+  color: $secondaryCandyPink !important;
+}
+.text-secondaryAcaiBerry {
+  color: $secondaryAcaiBerry !important;
+}
+.text-secondaryFloralViolet {
+  color: $secondaryFloralViolet !important;
+}
+.text-secondaryGulabiPink {
+  color: $secondaryGulabiPink !important;
+}
+.text-secondarySkyBlue {
+  color: $secondarySkyBlue !important;
+}
+.text-secondaryTurmericYellow {
+  color: $secondaryTurmericYellow !important;
+}
+.text-black {
+  color: $black !important;
+}
+.text-white {
+  color: $white !important;
+}
+.text-red {
+  color: $red !important;
+}
+.text-gray {
+  color: $gray !important;
+}
+.text-off-gray {
+  color: $off-gray !important;
+}
+.text-light-gray {
+  color: $light-gray !important;
+}
+.text-light {
+  color: $light !important;
+}
+.text-off-light {
+  color: $off-light !important;
+}
+
+/* Background Colors */
+.bg-primaryGreen {
+  background: $primaryGreen !important;
+}
+.bg-lightGreen {
+  background: $lightGreen !important;
+}
+.bg-primaryPahadiCitrus {
+  background: $primaryPahadiCitrus !important;
+}
+.bg-primaryGreenSG400 {
+  background: $primaryGreenSG400 !important;
+}
+.bg-primaryGreenSG300 {
+  background: $primaryGreenSG300 !important;
+}
+.bg-primaryGreenSG200 {
+  background: $primaryGreenSG200 !important;
+}
+.bg-primaryGreenSG100 {
+  background: $primaryGreenSG100 !important;
+}
+.bg-primaryPahadiCitrusPC400 {
+  background: $primaryPahadiCitrusPC400 !important;
+}
+.bg-primaryPahadiCitrusPC300 {
+  background: $primaryPahadiCitrusPC300 !important;
+}
+.bg-primaryPahadiCitrusPC200 {
+  background: $primaryPahadiCitrusPC200 !important;
+}
+.bg-dprimaryPahadiCitrusPC100 {
+  background: $primaryPahadiCitrusPC100 !important;
+}
+.bg-secondaryDeepGreen {
+  background: $secondaryDeepGreen !important;
+}
+.bg-secondaryCandyPink {
+  background: $secondaryCandyPink !important;
+}
+.bg-secondaryAcaiBerry {
+  background: $secondaryAcaiBerry !important;
+}
+.bg-secondaryFloralViolet {
+  background: $secondaryFloralViolet !important;
+}
+.bg-secondaryGulabiPink {
+  background: $secondaryGulabiPink !important;
+}
+.bg-secondarySkyBlue {
+  background: $secondarySkyBlue !important;
+}
+.bg-secondaryTurmericYellow {
+  background: $secondaryTurmericYellow !important;
+}
+.bg-black {
+  background: $black !important;
+}
+.bg-white {
+  background: $white !important;
+}
+.bg-gray {
+  background: $gray !important;
+}
+.bg-off-gray {
+  background: $off-gray !important;
+}
+.bg-light-gray {
+  background: $light-gray !important;
+}
+.bg-light {
+  background: $light !important;
+}
+.bg-ff-light {
+  background: $off-light !important;
+}

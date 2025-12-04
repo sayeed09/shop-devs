@@ -1,0 +1,344 @@
+.enter-coupon-input {
+  background: #fff;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+
+  .offer-back {
+    font-size: 16px;
+    white-space: nowrap;
+    line-height: 23px;
+    flex: none;
+    padding-right: 15px;
+
+    a {
+      color: $black;
+      font-weight: 500;
+    }
+  }
+
+  .offer-input-div {
+    text-align: center;
+
+    .font-control {
+      border: 0;
+      margin: 0 auto;
+
+      &::placeholder {
+        color: $off-light;
+      }
+    }
+  }
+
+  .btn.btn-primary {
+    border-width: 0;
+    font-size: 14px;
+    padding-right: 8px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .oziva-cart-body {
+    .oziva-Offers-page {
+      max-width: 800px !important;
+
+      .cart-offers {
+        font-size: 14px;
+
+        h2 {
+          font-size: 16px;
+          line-height: 18px;
+        }
+      }
+
+      hr {
+        display: none;
+      }
+
+      .offer-wave {
+        position: fixed;
+        left: 0;
+        right: 0;
+        height: 50%;
+        bottom: 0;
+        z-index: -2;
+      }
+    }
+  }
+}
+
+.couponcode {
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.oziva-cart-body {
+  .oziva-Offers-page {
+    .applied {
+      .cart-offers {
+        position: relative;
+        border: 1px dashed #6BBD58;
+        background: #F1FFEE;
+        overflow: hidden;
+        border-radius: 8px;
+        padding: 8px 16px 8px 32px;
+        margin-bottom: 16px;
+
+        &:before {
+          content: '';
+          background: #6BBD58;
+          height: 100%;
+          width: 16px;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+
+      &.disabled {
+        .cart-offers {
+          background: #fff;
+          border: 1px dashed #BDBDBD;
+          color: #7E7E7E;
+
+          .couponcode,
+          .text-primaryPahadiCitrus {
+            color: #BDBDBD !important;
+          }
+
+          &:before {
+            background: #BDBDBD;
+          }
+        }
+      }
+    }
+
+    .applied-cash-box {
+      background: #fff;
+      padding-top: 8px !important;
+
+      .coupon-container::before {
+        content: "";
+        min-width: 24px;
+        position: relative;
+        left: 10px;
+        border-radius: 4px 8px 8px 4px;
+        background: url(https://cdn.shopify.com/s/files/1/2393/2199/files/cart_left.svg?v=1755608475) no-repeat center center;
+        background-size: cover;
+        z-index: 100;
+      }
+
+      .coupon-container::after {
+        content: "";
+        min-width: 20px;
+        background: url(https://cdn.shopify.com/s/files/1/2393/2199/files/right.svg?v=1755168104);
+        right: 6px;
+        border-radius: 0px 8px 8px 0px;
+        background-repeat: no-repeat;
+        background-position: -3px 0px;
+        background-size: 100% 100%;
+        position: relative;
+      }
+
+      .coupon-container {
+        display: flex;
+        margin-bottom: 16px;
+
+        .coupon-content {
+          flex-grow: 1;
+          padding: 8px 16px 8px 18px;
+          display: flex;
+          flex-direction: column;
+          z-index: 2;
+          border-top: 1.5px solid #B0DDA7;
+          border-bottom: 1.5px solid #B0DDA7;
+          gap: 8px;
+          justify-content: space-between;
+
+          .coupon-text-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+
+            .coupon-text {
+              display: flex;
+              flex-direction: column;
+              gap: 8px;
+
+              .coupon-header {
+                font-size: 14px;
+                font-weight: 700;
+              }
+
+              .coupon-description {
+                font-size: 12px;
+                color: #7E7E7E;
+                font-weight: 400;
+              }
+            }
+
+            .coupon-product-image {
+              display: flex;
+              flex-direction: column;
+              gap: 8px;
+
+              .product-img {
+                width: 52px;
+                height: 52px;
+                border-radius: 2px;
+              }
+            }
+          }
+
+
+          .coupon-code-container {
+            display: flex;
+            justify-content: space-between;
+
+            .coupon-code {
+              border-radius: 2px;
+              border: 1px dashed #B0DDA7;
+              background: #F1FFEE;
+              padding: 4px 8px;
+              display: flex;
+              align-items: center;
+              color: #6BBD58;
+              font-weight: 500;
+            }
+
+            .coupon-card-apply-btn {
+              border-radius: 8px;
+              background: #FFF;
+              color: #FE6F00;
+              border: none;
+              font-weight: 500;
+
+              svg {
+                circle {
+                  stroke: #FE6F00;
+                }
+              }
+            }
+          }
+
+
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .oziva-cart-body .oziva-mob-container .oziva-cart-content-area .cart-item .d-flex .oziva-item-img {
+    min-width: auto;
+    margin-right: 8px;
+  }
+
+  .oziva-cart-body {
+    .oziva-Offers-page {
+      padding: 16px 0 0 !important;
+
+      &>* {
+        padding: 0 8px;
+      }
+
+      .oziva-mob-container .oziva-cart-content-area .cart-item .oziva-item-img {
+        min-width: 100px;
+      }
+
+      .oz-cash-box {
+        padding-top: 8px !important;
+        padding-bottom: 8px;
+        background: $white;
+
+        .oziva-item-img {
+          svg {
+            width: 42px;
+            height: 42px;
+          }
+        }
+      }
+
+      .applied-cash-box {
+        padding-top: 8px !important;
+
+        .coupon-container {
+          margin-bottom: 16px;
+          .coupon-content {
+            padding: 8px 16px 8px 18px;
+            .coupon-text-container {
+              .coupon-text {
+                .coupon-header {
+                  font-size: 14px;
+                }
+                .coupon-description {
+                  font-size: 12px;
+                  font-weight: 400;
+                }
+              }
+
+              .coupon-product-image {
+                .product-img {
+                  width: 52px;
+                  height: 52px;
+                  border-radius: 2px;
+                }
+              }
+            }
+
+
+            .coupon-code-container {
+              display: flex;
+              justify-content: space-between;
+
+              .coupon-code {
+                border-radius: 2px;
+                border: 1px dashed #B0DDA7;
+                background: #F1FFEE;
+                padding: 4px 8px;
+                display: flex;
+                align-items: center;
+                color: #6BBD58;
+                font-weight: 500;
+              }
+
+              .coupon-card-apply-btn {
+                border-radius: 8px;
+                background: #FFF;
+                color: #FE6F00;
+                border: none;
+                font-weight: 500;
+
+                svg {
+                  circle {
+                    stroke: #FE6F00;
+                  }
+                }
+              }
+            }
+
+
+          }
+        }
+
+      }
+
+      .enter-coupon-input {
+        margin: 32px 8px 0 8px;
+        background: #fff;
+        position: relative;
+        padding-right: 0;
+        top: -4px;
+      }
+
+      .Use-code-box {
+        .cart-item-dtl {
+          .text-primaryPahadiCitrus.f-12 {
+            margin-top: 8px !important;
+            font-size: 11px;
+          }
+        }
+      }
+    }
+  }
+}

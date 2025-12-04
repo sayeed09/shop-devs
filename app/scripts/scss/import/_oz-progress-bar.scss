@@ -1,0 +1,359 @@
+.multiple-order-tracking-text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0 0 16px 0;
+}
+
+.tracking-multiple-orders {
+  margin-bottom: 16px;
+
+  .order-tracking-progress-bar::before {
+    left: 24px !important;
+  }
+
+  .order-tracking-progress-bar {
+    padding: 8px !important;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+  }
+}
+
+.reorder-out-of-stock {
+  .out-stock-title {
+    color: #7E7E7E;
+  }
+
+  .reorder-out-of-stock-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  hr {
+    margin: 16px 0 !important;
+  }
+
+  .re-order-available-stock-text {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 16px 0;
+  }
+
+  .re-order-proceed-btn {
+    width: 100%;
+    border: 1px solid #FF6F00;
+    color: #FF6F00;
+    background: #FFF;
+    padding: 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .re-order-proceed-btn:hover {
+    background-color: #FFF;
+    color: #FF6F00;
+  }
+}
+
+.oz-progress-bar {
+  .multiple-orders-tracking {
+    background: #F5F5F5;
+    padding: 16px;
+    margin-top: 8px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .tracking-id {
+      color: #333030;
+      font-weight: 500;
+    }
+  }
+
+  .shipment-preparing-text {
+    color: #7E7E7E;
+    height: 58px;
+  }
+
+  .order-tracking-progress-bar {
+    border: 1px solid #E0E0E0;
+  }
+
+  ul {
+    padding: 0 !important;
+    list-style: none !important;
+    margin: 0;
+    position: relative;
+    z-index: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: calc(100% - 30px);
+      left: 16px;
+      top: 16px;
+      border-left: 1px solid $off-light;
+      z-index: 1;
+    }
+
+    li {
+      text-indent: 32px;
+      padding: 8px 0;
+      margin: 8px 0;
+      border-radius: 2px;
+      position: relative;
+      font-size: 14px;
+      letter-spacing: 0.15px;
+      list-style: none !important;
+
+      .text-off-gray {
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        color: #BDBDBD !important;
+        font-weight: 400;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        left: 13.5px;
+        top: calc(50% - 3px);
+        border: 1px solid $off-light;
+        background: $white;
+        z-index: 2;
+      }
+
+      &.completed {
+        font-weight: 500;
+
+        .text-off-gray {
+          color: #7E7E7E !important;
+        }
+
+        &::before {
+          border: 1px solid $primaryGreen;
+          background: $primaryGreen;
+          z-index: 3;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 1px;
+          height: 100%;
+          left: 16px;
+          top: 23px;
+          border-left: 1px solid $primaryGreen;
+          z-index: 2;
+        }
+      }
+
+      &.active {
+        background-color: $primaryGreenSG300;
+
+        &:before {
+          @include blink;
+        }
+      }
+
+      &.cancelled {
+        font-weight: 500;
+
+        .text-off-gray {
+          color: #7E7E7E !important;
+        }
+
+        &::before {
+          border: 1px solid $primaryPahadiCitrus;
+          background: $primaryPahadiCitrus;
+          z-index: 4;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 1px;
+          height: 100%;
+          left: 16px;
+          top: 23px;
+          border-left: 1px solid $primaryGreen;
+          z-index: 3;
+        }
+
+        &.active {
+          &:before {
+            -webkit-box-shadow: 0px 0px 0px 5px $primaryPahadiCitrusPC300,
+              inset 0px 10px 27px -8px $primaryPahadiCitrus,
+              inset 0px -10px 27px -8px $primaryPahadiCitrus,
+              5px 5px 15px 5px rgba(0, 0, 0, 0);
+            box-shadow: 0px 0px 0px 5px $primaryPahadiCitrusPC300,
+              inset 0px 10px 27px -8px $primaryPahadiCitrus,
+              inset 0px -10px 27px -8px $primaryPahadiCitrus,
+              5px 5px 15px 5px rgba(0, 0, 0, 0);
+          }
+        }
+      }
+
+      &:last-child {
+        &::after {
+          content: '';
+          position: absolute;
+          width: 1px;
+          height: calc(100% + 5px);
+          left: 16px;
+          top: auto;
+          bottom: 16px;
+          border-left: 1px solid $primaryGreen;
+        }
+      }
+    }
+
+    &.single-progress-bar {
+      li {
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.modal-content {
+  .oz-progress-bar {
+    ul {
+      &:before {
+        height: calc(100% - 50px);
+      }
+
+      li {
+        margin: 32px 0;
+        font-size: 13px;
+        line-height: 15px;
+        letter-spacing: 0.005em;
+        font-weight: 400;
+
+        .subtitile-small {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 16px;
+          letter-spacing: 0.0015em;
+          color: #333030;
+          margin-right: 4px;
+        }
+
+        &.completed {
+          &:after {
+            height: calc(100% + 17px);
+          }
+        }
+
+        &::before {
+          top: calc(50% - 15px);
+        }
+
+        &:first-child,
+        &:last-child {
+          margin: 0;
+        }
+
+        &:last-child::after {
+          top: -25px;
+          height: 0;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .multiple-order-tracking-text {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 8px 0 16px 0;
+  }
+
+  .oz-progress-bar {
+    .multiple-orders-tracking {
+      padding: 8px;
+    }
+
+    .shipment-preparing-text {
+      height: 42px;
+    }
+  }
+
+  .reorder-out-of-stock {
+    .out-stock-title {
+      margin-top: 8px;
+    }
+
+    .reorder-out-of-stock-item {
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .re-order-available-stock-text {
+      font-size: 14px;
+      margin: 8px 0;
+    }
+  }
+
+  .oz-progress-bar ul li {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+
+    .text-off-gray {
+      font-size: 12px;
+    }
+  }
+
+  .modal-content {
+    .modal-head {
+      .f-14.mt-8 {
+        margin-top: 4px !important;
+        font-size: 13px !important;
+      }
+    }
+
+    .oz-progress-bar ul li {
+      margin: 8px 0;
+      font-size: 12px;
+      line-height: 14px;
+      letter-spacing: 0.015em;
+
+      .subtitile-small {
+        font-size: 13px;
+        line-height: 15px;
+        letter-spacing: 0.0015em;
+      }
+
+      div.mt-8 {
+        margin-top: 4px !important;
+      }
+
+      &:before {
+        top: 12px;
+      }
+
+      &.completed:after {
+        height: calc(100% - 6px);
+      }
+    }
+  }
+}

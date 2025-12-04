@@ -1,0 +1,1061 @@
+/* Modals
+-------------------------------------- */
+@import '../../scss/import/colors';
+
+[data-ml-modal] {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-overflow-scrolling: touch;
+  z-index: 999;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  z-index: 99999;
+}
+
+.target-modal {
+  width: auto;
+  height: auto;
+  opacity: 1;
+}
+
+.target-modal .modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: #333030;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+[data-ml-modal] .modal-dialog {
+  border-radius: 4px;
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+  width: 90%;
+  max-width: 660px;
+  // max-height: 70%;
+  margin: 70px auto 50px;
+  z-index: 2;
+}
+
+.modal-main-container {
+  position: relative;
+  margin: auto;
+  z-index: 1;
+}
+
+.modal-dialog-lg {
+  max-width: 820px !important;
+}
+
+[data-ml-modal] .modal-dialog>h3 {
+  background-color: #eee;
+  border-bottom: 1px solid #b3b3b3;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0.8em 56px 0.8em 27px;
+}
+
+[data-ml-modal] .modal-content {
+  background: $white;
+  padding: 32px;
+  border-radius: 8px;
+  position: relative;
+  overflow: auto;
+}
+
+
+[data-ml-modal] .error-modal-content {
+  padding: 20px 10px;
+  background: $white;
+}
+
+[data-ml-modal] .modal-content-confirm {
+  background: $white;
+}
+
+[data-ml-modal] .modal-close {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  color: #333030;
+  border-radius: 50%;
+  height: 53px;
+  width: 53px;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  font-family: monospace;
+}
+
+[data-ml-modal] .modal-close:hover {
+  color: #333030;
+  cursor: pointer;
+}
+
+[data-ml-modal] p:first-child,
+[data-ml-modal] p:last-child {
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  [data-ml-modal] .modal-dialog {
+    // margin: auto;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 767px) {
+  [data-ml-modal] .modal-dialog {
+    margin: auto;
+    max-width: 316px;
+  }
+
+  // ERROR MODAL STYLING
+  .error-modal .modal-content {
+    border-radius: 4px !important;
+
+    h2.error-text {
+      font-size: 13px !important;
+      line-height: 18px !important;
+    }
+
+    .btn {
+      border-radius: 2px !important;
+      font-size: 13px !important;
+    }
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: -43px;
+  right: 0;
+  width: 35px;
+  height: 35px;
+  background: white;
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+/* End Modals ------------------------------*/
+
+#applied-offer {
+  img {
+    height: 100vh;
+    width: 100%;
+  }
+}
+
+.alret {
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 6px;
+  padding: 8px 16px;
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: 54px;
+  z-index: 9;
+  max-width: 350px;
+  margin: auto;
+}
+
+.oziva-offer-applied-modal {
+  .modal-dialog {
+    max-width: 342px;
+
+    .modal-content {
+      border-radius: 4px;
+      padding: 16px;
+
+      .success-modal-image-container {
+
+        .success-modal-product-image {
+          background-color: #E1F2DE;
+          border-radius: 50%;
+          width: 120px;
+          height: 120px;
+          padding: 16px;
+        }
+
+      }
+      // .success-modal-image-container::before {
+      //   content: '';
+      //   position: absolute;
+      //   top: -50%;
+      //   left: -50%;
+      //   width: 200%;
+      //   height: 200%;
+      //   background: linear-gradient(45deg,
+      //       rgba(255, 255, 255, 0) 30%,
+      //       rgba(255, 255, 255, 0.5) 50%,
+      //       rgba(255, 255, 255, 0) 70%);
+      //   animation: shimmer 2.5s infinite linear;
+      //   z-index: 1;
+      //   pointer-events: none;
+      // }
+
+      .congratulations-text {
+        color: #FF6F00;
+        font-size: 18px;
+        font-weight: 700;
+        margin: 8px 0;
+        display: flex;
+        align-items: center;
+        img{
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      .coupon-description {
+        color: #333030;
+        font-size: 12px;
+        font-weight: 400;
+        margin-bottom: 16px;
+        line-height: 16px;
+      }
+
+      .coupon-code {
+        border-radius: 8px;
+        background: #E5F9E0;
+        padding: 8px;
+        margin-bottom: 8px;
+        padding: 4px 8px;
+
+        span {
+          color: #077E43;
+          font-weight: 500;
+        }
+
+      }
+    }
+
+    h2 {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    .communityLink,
+    .communityLink:hover {
+      text-decoration: none;
+      color: #6BBD58 !important;
+      font-weight: 400;
+    }
+  }
+}
+
+.out-of-stock-upsell {
+  max-width: 60% !important;
+}
+
+.oziva-offer-applied-modal-web {
+  .modal-dialog {
+    max-width: 800px;
+    position: relative;
+
+    h2 {
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+}
+
+.oziva-offer-applied-modal-web {
+  .error-modal {
+    .modal-dialog {
+      max-width: 342px;
+
+      h2 {
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
+
+.error-modal-button {
+  margin-top: 16px;
+  cursor: pointer;
+  padding: 15px 20px;
+  width: 100%;
+  font-weight: 400;
+  text-transform: uppercase;
+  border-radius: 6px;
+  border: 1px solid #dedede;
+  color: #f04e23;
+  font-size: 16px;
+}
+
+.error-modal-text {
+  font-size: 15px;
+  color: #333030;
+  line-height: 24px;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
+.confirm-text>h2 {
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 17.5px;
+}
+
+.applied-coupon-code {
+  .modal-dialog {
+    max-width: 422px;
+
+    .modal-content {
+      padding: 16px;
+      position: relative;
+
+      .copy-coupon {
+        font-size: 14px;
+        text-transform: uppercase;
+        color: $primaryPahadiCitrus;
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        font-weight: 500;
+      }
+
+      .coupon-card-apply-btn {
+        border-radius: 8px;
+        background: #FE6F00;
+        color: #FFF;
+        border: none;
+        padding: 8px;
+        width: 100px;
+        height: 32px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        letter-spacing: 0 !important;
+      }
+
+      .coupon-card-apply-btn-disabled {
+        background: #E0E0E0;
+        color: #BDBDBD;
+      }
+
+      .coupon-card-applied {
+        color: #6BBD58;
+        font-weight: 500;
+        font-size: 12px;
+        display: flex;
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        gap: 4px;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.modal-with-head {
+  .modal-dialog {
+    max-width: 600px;
+  }
+
+  .modal-content {
+    padding: 0;
+
+    .modal-head {
+      background: $primaryGreenSG200;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 20px;
+      letter-spacing: 0.15px;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .modal-content-inner {
+      max-height: 70vh;
+      overflow: auto;
+      padding: 0 16px 16px 16px;
+
+      p {
+        margin-bottom: 8px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.modal-content {
+  ul {
+    padding-left: 30px;
+    list-style: outside;
+    margin-bottom: 16px;
+
+    li {
+      list-style: disc;
+    }
+  }
+}
+
+.footer-icon-popup {
+  .modal-content-inner {
+    font-size: 14px;
+    line-height: 16.9px;
+    letter-spacing: 0.15px;
+  }
+}
+
+#PurchaseOptions {
+  .modal-dialog {
+    max-width: 614px;
+    position: relative;
+
+    .modal-content-inner {
+      padding: 32px 64px 0;
+
+      .otp-box-main {
+        margin-bottom: 16px;
+
+        .review-dtl-tag {
+          position: relative;
+          top: auto;
+          left: auto;
+          right: auto;
+        }
+
+        .add-for-better-result {
+          font-size: 14px;
+          letter-spacing: 0.15px;
+          line-height: 16.9px;
+        }
+      }
+
+      .SubscriptionPlanBox {
+        padding: 8px 8px 1px;
+        padding-bottom: 70px;
+
+        @media screen and (min-width: 768px) {
+          padding-bottom: 1px;
+        }
+      }
+
+      .subscription-list {
+        padding: 8px 16px;
+        display: flex !important;
+        flex-grow: 1;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 8px;
+        position: relative;
+        min-height: 59px;
+        background-color: #fff;
+
+        .OneTimePurchase {
+          width: 100%;
+          display: flex;
+          align-items: center;
+
+          .plan-item {
+            margin-top: 2px;
+          }
+        }
+
+        .price-dtetails {
+          width: auto;
+          white-space: nowrap;
+        }
+
+        &:hover,
+        &.active {
+          background: $primaryGreenSG100;
+          border-color: $primaryGreen;
+        }
+
+        .oz-tag {
+          position: absolute;
+          top: -13px;
+          left: 0;
+        }
+      }
+    }
+
+    .purchase-options {
+      .modal-content-inner {
+        padding: 8px;
+      }
+
+      .plans-container {
+        padding: 0 4px;
+        display: flex;
+        flex-direction: column;
+
+        .subtext {
+          color: #333030;
+          font-family: Roboto;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+        }
+      }
+
+      .prepaid-messaging-container {
+        display: flex;
+        justify-content: center;
+
+        .prepaid-messaging {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+
+          margin-bottom: 8px;
+
+          .bold {
+            font-weight: 600;
+          }
+
+          .text {
+            padding: 0 8px;
+            background: linear-gradient(90deg, rgba(116, 206, 247, 0.00) -29.29%, #A7DFF8 123.14%);
+            border-radius: 2px;
+            color: #333030;
+            font-family: Roboto;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 22px;
+            letter-spacing: 0.018px;
+          }
+        }
+
+      }
+
+      .plans-list {
+        padding: 8px 0;
+        display: flex;
+        gap: 8px;
+        justify-content: space-evenly;
+        align-items: center;
+        flex: 1;
+      }
+
+      .plan-item {
+        border-radius: 4px;
+        border: 1px solid var(--primary-SG_500, #BDBDBD);
+        margin: 0;
+        position: relative;
+        width: 30%;
+        height: 170px;
+        display: flex;
+        flex-direction: column;
+
+        .plan-header {
+          display: flex;
+          flex-direction: column;
+          background: var(--grey_scale_light_grey, #F5F5F5);
+          justify-content: center;
+          padding: 16px 4px;
+          flex: 1;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+        }
+
+        .plan-text {
+          color: #333030;
+          text-align: center;
+          font-family: Roboto;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 500;
+        }
+
+        .sub-text {
+          color: #333030;
+          text-align: center;
+          font-family: Roboto;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+        }
+
+        .pricing-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 16px 4px;
+          flex: 1;
+
+          .selling-price {
+            color: #333030;
+            text-align: right;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            flex-wrap: wrap;
+          }
+
+          .mrp {
+            color: var(--grey_scale_grey, #7E7E7E);
+            text-align: right;
+            font-size: 14px;
+            font-weight: 400;
+            text-decoration-line: line-through;
+          }
+        }
+
+        .recommended {
+          position: absolute;
+          color: #006E5A;
+          font-family: Roboto;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          top: -9px;
+          border-radius: 8px;
+          background: #FECC0E;
+          left: 6px;
+          left: 50%;
+          transform: translateX(-49%);
+          width: auto;
+          padding: 2px 4px;
+          text-align: center;
+        }
+
+        .save-txt {
+          position: absolute;
+          color: var(--neutral_clear_white, #FFF);
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 700;
+          border-radius: 8px;
+          background: $orangeVibrantShade;
+          bottom: -6px;
+          left: 50%;
+          transform: translateX(-49%);
+          width: auto;
+          padding: 2px 4px;
+          text-align: center;
+        }
+
+        .per-month {
+          color: #333030;
+          text-align: right;
+          font-family: Roboto;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+        }
+      }
+
+      .plan-item.active {
+        border: 1px solid var(--primary-SG_500, #6BBD58);
+        height: 200px;
+        width: 30%;
+
+        .plan-header {
+          background: #F0FAF0;
+          height: 76px;
+        }
+      }
+
+
+      .value-propostions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 8px;
+        border-radius: 4px;
+        background: var(--grey_scale_light_grey, #F5F5F5);
+        padding: 8px 16px;
+      }
+
+      .item-propostion {
+        display: flex;
+        gap: 8px;
+        color: var(--secondary_deep_green, #006E5A);
+        text-align: center;
+        font-family: Roboto;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      .footer-cta-container {
+        display: flex;
+        gap: 4px;
+
+        .pricing-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .img-ratings-container {
+          display: none;
+        }
+
+        .cta-btn {
+          width: 100%;
+          border-radius: 4px;
+          background: var(--primary-PC_500, #FF6F00);
+          border: 0;
+          display: flex;
+          align-items: center;
+          height: 48px;
+          margin-left: 4px;
+
+          .mrp {
+            color: var(--grey_scale_warm_grey_disabled, #E0E0E0);
+            font-family: Roboto;
+            font-size: 11px;
+            font-style: normal;
+            font-weight: 400;
+
+          }
+
+          .strike {
+            text-decoration: line-through;
+          }
+
+          .selling-price {
+            color: white;
+            // color: var(--grey_scale_warm_grey_disabled, #E0E0E0);
+            font-family: Roboto;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            margin-left: 2px;
+
+          }
+
+          .save-text {
+            color: var(--grey_scale_warm_grey_disabled, #E0E0E0);
+            text-align: center;
+            font-family: Roboto;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+          }
+
+          .buy-now-txt {
+            color: var(--neutral_clear_white, #FFF);
+            font-family: Roboto;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 700;
+            margin: 0 auto;
+          }
+
+          .horizontal-line {
+            border-left: 1px solid #FFF;
+            height: 20px;
+            margin: 0 4px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  [data-ml-modal] {
+    bottom: -200vh;
+  }
+
+  .target-modal {
+    bottom: 8px;
+    top: auto;
+  }
+
+  #PurchaseOptions {
+    .modal-dialog {
+      .modal-content-inner {
+        padding: 16px 8px 0;
+
+        .plans-container {
+          .subtext {
+            font-size: 14px;
+          }
+
+          .plans-list .plan-item {
+            height: 150px;
+            width: 31%;
+
+            &.active {
+              height: 170px;
+              width: 32%;
+            }
+
+            .plan-text {
+              font-size: 16px;
+            }
+
+            .sub-text {
+              font-size: 11px;
+            }
+
+            .mrp {
+              font-size: 12px;
+            }
+
+            .selling-price {
+              font-size: 13px;
+            }
+
+            .per-month {
+              font-size: 12px;
+            }
+
+            .recommended {
+              font-size: 11px;
+            }
+
+            .save-txt {
+              font-size: 11px;
+              left: 10%;
+              right: 10%;
+              transform: none;
+            }
+          }
+
+        }
+
+        .prepaid-messaging-container {
+          .prepaid-messaging {
+            .text {
+              font-size: 12px;
+            }
+          }
+        }
+
+        .PurchaseOptions-dtl {
+          padding: 8px;
+
+          .f-13 {
+            font-size: 12px;
+          }
+
+          .listing-2 {
+            padding-left: 15px;
+          }
+        }
+
+        .subs-btn {
+          padding-bottom: 16px;
+        }
+
+        .otp-box-main {
+          margin-bottom: 8px;
+        }
+
+        .subscription-list {
+          border-radius: 4px;
+
+          .OneTimePurchase {
+            .plan-item {
+              margin-top: 4px;
+            }
+          }
+        }
+
+        .review-dtl-tag {
+          margin: 0 !important;
+        }
+
+        .add-for-better-result {
+          font-size: 13px !important;
+          letter-spacing: 0.5px !important;
+          line-height: 16.9px !important;
+        }
+      }
+
+      .purchase-options {
+        .modal-head {
+          padding: 8px;
+          font-size: 14px;
+        }
+
+        .value-propostions {
+          flex-direction: column;
+
+          .item-propostion {
+            flex-direction: row;
+          }
+        }
+
+        .footer-cta-container {
+          display: flex;
+          gap: 4px;
+
+          .pricing-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .img-ratings-container {
+            display: flex;
+            align-items: center;
+            min-width: 80px;
+
+            margin: 0;
+
+            svg path {
+              fill: #FECC0E;
+              width: 14px;
+              height: 14px;
+            }
+          }
+
+          img.thumbhnail-img {
+            width: 44px;
+            height: 44px;
+          }
+
+          .rating-container {
+            display: flex;
+            color: var(--grey_scale_grey, #7E7E7E);
+            font-family: Roboto;
+            font-size: 11px;
+            font-style: normal;
+            font-weight: 400;
+          }
+
+          .cta-btn {
+            width: 100%;
+            border-radius: 4px;
+            background: var(--primary-PC_500, #FF6F00);
+            border: 0;
+            display: flex;
+            align-items: center;
+            height: 48px;
+            margin-left: 4px;
+
+            .mrp {
+              color: var(--grey_scale_warm_grey_disabled, #E0E0E0);
+              font-family: Roboto;
+              font-size: 11px;
+              font-style: normal;
+              font-weight: 400;
+
+            }
+
+            .strike {
+              text-decoration: line-through;
+            }
+
+            .selling-price {
+              color: var(--grey_scale_warm_grey_disabled, #E0E0E0);
+              font-family: Roboto;
+              font-size: 13px;
+              font-style: normal;
+              font-weight: 700;
+              margin-left: 2px;
+
+            }
+
+            .save-text {
+              color: var(--grey_scale_warm_grey_disabled, #E0E0E0);
+              text-align: center;
+              font-family: Roboto;
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 400;
+            }
+
+            .buy-now-txt {
+              color: var(--neutral_clear_white, #FFF);
+              font-family: Roboto;
+              font-size: 13px;
+              font-style: normal;
+              font-weight: 700;
+              margin-left: auto;
+            }
+
+            .horizontal-line {
+              border-left: 1px solid #FFF;
+              height: 20px;
+              margin: 0 4px;
+            }
+          }
+        }
+      }
+
+
+    }
+  }
+
+  .modal-with-head {
+    .modal-content {
+      .modal-content-inner {
+        padding: 0 8px 8px 8px;
+      }
+    }
+  }
+
+  .oziva-offer-applied-modal {
+    .modal-dialog {
+      max-width: 422px;
+      width: calc(100% - 8px);
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  #PurchaseOptions {
+    .modal-dialog {
+      .modal-content-inner {
+        .prepaid-messaging-container {
+          .prepaid-messaging {
+            .text {
+              font-size: 11px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

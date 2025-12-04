@@ -1,0 +1,159 @@
+/* IMPORT SCSS FILS */
+@import 'variables';
+@import 'colors';
+
+/* BUTTON STYLES */
+.flickity-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 5px $primaryPahadiCitrus;
+}
+.btn-link,
+.button-link {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.15px;
+  text-transform: uppercase;
+  color: $primaryGreen;
+  cursor: pointer;
+}
+.btn {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 11.5px 22.5px;
+  border-width: 1px;
+  transition: all 0.15s linear;
+  display: inline-block;
+  letter-spacing: 0.15px;
+  &.btn-primary {
+    background: $orangeVibrantShade;
+    color: $white;
+    border-color: $orangeVibrantShade;
+    &:hover {
+      background: $orangeVibrantShade;
+      color: $white !important;
+    }
+    &:focus {
+      background: $orangeVibrantShade;
+      color: $white !important;
+    }
+  }
+  &.btn-is-cod-option-available {
+    background: #E0E0E0;
+    color: $white;
+    border-color: #E0E0E0;
+    &:hover {
+      background: #E0E0E0;
+      color: $white !important;
+    }
+    &:focus {
+      background: #E0E0E0;
+      color: $white !important;
+    }
+  }
+  &.btn-secondary {
+    background: $primaryGreen;
+    color: $white;
+    border-color: $primaryGreen;
+    &:hover {
+      background: $primaryGreen;
+      color: $white !important;
+    }
+    &:focus {
+      background: $primaryGreen;
+      color: $white !important;
+    }
+  }
+  &.btn-gray {
+    background: $border-gray;
+    color: $black;
+    border-color: $border-gray;
+    &:hover {
+      background: $border-gray;
+      color: $black !important;
+    }
+    &:focus {
+      background: $border-gray;
+      color: $black !important;
+    }
+  }
+
+  /* Start Outline Buttons */
+  &.btn-outline-primary {
+    background: $white;
+    color: $primaryPahadiCitrus;
+    border: 1px solid $primaryPahadiCitrus;
+    &:hover {
+      background: $primaryPahadiCitrus;
+      color: $white !important;
+    }
+    &:focus {
+      background: $primaryPahadiCitrus;
+      color: $white !important;
+    }
+  }
+  &.btn-outline-secondary {
+    background: $white;
+    color: $primaryGreen;
+    border: 1px solid $primaryGreen;
+    &:hover {
+      background: $primaryGreen;
+      color: $white !important;
+    }
+    &:focus {
+      background: $primaryGreen;
+      color: $white !important;
+    }
+  }
+  &.btn-lg {
+    font-size: 16px;
+    border-width: 2px;
+    border-radius: 6px;
+  }
+  &.btn-sm{
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 8px;
+  }
+  &.btn-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  // &:hover {
+  //   transform: scale(1.05);
+  // }
+}
+/* End Outline Buttons */
+.oz-tag {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01px;
+  color: $white;
+  background: $primaryGreen;
+  border-radius: 10px;
+  padding: 2px 8px;
+}
+.button-link {
+  padding: 0;
+  border: 0;
+  background: transparent !important;
+}
+@media only screen and (max-width: 768px) {
+  .btn {
+    &.btn-lg {
+      border-width: 1px;
+      padding: 8px;
+    }
+  }
+  .oziva-mob-footer .oziva-mob-footer-btn .btn {
+    font-size: 18px;
+    padding-left: 0;
+    padding-right: 10px;
+    text-align: center;
+  }
+  .btn-link,
+  .button-link{
+    font-size: 13px;
+  }
+}

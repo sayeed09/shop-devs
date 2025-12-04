@@ -1,0 +1,50 @@
+.modal-dialog{
+    .modal-content{
+        .policy-model-body{
+            min-height: 200px;
+            margin: 8px 16px;
+            height: 70vh;
+            ol li {
+                list-style: decimal; 
+                margin-left: 32px;
+            }
+            .container {
+                max-width: unset;
+            }
+            .product-loader {
+                border: 2px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 2px solid #ff0202;
+                width: 30px;
+                height: 30px;
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
+                margin: auto;
+            }
+            p:last-child{
+                padding-bottom: 16px;
+            }
+        }
+        .policy-modal-head{
+            min-height: 50px;
+            background-color: #F0FAF0 !important;
+            padding: 16px;
+            position: sticky;
+            left: 0;
+            right: 0;
+            top: 0;
+            p {
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .policy-modal-head{
+        p {
+            font-size: 14px;
+        }
+    }
+}

@@ -1,0 +1,474 @@
+/* IMPORTED SCSS */
+@import '_variables';
+@import '_colors';
+
+//------------------------------------//
+// THEME SETTING VARIABLES            //
+//------------------------------------//
+
+// Set min/max viewport widths for calculation
+$font-min-width: 25.75; // min width needed for calculation 412px
+$font-max-width: 75; // max width to for calculation 1200px
+
+$lineHeight-min-width: 25.75; // min width needed for calculation for line-height 412px
+$lineHeight-max-width: 75; // max width to for calculation for line-height 1200px
+
+$letterSpacing-min-width: 25.75; // min width needed for calculation for line-height 412px
+$letterSpacing-max-width: 75; // max width to for calculation for line-height 1200px
+
+// Set min/max font sizes for each element in rem
+$min-font-h1: 1.125;
+$max-font-h1: 1.25;
+$min-font-h2: 1;
+$max-font-h2: 1.125;
+$min-font-h3: 0.875;
+$max-font-h3: 1;
+$min-font-h4: 0.875;
+$max-font-h4: 1;
+$min-font-body: 0.813;
+$max-font-body: 0.8125;
+$min-font-small-text: 0.75;
+$max-font-small-text: 0.75;
+$min-font-subtitle: 0.875;
+$max-font-subtitle: 1;
+$min-font-subtitle-small: 0.8125;
+$max-font-subtitle-small: 0.875;
+$min-font-caption: 0.687;
+$max-font-caption: 0.687;
+$min-font-button-text: 0.813;
+$max-font-button-text: 0.875;
+
+// Set min/max line-height for each element in rem
+$min-line-height-h1: 1.563;
+$max-line-height-h1: 1.688;
+$min-line-height-h2: 1.5;
+$max-line-height-h2: 1.688;
+$min-line-height-h3: 1.138;
+$max-line-height-h3: 1.5;
+$min-line-height-h4: 1.138;
+$max-line-height-h4: 1.5;
+$min-line-height-body: 1.056;
+$max-line-height-body: 1.056;
+$min-line-height-small-text: 0.975;
+$max-line-height-small-text: 0.975;
+$min-line-height-subtitle: 1.138;
+$max-line-height-subtitle: 1.5;
+$min-line-height-subtitle-small: 1.056;
+$max-line-height-subtitle-small: 1.138;
+$min-line-height-caption: 0.894;
+$max-line-height-caption: 1.031;
+
+// Set min/max latter-spacing for each element in rem
+$min-latter-spacing-h1: 0.009;
+$max-latter-spacing-h1: 0.009;
+$min-latter-spacing-h2: 0.009;
+$max-latter-spacing-h2: 0.016;
+$min-latter-spacing-h3: 0.009;
+$max-latter-spacing-h3: 0.009;
+$min-latter-spacing-h4: 0.009;
+$max-latter-spacing-h4: 0.009;
+$min-latter-spacing-body: 0.031;
+$max-latter-spacing-body: 0.009;
+$min-latter-spacing-small-text: 0.025;
+$max-latter-spacing-small-text: 0.031;
+$min-latter-spacing-subtitle: 0.009;
+$max-latter-spacing-subtitle: 0.009;
+$min-latter-spacing-subtitle-small: 0.031;
+$max-latter-spacing-subtitle-small: 0.009;
+$min-latter-spacing-caption: 0.094;
+$max-latter-spacing-caption: 0.094;
+$min-latter-spacing-button-text: 0.078;
+$max-latter-spacing-button-text: 0.078;
+
+//------------------------------------//
+// FONT SIZE MAP                      //
+//------------------------------------//
+$fonts: (
+  sizes: (
+    h1: (
+      min: $min-font-h1,
+      max: $max-font-h1,
+    ),
+    h2: (
+      min: $min-font-h2,
+      max: $max-font-h2,
+    ),
+    h3: (
+      min: $min-font-h3,
+      max: $max-font-h3,
+    ),
+    h4: (
+      min: $min-font-h4,
+      max: $max-font-h4,
+    ),
+    body: (
+      min: $min-font-body,
+      max: $max-font-body,
+    ),
+    '.small-text': (
+      min: $min-font-small-text,
+      max: $max-font-small-text,
+    ),
+    '.subtitle-text': (
+      min: $min-font-subtitle,
+      max: $max-font-subtitle,
+    ),
+    '.subtitle-small': (
+      min: $min-font-subtitle-small,
+      max: $max-font-subtitle-small,
+    ),
+    '.caption-text': (
+      min: $min-font-caption,
+      max: $max-font-caption,
+    ),
+    '.button-text, a': (
+      min: $min-font-button-text,
+      max: $max-font-button-text,
+    ),
+    '.btn, .oz-tag, .cart-tag-list': (
+      min: $min-font-button-text,
+      max: $max-font-button-text,
+    ),
+  ),
+);
+
+//------------------------------------//
+// LINE HEIGHT MAP                      //
+//------------------------------------//
+$lineHeights: (
+  sizes: (
+    h1: (
+      min: $min-line-height-h1,
+      max: $max-line-height-h1,
+    ),
+    h2: (
+      min: $min-line-height-h2,
+      max: $max-line-height-h2,
+    ),
+    h3: (
+      min: $min-line-height-h3,
+      max: $max-line-height-h3,
+    ),
+    h4: (
+      min: $min-line-height-h4,
+      max: $max-line-height-h4,
+    ),
+    body: (
+      min: $min-line-height-body,
+      max: $max-line-height-body,
+    ),
+    '.small-text': (
+      min: $min-line-height-small-text,
+      max: $max-line-height-small-text,
+    ),
+    '.subtitle-text': (
+      min: $min-line-height-subtitle,
+      max: $max-line-height-subtitle,
+    ),
+    '.subtitle-small': (
+      min: $min-line-height-subtitle-small,
+      max: $max-line-height-subtitle-small,
+    ),
+    '.caption-text': (
+      min: $min-line-height-caption,
+      max: $max-line-height-caption,
+    ),
+  ),
+);
+
+//------------------------------------//
+// LATTER SPACINGS MAP                      //
+//------------------------------------//
+$letterSpacings: (
+  sizes: (
+    h1: (
+      min: $min-latter-spacing-h1,
+      max: $max-latter-spacing-h1,
+    ),
+    h2: (
+      min: $min-latter-spacing-h2,
+      max: $max-latter-spacing-h2,
+    ),
+    h3: (
+      min: $min-latter-spacing-h3,
+      max: $max-latter-spacing-h3,
+    ),
+    h4: (
+      min: $min-latter-spacing-h4,
+      max: $max-latter-spacing-h4,
+    ),
+    body: (
+      min: $min-latter-spacing-body,
+      max: $max-latter-spacing-body,
+    ),
+    '.small-text': (
+      min: $min-latter-spacing-small-text,
+      max: $max-latter-spacing-small-text,
+    ),
+    '.subtitle-text': (
+      min: $min-latter-spacing-subtitle,
+      max: $max-latter-spacing-subtitle,
+    ),
+    '.subtitle-small': (
+      min: $min-latter-spacing-subtitle-small,
+      max: $max-latter-spacing-subtitle-small,
+    ),
+    '.caption-text': (
+      min: $min-latter-spacing-caption,
+      max: $max-latter-spacing-caption,
+    ),
+    '.button-text': (
+      min: $min-latter-spacing-button-text,
+      max: $max-latter-spacing-button-text,
+    ),
+    '.btn': (
+      min: $min-latter-spacing-button-text,
+      max: $max-latter-spacing-button-text,
+    ),
+  ),
+);
+
+// FETCH NESTED KEY VALUES
+@function map-fetch($map, $keys) {
+  $key: nth($keys, 1);
+  $length: length($keys);
+  $value: map-get($map, $key);
+  @if ($length > 1) {
+    $rest: ();
+    @for $i from 2 through $length {
+      $rest: append($rest, nth($keys, $i));
+    }
+    @return map-fetch($value, $rest);
+  } @else {
+    @return $value;
+  }
+}
+
+// ITERATE THROUGH SIZES AND CREATE CLASSES ACCORDINGLY FOR FONT SIZE
+@each $size in map-keys(map-get($fonts, sizes)) {
+  #{$size} {
+    font-size: #{map-fetch($fonts, sizes $size min)}rem;
+  }
+  @media (min-width: #{$font-min-width}rem) and (max-width: #{$font-max-width}rem) {
+    #{$size} {
+      font-size: calc(
+        #{map-fetch($fonts, sizes $size min)}rem +
+          (
+            #{map-fetch($fonts, sizes $size max)} - #{map-fetch(
+                $fonts,
+                sizes $size min
+              )}
+          ) *
+          (
+            (100vw - #{$font-min-width}rem) /
+              (#{$font-max-width} - #{$font-min-width})
+          )
+      );
+    }
+  }
+  @media (min-width: #{$font-max-width}rem) {
+    #{$size} {
+      font-size: #{map-fetch($fonts, sizes $size max)}rem;
+    }
+  }
+}
+
+// ITERATE THROUGH SIZES AND CREATE CLASSES ACCORDINGLY FOR LINE HEIGHT
+@each $size in map-keys(map-get($lineHeights, sizes)) {
+  #{$size} {
+    line-height: #{map-fetch($lineHeights, sizes $size min)}rem;
+  }
+  @media (min-width: #{$lineHeight-min-width}rem) and (max-width: #{$lineHeight-max-width}rem) {
+    #{$size} {
+      line-height: calc(
+        #{map-fetch($lineHeights, sizes $size min)}rem +
+          (
+            #{map-fetch($lineHeights, sizes $size max)} - #{map-fetch(
+                $lineHeights,
+                sizes $size min
+              )}
+          ) *
+          (
+            (100vw - #{$lineHeight-min-width}rem) /
+              (#{$lineHeight-max-width} - #{$lineHeight-min-width})
+          )
+      );
+    }
+  }
+  @media (min-width: #{$lineHeight-max-width}rem) {
+    #{$size} {
+      line-height: #{map-fetch($lineHeights, sizes $size max)}rem;
+    }
+  }
+}
+
+// ITERATE THROUGH SIZES AND CREATE CLASSES ACCORDINGLY FOR LETTER SPACING
+@each $size in map-keys(map-get($letterSpacings, sizes)) {
+  #{$size} {
+    letter-spacing: #{map-fetch($letterSpacings, sizes $size min)}rem;
+  }
+  @media (min-width: #{$lineHeight-min-width}rem) and (max-width: #{$lineHeight-max-width}rem) {
+    #{$size} {
+      letter-spacing: calc(
+        #{map-fetch($letterSpacings, sizes $size min)}rem +
+          (
+            #{map-fetch($letterSpacings, sizes $size max)} - #{map-fetch(
+                $letterSpacings,
+                sizes $size min
+              )}
+          ) *
+          (
+            (100vw - #{$letterSpacing-min-width}rem) /
+              (#{$letterSpacing-max-width} - #{$letterSpacing-min-width})
+          )
+      );
+    }
+  }
+  @media (min-width: #{$letterSpacing-max-width}rem) {
+    #{$size} {
+      letter-spacing: #{map-fetch($letterSpacings, sizes $size max)}rem;
+    }
+  }
+}
+
+// START COMMON CSS
+.h1,
+h1,
+h2,
+h3,
+h4 {
+  color: $black;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 500;
+}
+.f-10 {
+  font-size: 10px;
+  line-height: 14px;
+}
+.f-11 {
+  font-size: 11px;
+}
+.f-12 {
+  font-size: 12px;
+}
+.f-13 {
+  font-size: 13px;
+  line-height: 16px;
+}
+.f-14 {
+  font-size: 14px;
+  line-height: 19px;
+}
+.f-16 {
+  font-size: 16px;
+}
+.f-18 {
+  font-size: 18px;
+}
+.subtext {
+  font-size: 14px;
+  line-height: 18.2px;
+  letter-spacing: 0.15px;
+}
+.body-2 {
+  font-size: 13px;
+  line-height: 16.9px;
+  letter-spacing: 0.15;
+}
+.w-48 {
+  width:48px;
+  display: block;
+}
+/* FONT WEIGHT */
+.font-bold {
+  font-weight: 700;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-normal {
+  font-weight: 400;
+}
+.font-italic {
+  font-style: italic;
+}
+
+/* TEXT STYLING */
+.text-lowercase {
+  text-transform: lowercase;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+/* LINK STYLING */
+.text-underline {
+  text-decoration: underline;
+}
+.text-underline-none {
+  text-decoration: none;
+}
+
+/* TEXT ALIGNMENT */
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.text-middle {
+  align-items: center;
+  align-self: center;
+}
+.text-justify {
+  text-align: justify;
+}
+.text-start {
+  justify-content: flex-start;
+}
+.word-break{
+  word-break: break-word;
+}
+.flex-item-center{
+  align-items: center;
+  justify-content: center;
+}
+
+/* DISPLAY OPTIONS */
+.d-inline {
+  display: inline;
+}
+.d-inline-block {
+  display: inline-block;
+}
+.d-block {
+  display: block;
+}
+.d-flex {
+  display: flex;
+}
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.30px;
+  line-height: 18px;
+}
+
+@media only screen and (max-width: 992px) {
+  .body-2 {
+    font-size: 12px;
+    line-height: 15.6px;
+    letter-spacing: 0.4;
+  }
+}

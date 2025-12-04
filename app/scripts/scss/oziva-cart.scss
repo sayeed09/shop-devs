@@ -1,0 +1,34 @@
+/* IMPORT FONTS */
+
+/* IMPORT Armingrotesk Semibold WEBFONTS */
+@font-face {
+  font-family: 'manrope-regular';
+  src: url('https://cdn.shopify.com/s/files/1/2393/2199/files/Manrope-Regular.ttf?v=1764857115') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'manrope-extrabold';
+  src: url('https://cdn.shopify.com/s/files/1/2393/2199/files/Manrope-ExtraBold.ttf?v=1764857146') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* IMPORT ALL STYLE FILES HERE */
+@import '../scss/import/variables';
+@import '../scss/import/colors';
+@import '../scss/import/typography';
+@import '../scss/import/form';
+@import '../scss/import/spacing-shadow';
+@import '../scss/import/buttons';
+@import '../scss/import/header';
+@import '../scss/import/custom';
+@import '../scss/import/popup-modal';
+@import '../scss/import/_media-screen';
+@import '../scss/import/_offer';
+@import '../scss/import/_productv2.scss';
+@import '../scss/import/_pdp.scss';
+@import '../scss/import/_product-thumb-slider.scss';
+@import '../scss/import/product-common.scss';

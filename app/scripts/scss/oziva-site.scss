@@ -1,0 +1,26 @@
+/* IMPORT FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* IMPORT ALL STYLE FILES HERE */
+@import '../scss/import/variables';
+@import '../scss/import/colors';
+@import '../scss/import/typography';
+@import '../scss/import/mixin';
+@import '../scss/import/form';
+@import '../scss/import/spacing-shadow';
+@import '../scss/import/buttons';
+@import '../scss/import/oz-progress-bar';
+@import '../scss/import/header';
+@import '../scss/import/layout';
+@import '../scss/import/custom';
+@import '../scss/import/pdp';
+@import '../scss/import/popup-modal';
+@import '../scss/import/accordion';
+@import '../scss/import/offer';
+@import '../scss/import/thank-you';
+@import '../scss/import/subscription';
+@import '../scss/import/product-thumb-slider';
+@import '../scss/import/footer';
+@import '../scss/import/oz-order-placed';
+@import '../scss/import/media-screen';
+@import '../scss/import/upsell-modal-on-plp';

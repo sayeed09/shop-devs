@@ -1,0 +1,387 @@
+@import './import/colors';
+@import './import/variables';
+@import './import/popup-modal';
+@import './import/buttons';
+@import '../scss/import/popup-modal';
+@import '../scss/import/custom';
+@import '../scss/import/typography';
+@import '../scss/import/spacing-shadow';
+
+
+.homeMain {
+    max-width: 982px;
+    padding: 0 16px;
+    margin: 0 auto;
+}
+
+
+
+#home-container h1 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0.03px;
+    text-align: center;
+    margin-top: 64px;
+}
+
+.homeSection {
+    margin: 0 auto 64px !important;
+    max-width: inherit !important;
+}
+
+.byb-header {
+    overflow: hidden;
+
+    img {
+        aspect-ratio: 320/51;
+        width: 100%;
+    }
+}
+
+.byb-sticky-footer {
+    border-top: 1px solid #F5F5F5;
+    box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 8;
+
+    .byb-sticky-products {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 4px 16px;
+        border-bottom: 1px solid#F5F5F5;
+
+        .byb-sticky-item {
+            font-size: 12px;
+            line-height: 12px;
+            color: #7E7E7E;
+            padding: 8px;
+            text-align: center;
+
+            .byb-sticky-item-box {
+                border-radius: 4px;
+                border: 1px dashed #BDBDBD;
+                width: 78px;
+                height: 78px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+
+                a.byb-sticky-item-clear {
+                    position: absolute;
+                    top: -6px;
+                    right: -6px;
+                }
+
+                img {
+                    width: 76px;
+                    height: 76px;
+                    border-radius: 4px;
+                }
+            }
+
+            &.active {
+                background: #F0FAF0;
+            }
+        }
+    }
+
+    .byb-sticky-nav {
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+
+        .byb-sticky-price {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 21px;
+            letter-spacing: 0.027px;
+
+            .byb-saving-price {
+                color: #F04E23;
+                font-weight: 400;
+                font-size: 13px;
+                line-height: 15px;
+                letter-spacing: 0.065px;
+            }
+        }
+
+        .byb-sticky-btn {
+            .btn {
+                min-width: 226px;
+            }
+
+            .byb-btn {
+                padding: 8px;
+                border-radius: 8px;
+            }
+
+
+        }
+    }
+}
+
+.ProductCardBtnAddMore {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    .add,
+    .minus {
+        span {
+            background: #F5F5F5;
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            color: #333030;
+        }
+    }
+
+    button {
+        border: none;
+        background: none;
+        font-weight: 500;
+        padding: 0;
+        color: #f04e23;
+        font-size: 14px;
+
+        .add_more {
+            white-space: nowrap;
+        }
+    }
+}
+
+.byb-cards {
+    border: 1px solid #E0E0E0 !important;
+    background: #F0FAF0 !important;
+
+    .card-sub-title {
+        font-size: 13px;
+        line-height: 15px;
+        letter-spacing: 0.065px;
+        margin-bottom: 16px;
+        color: #006E5A;
+        min-height: 30px
+    }
+
+    .product-img-v1 img {
+        max-width: 221px;
+        margin-top: 16px;
+    }
+
+    .productPriceDetails {
+        justify-content: space-between !important;
+
+        .cardPriceDtl {
+            display: flex;
+            gap: 4px;
+        }
+
+        .view_all {
+            color: #6BBD58;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 15px;
+            letter-spacing: 0.02px;
+        }
+    }
+
+    div.ProductCardBtn {
+        background: #fff !important;
+        color: $orangeVibrantShade !important;
+
+    }
+}
+
+.byb-sticky-btn .btn.ProductCardBtn.disabled {
+    background: #BDBDBD !important;
+    pointer-events: none;
+    border: none;
+}
+
+.byb-card-popup {
+    position: relative;
+
+    .byb-card-popup-icon-list {
+        padding: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+
+        .byb-card-popup-icon-dtl {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+
+            .byb-card-popup-icon {
+                width: 70px;
+                height: 70px;
+                background: #FFB903;
+                border-radius: 50%;
+                display: contents;
+                padding: 8px;
+
+                img {
+                    width: 70px;
+                    height: 70px;
+                    background: #FFB903;
+                    border-radius: 50%;
+                    padding: 12px;
+                }
+            }
+
+            .byb-card-popup-txt {
+                h2 {
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 21px;
+                    letter-spacing: 0.027px;
+                    margin-bottom: 16px;
+                    text-transform: inherit;
+                }
+
+                p {
+                    font-size: 14px;
+                    line-height: 16px;
+                    letter-spacing: 0.021px;
+                    margin-bottom: 0;
+                    color: #7E7E7E;
+                }
+            }
+        }
+    }
+
+    .byb-card-popup-btn {
+        padding: 16px;
+        box-shadow: 0px -2px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+}
+
+
+@media only screen and (min-width: 1000px) {
+    .byb-sticky-footer {
+        flex-direction: row;
+        justify-content: center;
+        gap: 64px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .homeSection {
+        margin: 0 auto 32px !important;
+    }
+
+    .byb-cards {
+        .card-sub-title {
+            font-size: 12px;
+            line-height: 14px;
+            letter-spacing: 0.18px;
+            min-height: 28px;
+        }
+    }
+
+    .byb-sticky-footer {
+        .byb-sticky-products {
+            padding: 8px;
+
+            .byb-sticky-item {
+                font-size: 10px;
+
+                .byb-sticky-item-box {
+                    width: 50px;
+                    height: 50px;
+
+                    img {
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 4px;
+                    }
+                }
+            }
+        }
+
+        .byb-sticky-nav {
+            gap: 16px;
+            padding: 8px;
+            justify-content: space-between;
+
+            .byb-sticky-btn {
+                .btn {
+                    min-width: 176px;
+                }
+            }
+
+            .byb-sticky-price {
+                font-size: 16px;
+            }
+        }
+    }
+
+    a.ProductCardBtn {
+        font-size: 13px;
+    }
+
+    .byb-card-popup {
+        .byb-card-popup-icon-list {
+            .byb-card-popup-icon-dtl {
+                .byb-card-popup-txt {
+                    h2 {
+                        font-size: 16px;
+                        margin-bottom: 8px;
+                    }
+
+                    p {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+
+        .byb-card-popup-btn {
+            padding: 8px;
+        }
+    }
+
+    .ProductCardBtnAddMore {
+        gap: 4px;
+        justify-content: center;
+
+        button.add_more {
+            white-space: nowrap;
+            padding: 0;
+            font-size: 11px;
+            color: #f04e23;
+        }
+    }
+
+    .byb-card-popup .byb-card-popup-icon-list .byb-card-popup-icon-dtl .byb-card-popup-icon {
+        width: 60px;
+        height: 60px;
+        padding: 4px;
+
+        img {
+            width: 70px;
+            height: 70px;
+        }
+    }
+
+    .byb-header {
+        img {
+            width: 100%;
+            aspect-ratio: 430/229;
+        }
+    }
+}

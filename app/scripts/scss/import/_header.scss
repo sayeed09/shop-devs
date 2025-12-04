@@ -1,0 +1,320 @@
+/* IMPORTED SCSS */
+@import '_variables';
+@import '_colors';
+
+#number {
+  position: relative;
+  display: flex;
+  width: 0;
+  overflow: hidden;
+  height: 20px;
+  font-weight: 600;
+}
+
+#number>span {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  opacity: 0;
+  flex-shrink: 2;
+  flex-basis: 0px;
+  width: 1px;
+  position: absolute;
+  right: 0;
+  line-height: 20px;
+  transition: all 2s ease;
+}
+
+#number>span.visible {
+  position: static;
+  width: 30px;
+  opacity: 1;
+}
+
+
+/* STARTED STYLING FOR ALL HEADER */
+.oziva-cart-body {
+  .oziva-header {
+    background: $white;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 5;
+
+    nav {
+      display: flex;
+      align-items: center;
+
+      .start-nav {
+        padding: 8px 15px 8px 8px;
+        border-bottom: 1px solid #F5F5F5;
+      }
+
+      &>* {
+        -ms-flex: 1;
+        /* IE 10 */
+        flex: 1;
+
+        a.back-page {
+          display: inline-block;
+          float: left;
+
+          img,
+          object,
+          svg {
+            display: block;
+          }
+        }
+
+        h2 {
+          line-height: 24px;
+          white-space: nowrap;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    // WEB HEADER STYLING
+    .web-cart-head {
+      font-size: 20px;
+      text-align: center;
+      position: relative;
+      max-width: 466px;
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+
+      span {
+        display: inline-block;
+        padding: 0 25px;
+        background: $white;
+        font-weight: bold;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        border-top: 1px solid $black;
+        z-index: -1;
+      }
+    }
+
+    .stepper-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      max-width: 624px;
+      margin: 0 auto;
+    }
+
+    .stepper-container .step-item {
+      display: flex;
+      color: var(--grey_scale_grey, #7E7E7E);
+      font-family: Roboto;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 14px;
+      letter-spacing: 0.21px;
+      gap: 2px;
+    }
+
+    .step-item img {
+      width: 14px;
+      height: 14px;
+    }
+
+    .stepper-container .line {
+      background: #bdbdbd;
+      width: 100%;
+      height: 1px;
+      margin: 0 8px;
+    }
+
+    .active {
+      background: #6BBD58 !important;
+    }
+
+    .step-item.active-text {
+      color: #333030;
+    }
+
+
+
+
+    // UDS-666-Start
+    .cashback {
+      display: block;
+
+      .cashback-container {
+        border-radius: 24px;
+        box-shadow: 0px 8px 12px -4px rgba(0, 0, 0, 0.1);
+        background: #FFF;
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+
+        .cashback-text {
+          display: flex;
+          letter-spacing: 0.5px;
+          font-size: 14px;
+          align-items: center;
+          gap: 4px;
+          padding: 8px;
+          color: #424242;
+          align-items: center;
+          justify-content: center;
+
+          .highlighted-text {
+            font-weight: 500;
+            color: #6BBD58;
+          }
+        }
+
+        .arrow-icon-header,
+        .cashback-heading-icon {
+          display: none;
+        }
+      }
+    }
+
+    // UDS-666-End
+  }
+}
+
+.cart-contributed-education {
+  overflow: hidden;
+
+  &.cart-purpose-top {
+    border-radius: 0;
+    font-size: 13px;
+    margin-top: 8px;
+    line-height: 18px;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .cart-contributed-education {
+    &.cart-purpose-top {
+      display: block;
+      display: flex;
+    }
+  }
+
+  .oziva-cart-body {
+    .oziva-header-border {
+      border-bottom: 1px solid #F5F5F5;
+    }
+
+    .oziva-header {
+      .stepper-container .step-item {
+        font-size: 13px;
+      }
+
+      nav {
+        .start-nav {
+          border-bottom: none;
+        }
+      }
+
+      .step-item img {
+        width: 13px;
+        height: 13px;
+      }
+
+      .cashback {
+        .cashback-container {
+
+          img {
+            width: 18px;
+            height: 18px;
+          }
+
+          .cashback-text {
+            font-size: 13px;
+            padding: 4px 8px 8px;
+            justify-content: unset;
+
+            .highlighted-text {
+              font-weight: 600;
+            }
+          }
+
+          .discount-heading-icon,
+          .cashback-heading-icon {
+            display: none;
+          }
+
+          .saving-corner-container {
+            display: none !important;
+          }
+
+          .highlighted-text {
+            font-size: 18px !important;
+            font-weight: 500 !important;
+            color: #FF6F00 !important;
+          }
+
+          .cashback-container .cashback-heading-icon {
+            display: none !important;
+          }
+
+          .cashback-text {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+
+          .saved-text {
+            display: flex !important;
+            align-items: center !important;
+            gap: 2px !important;
+          }
+
+          .oziva-cart-body .oziva-header .cashback .cashback-container {
+            border-radius: 20px !important;
+          }
+
+          .additional-saving-info {
+            display: flex !important;
+            gap: 2px !important;
+            margin-bottom: 2px !important;
+          }
+
+          .additional-saving-info-container {
+            overflow: hidden;
+            transition: height 0.35s ease;
+            background: #fafafa;
+            display: block !important;
+            background: #FFF !important;
+          }
+
+          .arrow-icon-header {
+            display: flex;
+          }
+
+          .discount-heading-icon {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,407 @@
+.marque-sec {
+    z-index: 999;
+}
+
+.flickity-page-dots {
+    display: none;
+}
+
+.full-page-loader {
+    top: 52% !important;
+    left: 0.3% !important;
+}
+
+.supersale-banner {
+    min-height: 180px;
+}
+
+.super-sale-confetti {
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 999999;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-image: url(https://cdn.shopify.com/s/files/1/2393/2199/files/confetti1_1.gif?v=1761911228);
+    bottom: 41%;
+    background-size: 80%;
+    top: 20%;
+    background-position: center;
+}
+
+.marquee {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    border: 1px solid var(--grey_scale_warm_grey_disabled, #E0E0E0);
+    background: #D8FAFF;
+    padding: 8px 0;
+
+    .marquee-item {
+        animation-duration: 20s;
+        animation-iteration-count: infinite;
+        animation-name: marquee-content;
+        animation-timing-function: linear;
+        padding: 5px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 32px;
+        margin-right: 132px;
+
+        .animated-word {
+            font-size: 16px;
+            color: #474390;
+            font-weight: bold;
+        }
+    }
+}
+
+
+
+@keyframes marquee-content {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+.bubbles-supersale::-webkit-scrollbar {
+    display: none;
+}
+
+.fixed-bubbles {
+    position: fixed;
+    background: #FFF;
+    z-index: 999;
+    left: 0;
+    right: 0;
+}
+
+.relative-positioning {
+    margin-top: 0;
+}
+
+.bubbles-supersale {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 8px;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.14);
+
+    .all-categories-title {
+        min-width: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+        justify-content: center;
+
+        .icon-img {
+            img {
+                border-radius: 100%;
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        .title {
+            color: #7E7E7E;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .selected-title {
+            color: #333030;
+            text-align: center;
+        }
+    }
+
+    .all-categories-title::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.oz-collection-container {
+    max-width: 950px;
+    margin: auto;
+    padding: 0 8px;
+}
+
+.scalloped-design {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-repeat: repeat-x;
+    background-size: 100px 100px;
+    bottom: -86px;
+    z-index: 1;
+    margin: 32px 0;
+}
+
+.scalloped-design-top {
+    transform: rotate(0deg);
+    top: -86px;
+}
+
+.scalloped-design-bottom {
+    transform: none;
+    top: auto;
+}
+
+.collection-section-container {
+    min-height: 300px;
+
+    .scalloped-box {
+        position: relative;
+        padding: 100px 20px;
+        text-align: center;
+        color: white;
+        font-size: 1.2rem;
+        overflow: visible;
+        padding: 32px 0 32px 0;
+        scroll-margin-top: 275px;
+
+        .scalloped-inner-box {
+            position: relative;
+            z-index: 2;
+
+            .collection-title,
+            .collection-subtitle {
+                color: #333030;
+                font-family: "manrope-regular";
+                text-align: center;
+            }
+
+            .collection-title {
+                font-size: 24px;
+                margin: 16px 0;
+                margin: -10px 0 16px 0;
+                font-weight: 800;
+            }
+
+            .collection-subtitle {
+                font-size: 16px;
+            }
+
+            .collections-lists {
+                max-width: 1000px;
+
+                .oz-collection-product-card-listing-testB-carousels {
+                    .flickity-prev-next-button {
+                        width: 44px !important;
+                        height: 44px !important;
+
+                        .flickity-button-icon {
+                            fill: #333030;
+                        }
+
+                    }
+
+                    .flickity-button {
+                        background: none !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-banner {
+        margin: 100px auto;
+        max-width: 1000px;
+        display: flex;
+        justify-content: center;
+        padding: 0px 16px;
+    }
+}
+
+.reviews-section {
+    .loved-by-thousands-heading {
+        color: #333030;
+        font-family: "manrope-regular";
+        font-size: 24px;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 32px;
+
+    }
+
+    .review-container {
+        background-color: #8e44ad;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 1000px;
+        margin: 5px auto;
+
+        .card {
+            background-color: #fff;
+            display: flex;
+            min-width: 100%;
+            min-height: 200px;
+            overflow-x: auto;
+
+            .card-content {
+                min-width: 245px;
+                margin: 5px;
+                box-shadow: 0px 0px 6px #00000033;
+
+                .review_content {
+                    padding: 0 16px 8px 16px;
+
+                    .review-title {
+                        font-size: 14px;
+                        font-weight: bold;
+                        color: #000000;
+                    }
+                }
+            }
+        }
+
+        .card::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .customer-reviews-platform {
+        display: flex;
+        justify-content: center;
+        max-width: 1000px;
+        margin: 32px auto 64px auto;
+    }
+}
+
+
+
+@keyframes word-animation {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .super-sale-confetti {
+        background-size: 200%;
+        background-position: center top;
+        top: 0;
+        background-image: url(https://cdn.shopify.com/s/files/1/2393/2199/files/confetti1_1.gif?v=1761911228);
+        bottom: 0;
+    }
+
+    .supersale-banner {
+        min-height: 110px;
+    }
+
+    .relative-positioning {
+        margin-top: 0;
+    }
+
+    .marquee {
+
+        .marquee-item {
+            gap: 16px;
+            margin-right: 110px;
+        }
+    }
+
+    .collection-title {
+        font-size: 20px;
+    }
+
+    .collection-subtitle {
+        font-size: 14px;
+    }
+
+    .collection-section-container {
+        .scalloped-box {
+            scroll-margin-top: 240px;
+            padding: 32px 0 16px 0;
+
+
+            .scalloped-inner-box {
+
+                .collection-title {
+                    font-size: 20px;
+                    margin: -26px 0 8px 0;
+                }
+
+                .collection-subtitle {
+                    font-size: 14px;
+                    margin-bottom: 16px;
+                }
+
+                .collections-lists {
+                    .oz-collection-product-card-listing-testB-carousels {
+                        padding: 0 15px !important;
+
+                        .previous {
+                            left: -32px !important;
+                        }
+
+                        .next {
+                            right: -23px !important;
+                        }
+
+                        .flickity-prev-next-button {
+                            width: 34px !important;
+                            height: 44px !important;
+                            padding: 0;
+
+                            .flickity-button-icon {
+                                left: 44%;
+                                top: 44%;
+                                width: 13px !important;
+                                height: 13px !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .marquee {
+        .marquee-item {
+            .animated-word {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .bubbles-supersale {
+        .all-categories-title {
+            min-width: 97px;
+
+            .icon-img {
+                min-height: 60px;
+
+                img {
+                    width: 60px;
+                    height: 60px;
+                }
+            }
+
+            .title {
+                min-height: 36px;
+            }
+
+            .selected-title {
+                min-height: 36px;
+            }
+        }
+    }
+}

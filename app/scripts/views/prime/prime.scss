@@ -1,0 +1,630 @@
+@import '../../scss/import/variables';
+@import '../../scss/import/colors';
+@import '../../scss/import/accordion';
+
+.prime-top-banner {
+    aspect-ratio: 48 / 7;
+    background: #BDBDBD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatline-restriction-content{
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    .chatline-restriction-text{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+        .primary-text{
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 28px;
+        }
+        .secondary-text{
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+        }
+    }
+    .shop-now-btn{
+        cursor: pointer;
+        width: 100%;
+        background-color: #6bbd58;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        color: #FFF;
+        border-radius: 12px;
+        font-size: 14px;
+    }
+}
+
+.prime-container {
+    max-width: 632px;
+    padding: 0 8px;
+    margin: 16px auto;
+
+    h2 {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 21px;
+        letter-spacing: 0.027px;
+        margin-bottom: 8px;
+        text-transform: none;
+
+        &.d-flex {
+            display: flex;
+            gap: 8px;
+        }
+
+        .prime-active-tag {
+            border-radius: 100px;
+            background: #006E5A;
+            color: #fff;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 14px;
+            letter-spacing: 0.18px;
+        }
+    }
+
+    .prime-money-section {
+        display: flex;
+        margin-bottom: 32px;
+        align-items: center;
+        gap: 16px;
+
+        .prime-money-item {
+            display: flex;
+            gap: 16px;
+            padding: 8px;
+            align-items: center;
+            border-radius: 4px;
+            border: 1px solid #812C6D;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 15px;
+            letter-spacing: 0.065px;
+            flex: 1;
+            color: #7E7E7E;
+
+            .prime-total-money {
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 18px;
+                letter-spacing: 0.024px;
+                margin-top: 8px;
+                color: #333030;
+            }
+        }
+    }
+
+    .prime-sections {
+        margin-bottom: 32px;
+        border: 1px solid #E0E0E0;
+        border-radius: 4px;
+        padding: 16px;
+
+        &.p-0 {
+            padding: 0 !important;
+        }
+
+        .prime-buy-more-btn {
+            padding: 11.5px 72.5px;
+        }
+    }
+
+    .free-bee-section {
+        margin-bottom: 32px;
+
+        .free-bee-header {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            margin-bottom: 16px;
+
+            .free-bee-header-dtls {
+                flex: 1;
+
+                p {
+                    margin: 0;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 16px;
+                    letter-spacing: 0.021px;
+                    color: #7E7E7E;
+                }
+            }
+
+            .free-bee-header-price-dtls {
+                display: flex;
+                gap: 4px;
+
+                .bee-head-price-text {
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 14px;
+                    letter-spacing: 0.18px;
+                    color: #BDBDBD;
+                }
+
+                .bee-head-price {
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 21px;
+                    letter-spacing: 0.027px;
+                }
+            }
+        }
+    }
+
+    .prime-benefits-section {
+        ul {
+            padding-left: 16px;
+
+            li {
+                margin-bottom: 8px;
+                font-size: 13px;
+                font-weight: 400;
+                line-height: 16px;
+                letter-spacing: 0.021px;
+                list-style: disc;
+                color: #424242;
+            }
+        }
+    }
+
+    .prime-customer-love-section {
+        background-color: #F1FFEE;
+
+        .prime-customer-love-lists {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+            overflow: auto;
+
+            .prime-customer-love-lists-item {
+                background: #fff;
+                border-radius: 4px;
+                border: 1px solid #E0E0E0;
+                padding: 16px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                min-width: 220px;
+                max-width: 220px;
+
+                .prime-user-review {
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 16px;
+                    letter-spacing: 0.021px;
+                    display: flex;
+                    gap: 8px;
+
+                    img {
+                        display: inline-block;
+                        border-radius: 4px;
+                    }
+
+                    .prime-user-star {
+                        margin-top: 4px;
+                        display: flex;
+                        gap: 4;
+
+                        svg {
+                            width: 12px;
+                            height: 12px;
+                        }
+                    }
+                }
+
+                p {
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 16px;
+                    letter-spacing: 0.021px;
+                }
+            }
+        }
+    }
+
+    .oz-accordion {
+        .tab {
+            border: 0;
+            padding: 0;
+            margin: 0;
+            border-bottom: 1px solid #e0e0e0;
+            border-radius: 0;
+
+            .tab-label {
+                padding: 16px 0;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 16px;
+                letter-spacing: 0.021px;
+
+                .arrow-tab {
+                    right: 0;
+                }
+            }
+
+            &:last-child {
+                border-bottom: 0;
+            }
+
+            .tab-content {
+                padding: 0;
+                font-size: 12px;
+                line-height: 16px;
+
+                ol {
+                    li {
+                        margin-bottom: 16px;
+
+                        h4 {
+                            font-size: 14px;
+                            font-weight: 500;
+                            line-height: 16px;
+                            letter-spacing: 0.021px;
+                        }
+
+                        font-size: 12px;
+                        line-height: 16px;
+                    }
+                }
+            }
+        }
+
+        input:checked~.tab-content {
+            padding: 0 0 16px;
+        }
+    }
+
+    &.modal-dialog {
+        margin: 0 !important;
+        width: 100% !important;
+
+        .modal-close {
+            top: -50px;
+            right: -10px;
+        }
+    }
+
+    .prime-cart-popup-header {
+        justify-content: space-between;
+        margin-bottom: 16px;
+
+        p {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.018px;
+            margin-bottom: 16px;
+            color: #7E7E7E;
+        }
+
+        svg {
+            width: 148px;
+            height: 70px;
+        }
+
+        .cart-prime-price-dtls {
+            display: flex;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 15px;
+            letter-spacing: 0.02px;
+
+            del {
+                color: #7E7E7E;
+                font-size: 13px;
+                font-weight: 500;
+            }
+
+            .cart-prime-selling-price {
+                font-size: 16px;
+                font-weight: 500;
+            }
+
+            .cart-prime-saved-price {
+                font-size: 13px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .oz-prime-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 8px;
+
+        .sub-heading {
+            color: #7E7E7E;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .atc-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            .atc-btn-txt {
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 15px;
+                letter-spacing: 0.02px;
+            }
+
+        }
+
+
+
+        .price-detail {
+            color: #7E7E7E;
+            font-size: 12px;
+            font-weight: 400;
+
+            span {
+                font-size: 14px;
+                color: #333030;
+                font-weight: 500;
+            }
+
+
+        }
+
+        .save-txt {
+            color: #F04E23;
+            font-size: 12px;
+            font-weight: 400;
+        }
+    }
+
+    .prime-login-txt {
+        color: #006E5A;
+        font-size: 11px;
+        font-weight: 400;
+
+        >span {
+            color: #6BBD58;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+    }
+}
+
+.non-prime-popup {
+    .prime-container {
+        .prime-customer-love-section {
+            background: #fff;
+
+            .prime-cart-popup-header {
+                background: #fff;
+            }
+
+            h3 {
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .prime-container {
+        .prime-sections {
+            padding: 8px;
+
+            .prime-buy-more-btn {
+                padding: 11.5px 52.5px;
+            }
+        }
+
+        .oz-prime-card {
+            .sub-heading {
+                font-size: 12px;
+            }
+
+            .atc-btn {
+                .atc-btn-txt {
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .fs-m-12 {
+            font-size: 12px !important;
+            font-weight: 400 !important;
+            line-height: 14px !important;
+            letter-spacing: 0.18px !important;
+        }
+
+        .fs-m-14 {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            line-height: 16px !important;
+            letter-spacing: 0.021px !important;
+        }
+
+        h2 {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 18px;
+            letter-spacing: 0.024px;
+
+            &.d-flex {
+                gap: 4px;
+                align-items: start;
+            }
+
+            .prime-active-tag {
+                font-size: 11px;
+                font-weight: 400;
+                line-height: 13px;
+                /* 118.182% */
+                letter-spacing: 0.165px;
+                margin-right: 8px;
+
+                &.d-flex {
+                    gap: 4px;
+                    margin-bottom: 4px;
+                }
+            }
+        }
+
+        .free-bee-section {
+            .free-bee-header {
+                gap: 4px;
+
+                .free-bee-header-logo {
+                    svg {
+                        max-width: 64px;
+                    }
+                }
+
+                .free-bee-header-dtls p {
+                    font-size: 13px;
+                    font-weight: 400;
+                    line-height: 15px;
+                    letter-spacing: 0.065px;
+                }
+
+                .free-bee-header-price-dtls {
+                    .bee-head-price-text {
+                        font-size: 11px;
+                        font-weight: 400;
+                        line-height: 13px;
+                        letter-spacing: 0.165px;
+                    }
+
+                    .bee-head-price {
+                        font-size: 16px;
+                        font-weight: 700;
+                        line-height: 18px;
+                        letter-spacing: 0.024px;
+                    }
+                }
+            }
+        }
+
+        .prime-money-section {
+            gap: 8px;
+
+            .prime-money-item {
+                gap: 8px;
+
+                svg {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+
+        .prime-benefits-section ul li {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 15px;
+            letter-spacing: 0.065px;
+        }
+
+        .prime-customer-love-section {
+            .prime-customer-love-lists {
+                gap: 8px;
+
+                .prime-customer-love-lists-item {
+
+                    .prime-user-review,
+                    p {
+                        font-size: 13px;
+                        font-weight: 400;
+                        line-height: 16.9px;
+                        /* 130% */
+                        letter-spacing: 0.065px;
+                    }
+                }
+            }
+
+            h3 {
+                font-size: 14px !important;
+                font-weight: 500 !important;
+            }
+
+            p {
+                font-size: 12px !important;
+                font-weight: 400 !important;
+            }
+        }
+
+        .prime-additional-details {
+            .oz-accordion {
+                border: 0;
+            }
+        }
+
+        .prime-cart-popup-header {
+            svg {
+                width: 120px;
+                height: 60px;
+            }
+
+            p {
+                margin-bottom: 8px;
+                font-size: 12px;
+            }
+
+            .cart-prime-price-dtls {
+                del {
+                    font-size: 12px;
+                }
+
+                .cart-prime-selling-price {
+                    font-size: 14px;
+                }
+
+                .cart-prime-saved-price {
+                    font-size: 12px;
+                }
+            }
+        }
+        .prime-modal-close-icon {
+            top: -58px;
+        }
+    }
+
+    .chatline-restriction-content{
+        padding: 16px;
+        gap: 16px;
+        img{
+            width: 70px;
+            height: 64px;
+        }
+        .chatline-restriction-text{
+            .primary-text{
+                font-size: 18px;
+                line-height: 25px;
+            }
+            .secondary-text{
+                font-size: 13px;
+                line-height: 18px;
+            }
+        }
+        .shop-now-btn{
+            border-radius: 8px;
+            font-size: 13px;
+        }
+    }
+}

@@ -1,0 +1,283 @@
+.oziva-order-confirmed {
+  background: $primaryGreen;
+  width: 100%;
+  height: 500vh;
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  -webkit-transition: width 0.5s, height 0.25s, opacity 0.5s;
+  transition: width 0.5s, height 0.25s, opacity 0.5s;
+  .lottie {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    // height: 400px;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 30%;
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+.oziva-thank-you {
+  background: $light-gray;
+  margin: 0;
+  .ThankYouBanner,
+  .product-btl-list-group,
+  .ShippingAddress,
+  .ThanksPriceDetails{
+    border: 1px solid #E0E0E0;
+  }
+  .container {
+    max-width: 801px;
+    padding-bottom: 16px;
+    .oziva-thank-dtl {
+      display: flex;
+      flex-grow: 1;
+      column-gap: 8px;
+      .oziva-thank-left {
+        width: 100%;
+      }
+      .oziva-thank-right {
+        width: 100%;
+        max-width: 340px;
+      }
+      .product-btl-list {
+        display: flex;
+        padding: 8px 8px 5px 8px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid $light-gray;
+        &:last-child {
+          border: 0;
+          margin: 0;
+        }
+        .product-btl-list-img {
+          padding: 0 16px 0 8px;
+        }
+      }
+    }
+  }
+  .ShippingAddress {
+    &.oz-accordion {
+      .tabs {
+        .tab {
+          margin-bottom: 0;
+          border: 0;
+          .tab-label {
+            padding: 8px 8px 0px 16px;
+            font-size: 16px;
+            line-height: 19px;
+            border-bottom: 1px solid $border-gray;
+          }
+          .tab-content {
+            padding: 0 16px 0 16px;
+          }
+        }
+      }
+      input {
+        &:checked {
+          & ~ .tab-content {
+            margin-top: 4px;
+          }
+        }
+      }
+      input:checked ~ .mob-default-add {
+        display: none !important;
+      }
+    }
+  }
+  .ThanksPriceDetails {
+    padding: 8px 16px;
+    letter-spacing: 0;
+  }
+  .thank-btn-group {
+    display: flex;
+    flex-grow: 1;
+    column-gap: 8px;
+    align-items: center;
+    & > * {
+      width: 50%;
+      text-align: center;
+      border-radius: 0;
+      font-size: 16px;
+      line-height: 24px;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 8px;
+    }
+  }
+}
+
+
+.ratingBox{
+  display: block;
+  background: #B0DDA7;
+  text-align: center;
+  padding: 8px;
+  letter-spacing: 0.01px;
+  color: #424242 !important;
+  font-size: 13px;
+  line-height: 16px;
+  margin-bottom: 16px;
+  h2{
+    font-size: 16px;
+    ;line-height: 14px;
+    font-weight: 600;
+    color: #333030;
+    margin: 0 0 8px;
+  }
+}
+a.ratingBox:hover{
+  color: #424242 !important;
+  text-decoration: none;
+}
+.ratingBox > *{
+  width: 100%;
+}
+.ratingBoxStart{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 8px;
+  img{
+    width: 22px;
+  }
+}
+.ratingPopup[data-ml-modal] {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: none;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  z-index: 99999999;
+}
+.ratingPopup[data-ml-modal]:target {
+  display: block;
+  opacity: 1;
+}
+.closeratingPopup{
+  position: fixed;
+  color: #333030;
+  background: #B0DDA7;
+  z-index: 6;
+  right: 16px;
+  top: 16px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  &:hover{
+    color: #333030;
+    text-decoration: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .oziva-thank-you {
+    .container {
+      padding: 8px;
+      .ThankYouBanner {
+        border: 1px solid #E0E0E0;
+        border-radius: 4px !important;
+        p {
+          text-indent: 35px;
+        }
+        h5{
+          text-indent: 35px;
+        }
+        &.text-off-gray {
+          margin-top: 8px;
+        }
+      }
+      .oziva-thank-dtl {
+        display: block;
+        .product-btl-list-group {
+          border: 1px solid #E0E0E0;
+          .product-btl-list {
+            .text-off-gray {
+              font-size: 12px;
+              line-height: 15.6px;
+            }
+          }
+        }
+        .oziva-thank-right {
+          max-width: 100%;
+          .app-banner {
+            margin-bottom: 16px;
+          }
+        }
+      }
+    }
+    .ShippingAddress {
+      margin-bottom: 16px;
+      &.oz-accordion {
+        border-top: 0;
+        border: 1px solid #E0E0E0 !important;
+        .tabs {
+          .tab {
+            .tab-label {
+              &::after {
+                margin-top: -7px;
+              }
+            }
+            .mob-default-add {
+              padding: 8px 16px;
+              font-size: 12px;
+              line-height: 16px;
+              color: $off-gray;
+            }
+            .tab-content {
+              font-size: 12px;
+              line-height: 16px;
+            }
+          }
+        }
+      }
+    }
+    .ThanksPriceDetails {
+      margin-bottom: 16px;
+      border: 1px solid #E0E0E0;
+    }
+    .thank-btn-group {
+      padding-bottom: 16px;
+      & > * {
+        font-size: 13px;
+        line-height: 17px;
+      }
+    }
+  }
+  .w-27{
+    width: 27px;
+  }
+  .ratingBox {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+  }
+  .oziva-cart-body .oz-subscription-popup .oziva-mob-container.subscription-main{
+    padding-top: 0 !important;
+    padding-bottom: 85px !important;
+    .subscription-top-banner{
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+  }
+}
+.product-title-mb-8{margin-bottom: 8px!important;}

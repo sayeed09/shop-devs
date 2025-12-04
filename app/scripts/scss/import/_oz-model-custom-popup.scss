@@ -1,0 +1,32 @@
+@import '../../scss/import/variables';
+@import '../../scss/import/colors';
+@import '../../scss/import/popup-modal';
+@import '../../scss/import/typography';
+
+.oz-model-custom-popup {
+    .open-popup {
+      width: auto;
+      height: auto;
+      opacity: 1;
+      -webkit-transition: opacity 1s ease;
+      transition: opacity 1s ease;
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+  }
+  @media only screen and (max-width: 767px){
+    .oz-model-custom-popup{
+        .open-popup {
+            bottom: 0 !important;
+            top: 0 !important;
+          }
+      }
+  }

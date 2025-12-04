@@ -1,0 +1,42 @@
+.bubble-container {
+    align-items: flex-start !important;
+}
+
+.protein-fest-popup-area {
+    .ProductCardBtn {
+        margin: 10px auto;
+        width: 95%;
+        background: #FF6F00;
+        color: #ffffff !important;
+        border-color: #FF6F00;
+    }
+
+    a.ProductCardBtn:not([disabled]):hover,
+    a.ProductCardBtn:focus {
+        color: #ffffff !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .bubble-item {
+        min-width: 100px !important;
+    }
+
+    .bubbles-supersale {
+        padding-bottom: 16px !important;
+    }
+
+    .images-count {
+        position: absolute;
+        right: 10px;
+        bottom: 23px;
+        font-weight: 500;
+        font-size: 12px;
+        display: block;
+    }
+
+    .oziva-pdp-web .for-with-rating-sec .rating-sec {
+        padding: 1px 4px !important;
+        gap: 4px !important;
+    }
+}

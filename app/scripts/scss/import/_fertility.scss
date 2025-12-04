@@ -1,0 +1,1118 @@
+.vertical-line {
+    border-left: 1px solid #7E7E7E;
+    height: 15px;
+}
+
+.fertility-header-banner {
+    position: relative;
+
+    .emi-details-container {
+        position: absolute;
+        bottom: 21%;
+        left: 45%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .product-buy-now-btn {
+            border: none;
+            border-radius: 4px;
+            color: #004141;
+            font-size: 30px;
+            font-weight: 800;
+            background-color: #FECC0E;
+            height: 40px;
+            font-family: 'manrope-extrabold';
+            line-height: 0;
+        }
+
+        .whats-included-text {
+            font-family: "manrope-extrabold";
+            font-size: 12px;
+            color: #004141;
+            cursor: pointer;
+            background-color: #C8E6C8;
+            padding: 0 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.fertility-content-container {
+    max-width: 950px;
+    margin: 64px auto 0 auto;
+
+    .sticky {
+        position: sticky;
+    }
+
+    .sticky-button {
+        position: sticky;
+        bottom: 8px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border: 1px solid #BDBDBD;
+        border-radius: 12px;
+        max-width: 944px;
+        margin: 0 auto;
+        z-index: 1000;
+
+        .sticky-button-emi-details {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            color: #004141;
+            background: #F5F5F5;
+            border-radius: 12px;
+            padding: 8px 16px;
+            align-items: center;
+
+            .sticky-button-emi-per-month-pricing {
+                font-size: 18px;
+                font-weight: 500;
+
+                span {
+                    font-size: 16px;
+                    font-weight: 400;
+                }
+            }
+
+            .emi-no-cost {
+                font-size: 16px;
+            }
+        }
+
+        .sticky-button-pricing-details {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 4px 64px;
+            align-items: center;
+
+            .sticky-button-pricing {
+                .mrp-text {
+                    font-size: 14px;
+                }
+
+                .sticky-button-mrp {
+                    font-size: 14px;
+                    color: #7E7E7E;
+                    margin-right: 8px;
+                    text-decoration: line-through;
+                }
+
+                .sticky-button-selling-price {
+                    font-size: 18px;
+                    font-weight: 700;
+                }
+
+                .sticky-button-whats-included-text {
+                    font-size: 12px;
+                    color: #7E7E7E;
+                    text-align: left;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    margin-top: 4px;
+
+                    svg {
+                        path {
+                            fill: #006E5A;
+                        }
+                    }
+                }
+            }
+
+            .sticky-button-buy-now-btn {
+                border: none;
+                background: #004141;
+                border-radius: 12px;
+                width: 270px;
+                padding: 7px 64px;
+                color: #FFF;
+                font-weight: 800;
+                font-size: 14px;
+                height: 40px;
+            }
+        }
+    }
+
+    .oziva-pdp-web {
+        .clinically-proven-result-header {
+            font-size: 24px;
+            margin-bottom: 32px;
+            color: #004141;
+            font-family: "manrope-regular";
+
+            span {
+                font-weight: 700;
+            }
+        }
+
+        .article-sec {
+            .list-container {
+                gap: 32px;
+            }
+
+            .article-item {
+                flex-basis: 50%;
+                gap: 16px;
+
+                .title {
+                    font-family: "manrope-extrabold";
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 19.5px;
+                    color: #004141;
+                }
+
+                .count {
+                    color: #004141;
+                    min-width: 150px;
+                    margin-left: -8px;
+                    font-weight: 600;
+
+                    .percentage-sign {
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .success-story-container {
+        background-color: #004141;
+        margin-top: 64px;
+        border-radius: 4px;
+
+        .success-story-title {
+            font-size: 24px;
+            margin-bottom: 32px;
+            color: #FFF;
+            font-family: "manrope-regular";
+            padding: 32px 32px 0 32px;
+
+            span {
+                font-weight: 700;
+            }
+        }
+
+        .success-story-video {
+            position: relative;
+            padding: 0 32px 32px 32px;
+
+            .success-story-video-button {
+                position: absolute;
+                left: 41%;
+                top: 47%;
+            }
+        }
+
+        video {
+            width: 100%;
+            height: 500px;
+            border-radius: 4px;
+        }
+    }
+
+    .testimonials-container {
+        margin-top: 64px;
+
+        .testimonials-header-container {
+            font-family: "manrope-regular";
+            padding: 0;
+
+            .testimonials-header {
+                font-size: 24px;
+                color: #004141;
+                margin-bottom: 16px;
+            }
+
+            .testimonials-sub-header {
+                color: #004141;
+                font-weight: 700;
+                font-size: 24px;
+            }
+        }
+
+        .press_container {
+            .press_carousel-main {
+                .flickity-viewport {
+                    .flickity-slider {
+                        .testimonials-item {
+                            margin-right: 32px;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            border-radius: 4px;
+                            border: 1px solid #004141;
+                            padding: 16px;
+                            width: 92%;
+                            gap: 32px;
+
+                            .testimonials-item-image {
+                                display: flex;
+                                flex-basis: 50%;
+
+                                img {
+                                    width: 400px;
+                                    height: 367px;
+                                }
+                            }
+
+                            .testimonials-content {
+                                display: flex;
+                                flex-basis: 53%;
+                                flex-direction: column;
+                                justify-content: space-between;
+
+                                .testimonials-item-content {
+                                    color: #004141;
+                                    flex-basis: 53%;
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 8px;
+
+                                    .testimonials-item-heading {
+                                        .testimonials-item-heading-name {
+                                            margin-bottom: 16px;
+                                            font-size: 16px;
+                                            font-weight: 500;
+                                        }
+
+                                        .testimonials-item-heading-description {
+                                            font-size: 20px;
+                                            font-weight: 700;
+                                            line-height: 23px;
+                                        }
+                                    }
+
+                                    .testimonials-item-description {
+                                        font-size: 16px;
+                                        line-height: 24px;
+                                        min-height: 242px;
+                                    }
+                                }
+
+                                .testimonials-item-footer {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    margin-top: 16px;
+
+                                    .testimonials-item-rating {
+                                        display: flex;
+                                        gap: 8px;
+
+                                        svg {
+                                            path {
+                                                fill: #FECC0E;
+                                            }
+                                        }
+                                    }
+
+                                    .testimonials-read-more-button {
+                                        border: none;
+                                        background-color: #FFF;
+                                        color: #004141;
+                                        font-weight: 700;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .testimonials-bubbles-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 64px;
+            margin: 32px 0;
+
+            .testimonial-bubble-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                cursor: pointer;
+
+                .testimonial-bubble-image {
+                    border-radius: 50%;
+                    width: 70px;
+                    height: 70px;
+                    opacity: 0.7;
+                }
+
+                .active {
+                    border: 2px solid #004141;
+                    opacity: 1;
+                    padding: 2px;
+                }
+            }
+        }
+
+        .testimonials-item-container {
+            display: flex;
+            overflow: auto;
+            gap: 32px;
+
+            .testimonials-item {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                border-radius: 4px;
+                border: 1px solid #004141;
+                height: 450px;
+
+                .testimonials-item-image {
+                    border-bottom: 1px solid red;
+                    border-radius: 4px;
+                    padding: 16px;
+                    flex-basis: 50%;
+
+                    img {
+                        width: 400px;
+                        height: 400px;
+                    }
+                }
+
+                .testimonials-item-content {
+                    color: #004141;
+                    flex-basis: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                    padding: 16px;
+
+                    .testimonials-item-heading {
+                        .testimonials-item-heading-name {
+                            margin-bottom: 8px;
+                            font-size: 16px;
+                        }
+
+                        .testimonials-item-heading-description {
+                            font-size: 20px;
+                            font-weight: 700;
+                        }
+                    }
+
+                    .testimonials-item-description {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+
+    .program-crafted-container {
+        background-color: #004141;
+        padding: 32px;
+        border-radius: 4px;
+        margin-top: 64px;
+
+        .program-crafted-header {
+            font-weight: 700;
+            font-size: 24px;
+            color: #FFF;
+            font-family: "manrope-regular";
+            margin-left: 18px;
+        }
+
+        .program-crafted-content {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 32px;
+
+            .program-crafted-item {
+                flex-basis: 25%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+
+                .program-crafted-icon {
+                    padding: 18px;
+                    border: 1px solid #004141;
+                    border-radius: 32px;
+                    background-color: rgba(255, 255, 255, 0.1);
+
+                    img {
+                        width: 64px;
+                        height: 64px;
+                    }
+                }
+
+                .program-crafted-icon-text {
+                    color: #FFF;
+                    text-align: center;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .program-information-container {
+        margin-top: 64px;
+        scroll-margin-top: 170px;
+
+        .program-information-header {
+            font-size: 24px;
+            color: #004141;
+            margin-bottom: 32px;
+            line-height: 32px;
+            font-family: "manrope-regular";
+
+            span {
+                font-size: 24px;
+                font-weight: 700;
+                color: #004141;
+                line-height: 32px;
+            }
+        }
+
+        .program-information-content {
+            display: flex;
+            flex-direction: column;
+            gap: 56px;
+
+            .program-information-data {
+                display: flex;
+                gap: 16px;
+            }
+
+            .program-information-data-left,
+            .program-information-data-right {
+                flex-basis: 50%;
+                display: inline-flex;
+
+                picture {
+                    width: 100%;
+
+                    img {
+                        border-radius: 4px;
+                    }
+                }
+            }
+
+            .program-information-data-left {
+                .program-information-data-left-header {
+                    margin-left: 16px;
+
+                    .program-information-data-left-title {
+                        font-size: 20px;
+                        color: #004141;
+                        font-weight: 700;
+                        font-family: "manrope-regular";
+                        line-height: 28px;
+                        margin-top: -2px;
+                    }
+
+                    .program-information-data-left-description {
+                        font-size: 16px;
+                        color: #004141;
+                        margin-top: 16px;
+                        line-height: 24px;
+                    }
+                }
+
+                .program-information-data-index {
+                    border: 1px solid #E0E0E0;
+                    border-radius: 50%;
+                    min-width: 24px;
+                    height: 24px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: #E0E0E0;
+                    font-weight: 700;
+                }
+            }
+
+            .program-information-data:nth-child(odd) {
+                flex-direction: row;
+            }
+
+            .program-information-data:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+
+    .oziva-pdp-web {
+        margin-top: 64px;
+
+        .sec-header {
+            color: #FFF;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .goolge-review-sec {
+            background-color: #004141;
+            border-radius: 4px;
+
+            .reviews-list-sec {
+                .review-item {
+                    background: #FFFFFF1A;
+
+                    .title-img {
+                        .title-sec {
+                            .title {
+                                color: #FFF;
+                            }
+
+                            .sub-text {
+                                color: #BDBDBD;
+                            }
+                        }
+                    }
+
+                    .review-desc {
+                        color: #FFF;
+                    }
+                }
+
+                .flickity-page-dots {
+                    background-color: #004141;
+                }
+            }
+
+            .rating-sec {
+                .ratings {
+                    .rating-text {
+                        color: #FFF;
+                    }
+                }
+            }
+
+            .total-reviews {
+                color: #BDBDBD;
+            }
+        }
+    }
+
+    .faq-container {
+        margin: 64px 0;
+
+        .faq-header {
+            font-size: 24px;
+            font-weight: 700;
+            color: #004141;
+            margin-bottom: 32px;
+            font-family: "manrope-regular";
+        }
+
+        .faq-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .faq-quetion-div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+                cursor: pointer;
+
+                .question {
+                    display: flex;
+                    gap: 8px;
+
+                    .faq-question {
+                        font-size: 16px;
+                        color: #004141;
+                        font-weight: 500;
+                        margin: 0;
+                    }
+                }
+            }
+
+            .contracted {
+                overflow: hidden;
+                max-height: 0;
+                transition: max-height 0.4s linear;
+                font-size: 14px;
+                font-weight: 400;
+                color: #004141;
+                line-height: 21px;
+
+                .faq-extra-points {
+                    li {
+                        list-style: disc;
+                        margin: 8px 32px;
+                    }
+                }
+            }
+
+            .expanded {
+                max-height: 1000px;
+                transition: max-height 0.4s linear;
+                font-size: 14px;
+                font-weight: 400;
+                color: #004141;
+                line-height: 21px;
+
+                .faq-extra-points {
+                    li {
+                        list-style: disc;
+                        margin: 8px 32px;
+                    }
+                }
+            }
+
+            .faq-horizontal-line {
+                margin: 8px 0 16px 0;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .fertility-header-banner {
+        picture {
+            img {
+                height: 100%;
+            }
+        }
+
+        .emi-details-container {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            bottom: 7%;
+            align-items: center;
+            left: 4.5%;
+
+            .product-buy-now-btn {
+                width: 100%;
+                font-size: 21px;
+                height: 32px;
+            }
+
+            .whats-included-text {
+                font-size: 8px;
+                padding: 0 4px;
+                height: 14px;
+            }
+        }
+    }
+
+    .fertility-content-container {
+        margin: 0 16px;
+
+        .sticky-button {
+            margin: 0 8px 0 8px;
+            border-radius: 8px;
+
+            .sticky-button-emi-details {
+                gap: 8px;
+                border-radius: 8px;
+
+                .sticky-button-emi-per-month-pricing {
+                    font-size: 14px;
+
+                    span {
+                        font-size: 14px;
+                    }
+                }
+
+                .emi-no-cost {
+                    font-size: 14px;
+                }
+            }
+
+            .sticky-button-pricing-details {
+                padding: 4px 8px;
+
+                .sticky-button-buy-now-btn {
+                    width: 175px;
+                    padding: 6.5px 16px;
+                    height: 36px;
+                }
+
+                .sticky-button-pricing {
+                    .mrp-text {
+                        font-size: 13px;
+                    }
+
+                    .sticky-button-mrp {
+                        font-size: 13px;
+                    }
+
+                    .sticky-button-selling-price {
+                        font-size: 16px;
+                    }
+                }
+
+            }
+        }
+
+        .clinically-proven-result-container {
+            margin-top: 32px;
+
+            .clinically-proven-result-content {
+                gap: 16px;
+
+                .clinically-proven-result {
+                    flex-basis: 100%;
+                    height: 86px;
+
+                    .clinically-proven-result-text {
+                        font-size: 18px;
+                    }
+
+                    .clinically-proven-result-number {
+                        font-size: 42px;
+                    }
+                }
+            }
+        }
+
+        .program-crafted-container {
+            border-radius: 0px;
+            padding: 16px;
+            margin: 32px -16px 0 -16px;
+
+            .program-crafted-header {
+                font-size: 20px;
+                text-align: left;
+                line-height: 28px;
+                margin-left: 0;
+            }
+
+            .program-crafted-content {
+                margin-top: 0;
+                justify-content: space-between;
+
+                .program-crafted-item {
+                    flex-basis: 48%;
+                    margin-top: 32px;
+                }
+            }
+        }
+
+        .faq-container {
+            margin-top: 32px 0;
+
+            .faq-header {
+                font-size: 20px;
+                margin-bottom: 16px;
+                line-height: 28px;
+            }
+
+            .faq-item {
+                .faq-quetion-div {
+                    gap: 8px;
+
+                    .question {
+                        gap: 4px;
+
+                        .faq-question {
+                            font-size: 16px;
+                            line-height: 22px;
+                        }
+                    }
+                }
+
+                .expanded {
+                    line-height: 20px;
+                }
+
+                .contracted {
+                    line-height: 20px;
+                }
+            }
+        }
+
+        .success-story-container {
+            border-radius: 0;
+            margin: 32px -16px 0 -16px;
+
+            .success-story-title {
+                font-size: 20px;
+                line-height: 28px;
+                padding: 16px 16px 0 16px;
+            }
+
+            .success-story-video {
+                padding: 0 16px 16px 16px;
+            }
+
+            video {
+                width: 100%;
+                height: 100%;
+            }
+
+
+        }
+
+        .testimonials-container {
+            margin-top: 32px;
+
+            .testimonials-header-container {
+                text-align: center;
+
+                .testimonials-sub-header {
+                    font-size: 20px;
+                    line-height: 28px;
+                }
+
+                .testimonials-header {
+                    margin-bottom: 0px;
+                    font-size: 20px;
+                    line-height: 28px;
+                }
+            }
+
+            .testimonials-bubbles-container {
+                gap: 32px;
+            }
+
+            .press_container {
+                .press_carousel-main {
+                    .flickity-viewport {
+                        height: auto;
+
+                        .flickity-slider {
+                            .testimonials-item {
+                                flex-direction: column;
+                                padding: 0;
+                                margin-right: 16px;
+                                width: 98%;
+                                gap: 0;
+
+                                .testimonials-item-image {
+                                    padding: 16px 16px 0 16px;
+
+                                    img {
+                                        width: 100%;
+                                        height: auto;
+                                    }
+                                }
+
+                                .testimonials-content {
+                                    padding: 16px;
+
+                                    .testimonials-item-content {
+                                        padding: 0px;
+                                        gap: 16px;
+
+                                        .testimonials-item-heading {
+                                            .testimonials-item-heading-name {
+                                                font-size: 14px;
+                                            }
+                                        }
+
+                                        .testimonials-item-heading-description {
+                                            font-size: 18px !important;
+                                            line-height: 25px !important;
+                                        }
+
+                                        .testimonials-item-description {
+                                            font-size: 14px;
+                                            line-height: 20px;
+                                            min-height: 80px;
+                                        }
+
+                                    }
+
+                                    .testimonials-item-footer {
+                                        .testimonials-item-rating {
+                                            gap: 4px;
+
+                                            svg {
+                                                width: 16px;
+                                                height: 16px;
+                                            }
+                                        }
+
+                                        .testimonials-read-more-button {
+                                            font-size: 14px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .program-information-container {
+            margin-top: 32px;
+            scroll-margin-top: 130px;
+
+            .program-information-header {
+                font-size: 20px;
+                margin-bottom: 32px;
+                line-height: 28px;
+
+                span {
+                    font-size: 20px;
+                    line-height: 28px;
+                }
+            }
+
+            .program-information-content {
+                gap: 32px;
+
+                .program-information-data {
+                    flex-direction: column !important;
+                    align-items: center;
+                }
+
+                .program-information-data-left {
+                    gap: 8px;
+
+                    .program-information-data-left-header {
+                        margin-left: 0;
+
+                        .program-information-data-left-title {
+                            font-size: 18px;
+                            line-height: 25px;
+                            margin-top: 0;
+                        }
+
+                        .program-information-data-left-description {
+                            font-size: 14px;
+                            margin-top: 8px;
+                            line-height: 21px;
+                        }
+                    }
+
+                    .program-information-data-index {
+                        min-width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                .program-information-data-right {
+                    width: 88%;
+                    margin-left: 16px;
+
+                    picture {
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .oziva-pdp-web {
+            margin: 32px -16px 0 -16px;
+
+            .clinically-proven-result-header {
+                margin: 0 0 16px 16px;
+                font-size: 20px;
+                font-family: "manrope-regular";
+                line-height: 28px;
+            }
+
+            .goolge-review-sec {
+                border-radius: 0px;
+            }
+
+            .sec-header {
+                font-size: 20px;
+            }
+
+            .article-sec {
+                .list-container {
+                    gap: 16px;
+                }
+
+                .article-item {
+                    gap: 16px;
+                    min-height: 86px;
+
+                    .count {
+                        font-size: 42px;
+                        min-width: 88px;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .sticky-button {
+        .sticky-button-emi-details {
+            .sticky-button-emi-per-month-pricing {
+                font-size: 12px !important;
+
+                span {
+                    font-size: 12px !important;
+                }
+            }
+
+            .emi-no-cost {
+                font-size: 12px !important;
+            }
+        }
+
+        .sticky-button-pricing-details {
+            .sticky-button-pricing {
+                .sticky-button-whats-included-text {
+                    margin-top: 0 !important;
+                }
+            }
+
+            .sticky-button-buy-now-btn {
+                width: 140px !important;
+            }
+        }
+    }
+
+    .fertility-header-banner {
+        .emi-details-container {
+            gap: 10px;
+            bottom: 8%;
+
+            .product-buy-now-btn {
+                font-size: 20px;
+                height: 32px;
+            }
+
+            .whats-included-text {
+                font-size: 7px;
+                height: 12px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 364px) {
+    .fertility-header-banner {
+        .emi-details-container {
+            gap: 8px;
+            bottom: 7%;
+
+            .product-buy-now-btn {
+                font-size: 18px;
+                height: 32px;
+            }
+
+            .whats-included-text {
+                font-size: 7px;
+                height: 12px;
+            }
+        }
+    }
+}

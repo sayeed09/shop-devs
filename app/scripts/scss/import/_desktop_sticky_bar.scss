@@ -1,0 +1,108 @@
+.fixed-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    .desktopFooter {
+        box-shadow: 0px 0px 10px 0px #8E8E8E33;
+        border-radius: 10px;
+        margin: 10px auto;
+        background: white;
+        flex-direction: column;
+        width: 90%;
+        .header {
+            background-color: #F9D2C7;
+            padding: 4px 12px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+
+            .sellingOutText {
+                font-size: 16px;
+                font-weight: 500;
+                color: #FF6F00;
+                align-items: center;
+                justify-content: center;
+                vertical-align: middle;
+                display: flex;
+                gap: 4px;
+                img{
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 80px;
+
+            .productInfo {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .productImage {
+                width: 80px;
+                height: 80px;
+                object-fit: cover;
+            }
+
+            .productDetails {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+
+                .rating {
+                    font-size: 16px;
+                    margin-bottom: 0;
+                    color: #7e7e7e;
+                    .starRating {
+                        color: #FECC0E;
+                    }
+                }
+                .mrp {
+                    font-size: 16px;
+                    color: #a9a9a9;
+                }
+                .mrp-price {
+                    text-decoration: line-through;
+                    font-size: 16px;
+                    color: #a9a9a9;
+                }
+
+                .price {
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: #2e8b57;
+                }
+
+                .save {
+                    font-size: 16px;
+                    color: #ff6347;
+                    margin-top: 4px;
+                }
+            }
+
+            .buyNowButton {
+                background-color: #FF6F00;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 400px;
+                font-weight: 700;
+            }
+        }
+    }
+}

@@ -1,0 +1,1 @@
+export type ProductTemplate = 'new' | 'v2'

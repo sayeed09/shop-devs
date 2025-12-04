@@ -1,0 +1,262 @@
+/* IMPORTED SCSS */
+@import '_variables';
+@import '_colors';
+
+.green-checkbox {
+  position: absolute; // take it out of document flow
+  opacity: 0; // hide it
+
+  & + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  // Box.
+  & + label:before {
+    content: '';
+    display: inline-block;
+    vertical-align: text-top;
+    width: 15px;
+    height: 15px;
+    background: $white;
+    border: 1px solid #b3b3b3;
+    border-radius: 1px;
+  }
+
+  // // Box hover
+  // &:hover + label:before {
+  //   background: $secondaryDeepGreen;
+  // }
+
+  // // Box focus
+  // &:focus + label:before {
+  //   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  // }
+
+  // Box checked
+  &:checked + label:before {
+    background: $secondaryDeepGreen;
+    border: 0;
+  }
+
+  // Disabled state label.
+  &:disabled + label {
+    color: #b8b8b8;
+    cursor: auto;
+  }
+
+  // Disabled box.
+  &:disabled + label:before {
+    box-shadow: none;
+    background: #ddd;
+  }
+
+  // Checkmark. Could be replaced with an image
+  &:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 7px;
+    background: $white;
+    width: 2px;
+    height: 2px;
+    box-shadow: 2px 0 0 $white, 4px 0 0 $white, 4px -2px 0 $white,
+      4px -4px 0 $white, 4px -6px 0 $white, 4px -8px 0 $white;
+    transform: rotate(45deg);
+  }
+}
+.enter-coupon-input {
+  align-items: center;
+}
+
+.font-control {
+  background: $white;
+  border: 1px solid $border-gray;
+  border-radius: 6px;
+  width: 100%;
+  padding: 12px;
+  width: 100%;
+  &:focus {
+    border-color: $secondaryDeepGreen;
+    outline: 0;
+    // box-shadow: 0 0 0 0.25rem rgb(107 189 88 / 25%);
+  }
+}
+
+.oziva-body {
+  input.oz-radio[type='radio'] {
+    position: relative;
+    margin: 0 8px 0 0;
+    &::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      border: 2px solid #b3b3b3;
+      box-shadow: none;
+      background: $white;
+      border-radius: 50%;
+      position: absolute;
+      left: -3px;
+      top: -3px;
+    }
+  }
+  input.oz-radio[type='radio']:checked {
+    &::before {
+      content: '';
+      width: 15px;
+      height: 15px;
+      border: 3px solid $white;
+      box-shadow: 0 0 0 2px $secondaryDeepGreen;
+      background: $secondaryDeepGreen;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+  input.oz-checkbox[type='checkbox'] {
+    position: relative;
+    margin: 0 13px 0 0;
+    &::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      border: 1px solid $secondaryDeepGreen;
+      box-shadow: none;
+      background: $white;
+      border-radius: 3px;
+      position: absolute;
+      left: -1px;
+      top: -3px;
+    }
+  }
+  input.oz-checkbox[type='checkbox']:checked {
+    &::before {
+      content: '\2714';
+      border-color: $secondaryDeepGreen;
+      background: $secondaryDeepGreen;
+      color: $white;
+      text-align: center;
+      line-height: 18px;
+    }
+  }
+}
+.oz-form-group {
+  justify-content: space-between;
+  column-gap: 8px;
+  row-gap: 16px;
+  flex-grow: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 100%;
+  .form-col {
+    width: 100%;
+    min-width: 100%;
+  }
+  .form-col-6 {
+    width: calc(50% - 4px);
+  }
+}
+.oz-input-group {
+  position: relative;
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .oz-input {
+    display: block;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    padding: 12px 16px 9px 16px;
+    width: 100%;
+    color: $gray;
+    font-size: 13px;
+    line-height: 20px;
+    & ~ .oz-input-lbl {
+      display: block;
+      color: #b3b3b3;
+      font-size: 13px;
+      line-height: 20px;
+      position: absolute;
+      left: 8px;
+      top: 11px;
+      background: transparent;
+      padding: 0 8px;
+      transition: all 0.1s ease;
+      &:before {
+        content: "";
+        position: absolute;
+        height: 11px;
+        width: 100%;
+        background: #fff;
+        top: -1px;
+        left: 0;
+        z-index: 0;
+      }
+      & > span{
+        z-index: 1;
+        position: relative;
+      }
+    }
+    &:focus {
+      outline: none;
+      & ~ label {
+        top: -9px;
+        font-size: 11px;
+      }
+    }
+    &:not(:placeholder-shown).oz-input:not(focus) ~ label {
+      top: -9px;
+      font-size: 11px;
+    }
+  }
+  &.error {
+    .oz-input {
+      border: 1px solid $red;
+      & ~ label {
+        color: $red;
+      }
+    }
+  }
+  &.success {
+    .oz-input {
+      border: 1px solid $primaryGreen;
+      & ~ label {
+        color: $primaryGreen;
+      }
+    }
+  }
+  &.warning {
+    .oz-input {
+      border: 1px solid $secondaryTurmericYellow;
+      & ~ label {
+        color: $secondaryTurmericYellow;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .oziva-body {
+    input[type='radio'] {
+      margin: 0 4px 0 0;
+      height: 12px;
+    }
+    input.oz-checkbox[type='checkbox'] {
+      margin: 0 4px 0 0;
+      &::before {
+        width: 14px;
+        height: 14px;
+        left: 0px;
+        top: 0px;
+      }
+    }
+    input.oz-checkbox[type='checkbox']:checked {
+      &::before {
+        line-height: 12px;
+        font-size: 10px;
+      }
+    }
+  }
+}
