@@ -37,7 +37,7 @@ export const Provider = ({ children, disableSdk }: any) => {
     }
   };
   useEffect(() => {
-    if ((window as any).ENVIRONMENT === 'prod' && !disableSdk) {
+    if (!disableSdk) {
       if (!(mixpanel as any)._initCalled) {
         mixpanel.init('75f794f03ef5e3b85919d0507c5510fa', {
           ignore_dnt: true,
@@ -49,13 +49,13 @@ export const Provider = ({ children, disableSdk }: any) => {
           //@ts-ignore
           // record_heatmap_data: true,
           //@ts-ignore
-          flags: {
-            context: {
-              custom_properties: {
-                url: isMobile() ? window.location.pathname : '',
-              },
-            },
-          },
+          // flags: {
+          //   context: {
+          //     custom_properties: {
+          //       url: isMobile() ? window.location.pathname : '',
+          //     },
+          //   },
+          // },
         });
         (mixpanel as any)._initCalled = true;
       }

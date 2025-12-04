@@ -1,220 +1,258 @@
 import Cookies from 'js-cookie';
 import { OtpVerifyData } from '../interface/product';
 import { getFromCookie } from './product/formatter';
+
+const isBrowser = typeof window !== "undefined";
+
+// ---------------------- LOCAL STORAGE ----------------------
+
 export const setToLocalStorage = (key: string, value: any) => {
-  if (typeof localStorage === 'object') {
-    try {
-      localStorage.setItem(key, value);
-    } catch (e) {
-      return null;
-    }
-  } else {
+  if (!isBrowser) return null;
+  try {
+    localStorage.setItem(key, value);
+  } catch {
     return null;
   }
 };
-
-export const hostDomainUrl = window.location.hostname.split(".").splice(-2).join(".");
 
 export const getFromLocalStorage = (key: string) => {
-  if (typeof localStorage === 'object') {
-    try {
-      return localStorage.getItem(key);
-    } catch (e) {
-      return null;
-    }
-  } else {
+  if (!isBrowser) return null;
+  try {
+    return localStorage.getItem(key);
+  } catch {
     return null;
   }
 };
+
 export const removeFromLocalStorage = (key: string) => {
-  if (typeof localStorage === 'object') {
-    try {
-      localStorage.removeItem(key);
-    } catch (e) {
-      return null;
-    }
-  } else {
+  if (!isBrowser) return null;
+  try {
+    localStorage.removeItem(key);
+  } catch {
     return null;
   }
 };
+
+// ---------------------- HOST DOMAIN ----------------------
+
+export const hostDomainUrl = isBrowser
+  ? window.location.hostname.split(".").splice(-2).join(".")
+  : "";
+
+// ---------------------- ENVIRONMENT ----------------------
 
 export const getEnvironmentValue = (): string | undefined => {
-  if ((window as any).ENVIRONMENT === "dev") {
-    return "_DEV";
-  } else if ((window as any).ENVIRONMENT === "prod" && (window as any).Shopify?.theme?.id !== 120350801979) {
+  if (!isBrowser) return undefined;
+  const win: any = window;
+
+  if (win.ENVIRONMENT === "dev") return "_DEV";
+  if (win.ENVIRONMENT === "prod" && win.Shopify?.theme?.id !== 120350801979) {
     return "";
-  } else if ((window as any).Shopify.theme.id === 120350801979) {
-    return "_PREPROD";
   }
-}
+  if (win.Shopify?.theme?.id === 120350801979) return "_PREPROD";
+};
+
+// ---------------------- AUTH TOKEN ----------------------
 
 export const setAuthTokenWRTEnv = (authData: OtpVerifyData) => {
+  if (!isBrowser) return;
+
   const authObject = {
     accessToken: authData?.tokens?.accessToken,
     phone: authData?.phone
-  }
+  };
+
   document.cookie = `AUTH_DATA${getEnvironmentValue()}=${JSON.stringify(authObject)};path=/;domain=${getDomain()}`;
   document.cookie = `refreshToken${getEnvironmentValue()}=${authData.tokens.refreshToken};path=/;domain=${getDomain()}`;
-}
+};
+
+// ---------------------- CLIPBOARD ----------------------
 
 export const copyToClipboard = (string) => {
+  if (!isBrowser) return false;
+
   let textarea;
   let result;
 
   try {
     textarea = document.createElement('textarea');
     textarea.setAttribute('readonly', true);
-    textarea.setAttribute('contenteditable', true);
-    textarea.style.position = 'fixed'; // prevent scroll from jumping to the bottom when focus is set.
+    textarea.style.position = 'fixed';
     textarea.value = string;
 
     document.body.appendChild(textarea);
-
-    textarea.focus();
     textarea.select();
 
-    const range = document.createRange();
-    range.selectNodeContents(textarea);
-
-    const sel = window.getSelection() as Selection;
-    sel.removeAllRanges();
-    sel.addRange(range);
-
-    textarea.setSelectionRange(0, textarea.value.length);
     result = document.execCommand('copy');
   } catch (err) {
     console.error(err);
     result = null;
   } finally {
-    document.body.removeChild(textarea);
+    if (textarea) document.body.removeChild(textarea);
   }
 
-  // manual copy fallback using prompt
   if (!result) {
-    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-    const copyHotkey = isMac ? '⌘C' : 'CTRL+C';
-    result = prompt(`Press ${copyHotkey}`, string); // eslint-disable-line no-alert
-    if (!result) {
-      return false;
-    }
+    const copyHotkey = navigator.platform.toUpperCase().includes('MAC') ? '⌘C' : 'CTRL+C';
+    result = prompt(`Press ${copyHotkey}`, string);
+    if (!result) return false;
   }
   return true;
 };
 
+// ---------------------- UUID ----------------------
 
 export const uuidv4 = (): string | undefined => {
   try {
-    const uuid: string = "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx".replace(
-      /[xy]/g,
-      function (c) {
-        const r = (Math.random() * 16) | 0,
-          v = c == "x" ? r : (r & 0x3) | 0x8;
-        return v.toString(16);
-      }
-    );
-    return uuid;
+    return "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+      const r = (Math.random() * 16) | 0;
+      const v = c == "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
   } catch (error) {
     console.log(`Error: ${error}`);
   }
 };
 
+// ---------------------- LOGOUT ----------------------
+
 export const handleLogout = () => {
+  if (!isBrowser) return;
+
   try {
-    Cookies.set(`AUTH_DATA${getEnvironmentValue()}`, '', { expires: Date.parse('Thu, 01 Jan 1970 00:00:00 GMT'), path: '/', domain: hostDomainUrl });
-    Cookies.set(`refreshToken${getEnvironmentValue()}`, '', { expires: Date.parse('Thu, 01 Jan 1970 00:00:00 GMT'), path: '/', domain: hostDomainUrl });
-    // Restting chatwoot as session should be destroyed
-    (window as any).$chatwoot.reset();
+    Cookies.set(`AUTH_DATA${getEnvironmentValue()}`, '', {
+      expires: Date.parse('Thu, 01 Jan 1970 00:00:00 GMT'),
+      path: '/',
+      domain: hostDomainUrl
+    });
+
+    Cookies.set(`refreshToken${getEnvironmentValue()}`, '', {
+      expires: Date.parse('Thu, 01 Jan 1970 00:00:00 GMT'),
+      path: '/',
+      domain: hostDomainUrl
+    });
+
+    (window as any).$chatwoot?.reset?.();
   } catch (error) {
     console.log(`Error : ${error}`);
   }
 };
 
-export const getChatwootEntryPoint = (): string | undefined => {
-  try {
-    const chatwootEntryPoints = {
-      '/pages/oziva-prime': 'prime',
-      '/pages/chat': 'chat_landing_page',
-      '/pages/contact-us': 'contact_us',
-    }
-    return chatwootEntryPoints[window.location.pathname] || 'ham_menu';
-  } catch (error) {
-    console.log(`Error : ${error}`);
-  }
+// ---------------------- CHATWOOT ENTRY POINT ----------------------
+
+export const getChatwootEntryPoint = () => {
+  if (!isBrowser) return undefined;
+
+  const map = {
+    '/pages/oziva-prime': 'prime',
+    '/pages/chat': 'chat_landing_page',
+    '/pages/contact-us': 'contact_us',
+  };
+
+  return map[window.location.pathname] || 'ham_menu';
 };
 
+// ---------------------- DEVICE CHECK ----------------------
 
 export const isMobile = () => {
-  return document.body.clientWidth < 768 ? true : false
-}
+  if (!isBrowser) return true;
+  return document.body.clientWidth < 768;
+};
+
+// ---------------------- URL ----------------------
+
 export const isValidUrl = (str) => {
   const pattern = new RegExp(
-    '^([a-zA-Z]+:\\/\\/)?' + // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR IP (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-    '(\\#[-a-z\\d_]*)?$', // fragment locator
+    '^([a-zA-Z]+:\\/\\/)?' +
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+    '((\\d{1,3}\\.){3}\\d{1,3}))' +
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+    '(\\?[;&a-z\\d%_.~+=-]*)?' +
+    '(\\#[-a-z\\d_]*)?$',
     'i'
   );
   return pattern.test(str);
-}
+};
+
+// ---------------------- SUBSCRIPTION STORAGE ----------------------
 
 export const getSubscriptionDataFromStorage = () => {
-  if (getFromCookie('subscriptionData')) {
-    if (document.referrer.indexOf('shop.dev.oziva') > -1) {
-      return JSON.parse(getFromCookie('subscriptionData'));
-    } else if (sessionStorage.getItem('subscriptionData')) {
-      return JSON.parse(sessionStorage.getItem('subscriptionData'));
-    } else {
-      return JSON.parse(getFromCookie('subscriptionData'));
+  if (!isBrowser) return null;
+
+  const cookieData = getFromCookie('subscriptionData');
+  const sessionData = sessionStorage.getItem('subscriptionData');
+
+  if (cookieData) {
+    if (document.referrer.includes('shop.dev.oziva')) {
+      return JSON.parse(cookieData);
+    } else if (sessionData) {
+      return JSON.parse(sessionData);
     }
-  } else if (sessionStorage.getItem('subscriptionData')) {
-    return JSON.parse(sessionStorage.getItem('subscriptionData'));
-  } else {
-    return null;
+    return JSON.parse(cookieData);
   }
-}
+
+  if (sessionData) return JSON.parse(sessionData);
+
+  return null;
+};
 
 export const checkIfSubscriptionCart = () => {
-  const subscriptionProductData = sessionStorage.getItem("subscriptionData") || getFromCookie("subscriptionData");
+  if (!isBrowser) return false;
+
+  const subscriptionProductData =
+    sessionStorage.getItem('subscriptionData') || getFromCookie('subscriptionData');
+
   const queryParameters = new URLSearchParams(window.location.search);
+
   return subscriptionProductData && queryParameters.get('view') === 'subscription';
-}
+};
+
+// ---------------------- QUERY PARAMS ----------------------
 
 export const setQueryParams = (queryParams: string) => {
+  if (!isBrowser) return;
+
   const currentUrl = new URL(window.location.href);
   const params = new URLSearchParams(currentUrl.search);
+
   params.set('concern', queryParams);
 
   currentUrl.search = params.toString();
   window.history.pushState({}, '', currentUrl.toString());
-}
+};
 
 export const removeQueryParams = () => {
-  const currentUrl = new URL(window.location.href);
+  if (!isBrowser) return;
 
+  const currentUrl = new URL(window.location.href);
   const params = new URLSearchParams(currentUrl.search);
+
   params.delete('concern');
 
   currentUrl.search = params.toString();
   window.history.replaceState(null, '', currentUrl.toString());
 };
-export const getCouponCode = (couponCode: string) => {
-  return couponCode?.includes('_freebies') ? couponCode?.split('|').length >= 2 ? couponCode?.split('|')[0] : '' : couponCode;
-}
 
-export const getDomain = () => {
-  if (window.location.href.indexOf("localhost") > -1) {
-    return "localhost";
-  } else {
-    return hostDomainUrl;
-  }
+// ---------------------- UTILITIES ----------------------
+
+export const getCouponCode = (couponCode: string) => {
+  return couponCode?.includes('_freebies')
+    ? couponCode?.split('|')[0] || ''
+    : couponCode;
 };
 
-// UDS-649-Start
+export const getDomain = () => {
+  if (!isBrowser) return "";
+  return window.location.href.includes("localhost") ? "localhost" : hostDomainUrl;
+};
+
+// ---------------------- OBSERVERS (SSR-SAFE BY EARLY RETURN) ----------------------
+
 export const handleStickyButton = () => {
+  if (!isBrowser) return () => { };
+
   const timeout = setTimeout(() => {
     const allBanners = document.querySelectorAll('.banner-img-sec');
+    if (!allBanners) return;
 
     const microInteractionV1 = document.querySelector('.micro-interaction-v1');
     const microInteractionV2 = document.querySelector('.micro-interaction-v2');
@@ -225,95 +263,72 @@ export const handleStickyButton = () => {
     allBanners.forEach((_, index) => bannerClasses.push(`banner-image-${index + 2}`));
 
     const targets: Element[] = [
-      ...(bannerClasses.map(cls => document.querySelector(`.${cls}`)).filter(Boolean) as Element[]),
+      ...bannerClasses.map(cls => document.querySelector(`.${cls}`)).filter(Boolean) as Element[],
       ...(valueCommunication ? [valueCommunication] : []),
       ...(offerSection ? [offerSection] : []),
     ];
 
     const visibleSections = new Set<string>();
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const classList = entry.target.classList;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const classList = entry.target.classList;
 
-          if (classList.contains('value-communication')) {
-            if (entry.isIntersecting) {
-              visibleSections.add('value-communication');
-            } else {
-              visibleSections.delete('value-communication');
-            }
+        if (classList.contains('value-communication')) {
+          entry.isIntersecting
+            ? visibleSections.add('value-communication')
+            : visibleSections.delete('value-communication');
+        }
+
+        if (classList.contains('product-offers-section-main')) {
+          entry.isIntersecting
+            ? visibleSections.add('product-offers-section-main')
+            : visibleSections.delete('product-offers-section-main');
+        }
+
+        bannerClasses.forEach((bannerCls) => {
+          if (classList.contains(bannerCls)) {
+            entry.isIntersecting
+              ? visibleSections.add(bannerCls)
+              : visibleSections.delete(bannerCls);
           }
-
-          if (classList.contains('product-offers-section-main')) {
-            if (entry.isIntersecting) {
-              visibleSections.add('product-offers-section-main');
-            } else {
-              visibleSections.delete('product-offers-section-main');
-            }
-          }
-
-          bannerClasses.forEach((bannerCls) => {
-            if (classList.contains(bannerCls)) {
-              if (entry.isIntersecting) {
-                visibleSections.add(bannerCls);
-              } else {
-                visibleSections.delete(bannerCls);
-              }
-            }
-          });
         });
+      });
 
-        // Handle micro-interaction-v1
-        if (
-          visibleSections.has('value-communication') &&
-          !visibleSections.has('product-offers-section-main')
-        ) {
-          if ((microInteractionV1 as HTMLElement)) {
-            (microInteractionV1 as HTMLElement).style.position = 'fixed';
-            (microInteractionV1 as HTMLElement).style.bottom = '80px';
-            (microInteractionV1 as HTMLElement).style.display = 'block';
-          }
+      const bannerVisible = bannerClasses.some((cls) => visibleSections.has(cls));
+
+      if (microInteractionV1) {
+        if (visibleSections.has('value-communication') && !visibleSections.has('product-offers-section-main')) {
+          microInteractionV1.style.position = 'fixed';
+          microInteractionV1.style.bottom = '80px';
+          microInteractionV1.style.display = 'block';
         } else {
-          if ((microInteractionV1 as HTMLElement)) {
-            (microInteractionV1 as HTMLElement).style.position = 'unset';
-            (microInteractionV1 as HTMLElement).style.display = 'none';
-          }
+          microInteractionV1.style.position = 'unset';
+          microInteractionV1.style.display = 'none';
         }
-
-        // Handle micro-interaction-v2
-        let bannerVisible = bannerClasses.some((cls) => visibleSections.has(cls));
-        if (microInteractionV2) {
-          if (bannerVisible) {
-            (microInteractionV2 as HTMLElement).style.position = 'fixed';
-            (microInteractionV2 as HTMLElement).style.bottom = '80px';
-            (microInteractionV2 as HTMLElement).style.display = 'block';
-          } else {
-            (microInteractionV2 as HTMLElement).style.position = 'unset';
-            (microInteractionV2 as HTMLElement).style.display = 'none';
-          }
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5,
       }
-    );
+
+      if (microInteractionV2) {
+        if (bannerVisible) {
+          microInteractionV2.style.position = 'fixed';
+          microInteractionV2.style.bottom = '80px';
+          microInteractionV2.style.display = 'block';
+        } else {
+          microInteractionV2.style.position = 'unset';
+          microInteractionV2.style.display = 'none';
+        }
+      }
+    });
 
     targets.forEach((el) => observer.observe(el));
-
-    return () => {
-      clearTimeout(timeout);
-      targets.forEach((el) => observer.unobserve(el));
-    };
   }, 2000);
 
   return () => clearTimeout(timeout);
 };
 
-
 export const mutationObserver = () => {
+  if (!isBrowser) return;
+
   const observer = new MutationObserver((mutations, obs) => {
     const target = document.querySelector('.goolge-review-sec');
     if (target) {
@@ -322,13 +337,10 @@ export const mutationObserver = () => {
     }
   });
 
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-  });
+  observer.observe(document.body, { childList: true, subtree: true });
 };
 
-// UDS-649-End
+// ---------------------- DATE CHECK ----------------------
 
 export const hasDaysPassed = (dateStr, days) => {
   if (!dateStr || typeof dateStr !== 'string') return false;
@@ -347,18 +359,20 @@ export const hasDaysPassed = (dateStr, days) => {
   targetDate.setDate(targetDate.getDate() + days);
 
   return today >= targetDate;
-}
+};
 
+// ---------------------- EVENT ID ----------------------
 
 export const generateEventId = () => {
-  // Use crypto if available for stronger randomness
-  if (window.crypto && crypto.randomUUID) {
+  if (!isBrowser) return "server-generated-id";
+
+  if (window.crypto?.randomUUID) {
     return crypto.randomUUID();
   }
-  // Fallback lightweight UUID generator
+
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
     const r = (Math.random() * 16) | 0;
     const v = c === "x" ? r : (r & 0x3) | 0x8;
     return v.toString(16);
   });
-}
+};
