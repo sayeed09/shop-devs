@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="216" height="216" viewBox="0 0 216 216">
+  <defs>
+    <filter id="bound" x="0" y="0" width="216" height="216" filterUnits="userSpaceOnUse">
+      <feOffset dy="7" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="32" result="blur"/>
+      <feFlood flood-opacity="0.071"/>
+      <feComposite operator="in" in2="blur"/>
+    </filter>
+  </defs>
+  <g id="checkbox_selcted_filled_dep_gr" transform="translate(96 89)">
+    <g id="checkbox_selcted">
+      <g transform="matrix(1, 0, 0, 1, -96, -89)" filter="url(#bound)">
+        <rect id="bound-2" data-name="bound" width="24" height="24" transform="translate(96 89)" fill="#fff" opacity="0"/>
+      </g>
+      <rect id="checkbox_filled_dep_gr" width="14" height="14" rx="1" transform="translate(5 5)" fill="#006e5a"/>
+      <path id="tick_icon_white" d="M18.843,34.169l-3.312-3.313.716-.716,2.6,2.6L24.9,26.68l.716.716Z" transform="translate(-8.531 -18.68)" fill="#fdffff"/>
+    </g>
+  </g>
+</svg>

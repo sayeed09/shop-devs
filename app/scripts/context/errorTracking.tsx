@@ -22,6 +22,8 @@ const lowerMatch = (text?: string) => {
 };
 export const SentryProvider = ({ children }: any) => {
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     if (
       window &&
       window.location.href.indexOf('dev') === -1 &&

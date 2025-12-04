@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="89.254" height="89.721" viewBox="0 0 89.254 89.721">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.432" y1="0.126" x2="0.736" y2="0.993" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#dfdfdf"/>
+      <stop offset="0.972" stop-color="#595959"/>
+      <stop offset="1" stop-color="#4a4a4a"/>
+    </linearGradient>
+  </defs>
+  <g id="payment" transform="translate(-110.773 -1153.2)">
+    <g id="Group_1494" data-name="Group 1494" transform="translate(129.967 1172.967)">
+      <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(0)" fill="#f2f2f2" stroke="#c9c9c9" stroke-width="2">
+        <circle cx="24.033" cy="24.033" r="24.033" stroke="none"/>
+        <circle cx="24.033" cy="24.033" r="23.033" fill="none"/>
+      </g>
+      <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(2.06 2.06)" fill="#f2f2f2" stroke="#c9c9c9" stroke-width="1">
+        <circle cx="21.973" cy="21.973" r="21.973" stroke="none"/>
+        <circle cx="21.973" cy="21.973" r="21.473" fill="none"/>
+      </g>
+    </g>
+    <g id="Group_1467" data-name="Group 1467" transform="translate(137.849 1179.686)">
+      <g id="Group_1464" data-name="Group 1464" transform="translate(0 0)">
+        <path id="Path_9759" data-name="Path 9759" d="M23.752,9c-2.565,2.174-8.369,5.285-13.856,5.031C6.7,18.57,12.222,36.429,23.752,38.971c11.53-2.543,17.051-20.4,13.856-24.941C32.121,14.285,26.316,11.174,23.752,9Z" transform="translate(-6.201 -5.612)" opacity="0.1"/>
+        <path id="Path_9760" data-name="Path 9760" d="M19.921,3.143c-2.74,2.512-8.94,6.106-14.8,5.812C1.705,14.2,7.6,34.832,19.921,37.771,32.238,34.832,38.137,14.2,34.724,8.955,28.862,9.249,22.661,5.655,19.921,3.143Z" transform="translate(-4.161 -3.143)" fill="url(#linear-gradient)"/>
+        <g id="Group_1463" data-name="Group 1463" transform="translate(0.981 1.307)">
+          <path id="Path_9761" data-name="Path 9761" d="M20.636,37.7l-.064-.017C13.323,35.77,9.389,27.667,8.034,24.273c-2.4-6-2.573-10.953-1.687-13.2l.062-.156h.168c5.319-.021,10.671-2.8,13.905-5.387l.154-.124.154.124c3.234,2.591,8.586,5.366,13.905,5.387h.168l.061.156c.886,2.249.709,7.2-1.686,13.2-1.355,3.395-5.289,11.5-12.539,13.414ZM6.75,11.407c-.756,2.169-.533,6.981,1.743,12.683,1.323,3.315,5.15,11.213,12.143,13.1,6.992-1.89,10.819-9.788,12.143-13.1,2.276-5.7,2.5-10.513,1.743-12.683-5.305-.078-10.608-2.792-13.886-5.371C17.358,8.615,12.056,11.329,6.75,11.407Z" transform="translate(-5.857 -5.403)" fill="#fff"/>
+        </g>
+      </g>
+      <g id="Group_1465" data-name="Group 1465" transform="translate(1.13 1.02)">
+        <path id="Path_9762" data-name="Path 9762" d="M20.893,37.209l-.063-.017C13.581,35.274,9.647,27.172,8.291,23.777c-2.4-6-2.573-10.953-1.686-13.2l.061-.156h.168c5.32-.021,10.671-2.8,13.905-5.387l.154-.124.155.124c3.234,2.59,8.585,5.366,13.905,5.387h.168l.061.156c.886,2.249.709,7.2-1.686,13.2-1.355,3.395-5.29,11.5-12.539,13.414ZM7.008,10.911c-.756,2.169-.533,6.981,1.743,12.682,1.324,3.315,5.151,11.213,12.143,13.1,6.992-1.891,10.82-9.788,12.143-13.1,2.276-5.7,2.5-10.513,1.743-12.682-5.306-.078-10.608-2.792-13.886-5.371C17.615,8.119,12.314,10.833,7.008,10.911Z" transform="translate(-6.115 -4.907)" fill="#fff"/>
+      </g>
+      <g id="lock" transform="translate(10.368 9.574)">
+        <g id="Group_1466" data-name="Group 1466">
+          <path id="Path_9763" data-name="Path 9763" d="M33.949,32.335V30.887a1.444,1.444,0,0,0-1.483-1.4h-8.9a1.444,1.444,0,0,0-1.483,1.4v6.441a1.443,1.443,0,0,0,1.483,1.4h8.9a1.443,1.443,0,0,0,1.483-1.4v-.44H32.008v-.775h1.941V35.046H32.008v-.774h1.941V33.11H32.008v-.775Zm-5.414,2.519v.971a.534.534,0,0,1-1.039,0v-.971a1.2,1.2,0,1,1,1.039,0Z" transform="translate(-22.083 -23.821)" fill="#fff"/>
+          <path id="Path_9764" data-name="Path 9764" d="M25.792,23.384a2.335,2.335,0,0,1,2.335-2.335h1.509a2.335,2.335,0,0,1,2.335,2.335V25.02h1.656V22.89a3.2,3.2,0,0,0-3.2-3.2h-3.1a3.2,3.2,0,0,0-3.2,3.2v2.13h1.656Z" transform="translate(-22.948 -19.693)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+    <text id="Payment_Security" data-name="Payment Security" transform="translate(155 1236)" fill="#8c8c8c" font-size="11" font-family="Roboto-Regular, Roboto"><tspan x="-42.604" y="0">Payment Security</tspan></text>
+  </g>
+</svg>
