@@ -102,6 +102,9 @@ import type { EntryContext } from 'react-router';
         if (!newSources.includes('https://fonts.googleapis.com')) {
           newSources += ' https://fonts.googleapis.com';
         }
+        if (!newSources.includes('https://www.oziva.in')) {
+          newSources += ' https://www.oziva.in';
+        }
         return `style-src ${newSources}`;
       }
     );
@@ -136,7 +139,7 @@ import type { EntryContext } from 'react-router';
         if (!newSources.includes('https://oziva.myshopify.com')) {
           newSources += ' https://oziva.myshopify.com/';
         }
-        
+
 
         return `connect-src ${newSources}`;
       }
