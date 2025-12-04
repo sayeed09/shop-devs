@@ -11,7 +11,7 @@ import { SentryProvider } from '~/scripts/context/errorTracking';
 //   DataBlock,
 //   HomePageResponseModel,
 // } from '../../models/home';
-// import { Provider as GAProvider } from '../../context/gatracking';
+import { Provider as GAProvider } from '../../context/gatracking';
 // import { Provider as MixpanelProvider } from '../../context/mixpanelContext';
 // import { Provider as UserContext } from '../../context/user';
 // import { SentryProvider } from '../../context/errorTracking';
@@ -36,14 +36,14 @@ export default function HomeView() {
     return (
       <>
         <SentryProvider>
-          {/* <GAProvider>
-            <MixpanelProvider>
+          <GAProvider>
+            {/* <MixpanelProvider>
               <UserContext>
                 <HeroBanner homepageData={homePageData?.banners as Banner[]} />
                 <CollectionContainer dataBlock={homePageData?.dataBlocks as DataBlock[]} />
               </UserContext>
-            </MixpanelProvider>
-          </GAProvider> */}
+            </MixpanelProvider> */}
+          </GAProvider>
         </SentryProvider>
       </>
     );
