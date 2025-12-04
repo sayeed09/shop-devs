@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Banner } from "../../models/home";
-import { isMobile } from "../../utils/helper";
+import { isMobile as checkIsMobile } from "../../utils/helper";
 
 interface IProps {
     homepageData: Banner[];
@@ -10,38 +10,31 @@ export default function HeroBanner({ homepageData }: IProps) {
     const flickityRef = useRef<any>(null);
     const [FlickityComponent, setFlickityComponent] = useState<any>(null);
     const [clientLinks, setClientLinks] = useState<(URL | null)[] | null>(null);
+    const [isClient, setIsClient] = useState(false);
 
-    // Load Flickity and compute links only on client
     useEffect(() => {
-        let isMounted = true;
+        setIsClient(true); // mark that we're on client
 
-        import("react-flickity-component").then((mod) => {
-            if (isMounted) setFlickityComponent(() => mod.default);
-        });
+        import("react-flickity-component").then((mod) => setFlickityComponent(() => mod.default));
         import("flickity-fullscreen");
 
+        // compute links safely
         const links = homepageData.map((item) => {
             if (!item.link) return null;
             try {
                 const url = new URL(item.link);
                 if (url.hostname !== "blog.oziva.in") {
-                    url.hostname = window.location.hostname;
+                    url.hostname = window.location.hostname; // safe now inside useEffect
                 }
                 return url;
             } catch {
                 return null;
             }
         });
-
-        if (isMounted) setClientLinks(links);
-
-        return () => {
-            isMounted = false;
-        };
+        setClientLinks(links);
     }, [homepageData]);
 
-    // Avoid rendering anything until clientLinks & Flickity are ready
-    if (!FlickityComponent || !clientLinks) return null;
+    if (!isClient || !FlickityComponent || !clientLinks) return null; // SSR safe
 
     const flickityOptionsMain = {
         initialIndex: 0,
@@ -50,6 +43,8 @@ export default function HeroBanner({ homepageData }: IProps) {
         adaptiveHeight: true,
         prevNextButtons: homepageData.length > 1,
     };
+
+    const isMobile = checkIsMobile(); // safe because now on client
 
     return (
         <FlickityComponent
@@ -77,13 +72,12 @@ export default function HeroBanner({ homepageData }: IProps) {
                                 onLoadedMetadata={() => flickityRef?.current?.resize?.()}
                             >
                                 <source
-                                    src={isMobile() ? item.mobileImage : item.image}
+                                    src={isMobile ? item.mobileImage : item.image}
                                     type="video/mp4"
                                 />
                             </video>
                         ) : (
                             <></>
-                            // Replace with your <ResponsiveImage /> if needed
                         )}
                     </a>
                 );
