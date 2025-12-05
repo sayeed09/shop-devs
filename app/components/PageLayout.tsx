@@ -17,7 +17,7 @@ import { SearchResultsPredictive } from '~/components/SearchResultsPredictive';
 import { Provider as CartProvider } from '~/scripts/context/cart';
 import HeaderV1 from './headerv1';
 import { Collections } from '~/scripts/models/home';
-import Footer from './Footer';
+// import Footer from './Footer';
 
 interface PageLayoutProps {
   cart: Promise<CartApiQueryFragment | null>;
@@ -74,12 +74,12 @@ export function PageLayout({
         header={header}
         publicStoreDomain={publicStoreDomain}
       /> */}
-        {!location.pathname.includes('cart') &&
+        {/* {!location.pathname.includes('cart') &&
           <Footer
             concerns={concerns}
             categories={categories}
           />
-        }
+        } */}
       </CartProvider>
 
     </Aside.Provider>
