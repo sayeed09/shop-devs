@@ -65,9 +65,9 @@ export function PageLayout({
     <Aside.Provider>
       <CartProvider>
 
-        {header && (
+        {/* {header && (
           <HeaderV1 concerns={concerns} categories={categories} />
-        )}
+        )} */}
         <main>{children}</main>
         {/* <Footer
         footer={footer}
