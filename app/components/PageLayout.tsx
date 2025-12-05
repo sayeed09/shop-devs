@@ -63,7 +63,7 @@ export function PageLayout({
   };
   return (
     <Aside.Provider>
-      <CartProvider>
+      {/* <CartProvider> */}
 
         {/* {header && (
           <HeaderV1 concerns={concerns} categories={categories} />
@@ -80,7 +80,7 @@ export function PageLayout({
             categories={categories}
           />
         } */}
-      </CartProvider>
+      {/* </CartProvider> */}
 
     </Aside.Provider>
   );
