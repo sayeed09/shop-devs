@@ -14,7 +14,7 @@ import {
   SearchFormPredictive,
 } from '~/components/SearchFormPredictive';
 import { SearchResultsPredictive } from '~/components/SearchResultsPredictive';
-import HeaderV1 from './headerv1';
+// import HeaderV1 from './headerv1';
 import { Provider as CartProvider } from '~/scripts/context/cart';
 
 interface PageLayoutProps {
@@ -38,9 +38,9 @@ export function PageLayout({
     <Aside.Provider>
       <CartProvider>
 
-        {header && (
+        {/* {header && (
           <HeaderV1 concerns={[]} categories={[]} />
-        )}
+        )} */}
         <main>{children}</main>
         {/* <Footer
         footer={footer}
