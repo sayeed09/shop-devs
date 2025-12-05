@@ -17,6 +17,7 @@ import { SearchResultsPredictive } from '~/components/SearchResultsPredictive';
 import { Provider as CartProvider } from '~/scripts/context/cart';
 import HeaderV1 from './headerv1';
 import { Collections } from '~/scripts/models/home';
+import Footer from './Footer';
 // import Footer from './Footer';
 
 interface PageLayoutProps {
@@ -63,24 +64,20 @@ export function PageLayout({
   // };
   return (
     <Aside.Provider>
-      {/* <CartProvider> */}
+      <CartProvider>
 
-      {/* {header && (
+        {header && (
           <HeaderV1 concerns={concerns} categories={categories} />
-        )} */}
-      <main>{children}</main>
-      {/* <Footer
-        footer={footer}
-        header={header}
-        publicStoreDomain={publicStoreDomain}
-      /> */}
-      {/* {!location.pathname.includes('cart') &&
+        )}
+        <main>{children}</main>
+
+        {!location.pathname.includes('cart') &&
           <Footer
             concerns={concerns}
             categories={categories}
           />
-        } */}
-      {/* </CartProvider> */}
+        }
+      </CartProvider>
 
     </Aside.Provider>
   );
