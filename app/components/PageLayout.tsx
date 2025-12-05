@@ -18,6 +18,9 @@ import { Provider as CartProvider } from '~/scripts/context/cart';
 import HeaderV1 from './headerv1';
 import { Collections } from '~/scripts/models/home';
 import Footer from './Footer';
+import { axiosClient } from '~/scripts/utils/axios-client';
+import { IConcernCategoryResponse } from '~/scripts/interface/concern-categories';
+import { baseEndpoints } from '~/scripts/utils/endpoints';
 // import Footer from './Footer';
 
 interface PageLayoutProps {
@@ -42,26 +45,29 @@ export function PageLayout({
   const [categories, setCategories] = useState<Collections[]>([])
   const hasFetched = useRef(false);
 
-  // useEffect(() => {
-  //   if (typeof window === "undefined" || hasFetched.current) return;
+  useEffect(() => {
+    if (typeof window === "undefined" || hasFetched.current) return;
 
-  //   hasFetched.current = true;
-  //   fetchData('CONCERN');
-  //   fetchData('CATEGORY');
-  // }, []);
+    hasFetched.current = true;
+    fetchData('CONCERN');
+    fetchData('CATEGORY');
+  }, []);
 
 
-  // const fetchData = (groupType: string) => {
-  //   (async () => {
-  //     const { productService } = await import('~/scripts/services/product');
-  //     const data = await productService.getConcernCategoryData(groupType);
-  //     if (groupType === "CONCERN") {
-  //       setConcerns(data.data.collections);
-  //     } else {
-  //       setCategories(data.data.collections);
-  //     }
-  //   })(); // <-- ✅ This pair of parentheses executes the IIFE
-  // };
+  const fetchData = (groupType: string) => {
+    (async () => {
+      const { data } = await axiosClient
+        .get<IConcernCategoryResponse>(`${baseEndpoints.collectionByHandle}/group/${groupType}`)
+        .then((response) => {
+          return response;
+        });
+      if (groupType === "CONCERN") {
+        setConcerns(data.data.collections);
+      } else {
+        setCategories(data.data.collections);
+      }
+    })(); // <-- ✅ This pair of parentheses executes the IIFE
+  };
   return (
     <Aside.Provider>
       <CartProvider>
