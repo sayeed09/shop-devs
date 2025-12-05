@@ -1,12 +1,11 @@
-import { Await, Link } from 'react-router';
-import { Suspense, useId } from 'react';
+import { Await, Link, useLocation } from 'react-router';
+import { Suspense, useEffect, useId, useRef, useState } from 'react';
 import type {
   CartApiQueryFragment,
   FooterQuery,
   HeaderQuery,
 } from 'storefrontapi.generated';
 import { Aside } from '~/components/Aside';
-import { Footer } from '~/components/Footer';
 import { Header, HeaderMenu } from '~/components/Header';
 import { CartMain } from '~/components/CartMain';
 import {
@@ -17,6 +16,8 @@ import { SearchResultsPredictive } from '~/components/SearchResultsPredictive';
 // import HeaderV1 from './headerv1';
 import { Provider as CartProvider } from '~/scripts/context/cart';
 import HeaderV1 from './headerv1';
+import { Collections } from '~/scripts/models/home';
+import Footer from './Footer';
 
 interface PageLayoutProps {
   cart: Promise<CartApiQueryFragment | null>;
@@ -35,12 +36,37 @@ export function PageLayout({
   isLoggedIn,
   publicStoreDomain,
 }: PageLayoutProps) {
+  const location = useLocation();
+  const [concerns, setConcerns] = useState<Collections[]>([]);
+  const [categories, setCategories] = useState<Collections[]>([])
+  const hasFetched = useRef(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || hasFetched.current) return;
+
+    hasFetched.current = true;
+    fetchData('CONCERN');
+    fetchData('CATEGORY');
+  }, []);
+
+
+  const fetchData = (groupType: string) => {
+    (async () => {
+      const { productService } = await import('~/scripts/services/product');
+      const data = await productService.getConcernCategoryData(groupType);
+      if (groupType === "CONCERN") {
+        setConcerns(data.data.collections);
+      } else {
+        setCategories(data.data.collections);
+      }
+    })(); // <-- ✅ This pair of parentheses executes the IIFE
+  };
   return (
     <Aside.Provider>
       <CartProvider>
 
         {header && (
-          <HeaderV1 concerns={[]} categories={[]} />
+          <HeaderV1 concerns={concerns} categories={categories} />
         )}
         <main>{children}</main>
         {/* <Footer
@@ -48,6 +74,12 @@ export function PageLayout({
         header={header}
         publicStoreDomain={publicStoreDomain}
       /> */}
+        {!location.pathname.includes('cart') &&
+          <Footer
+            concerns={concerns}
+            categories={categories}
+          />
+        }
       </CartProvider>
 
     </Aside.Provider>
