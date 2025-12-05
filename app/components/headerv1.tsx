@@ -50,10 +50,13 @@ const HeaderV1 = ({ concerns, categories }: { concerns: Collections[], categorie
 
     const OZHamburgerTab = () => setHamMenuOpen(prev => !prev);
 
-    const LoginHandlerCaller = () => AuthenticationDispatch && AuthenticationDispatch(isUserLoginRequired(true));
+    const LoginHandlerCaller = () => {
+        // AuthenticationDispatch && AuthenticationDispatch(isUserLoginRequired(true));
+    }
+
 
     const LogoutHandlerCaller = () => {
-        AuthenticationDispatch && AuthenticationDispatch(isUserLoginRequired(true));
+        // AuthenticationDispatch && AuthenticationDispatch(isUserLoginRequired(true));
         if (!isBrowser) return;
         const hostNameDomain = window.location.hostname;
         document.cookie = `AUTH_DATA${getEnvironmentValue()}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=${hostNameDomain}; path=/;`;
@@ -252,8 +255,8 @@ const HeaderV1 = ({ concerns, categories }: { concerns: Collections[], categorie
 
                             {/* Build Your Box */}
                             <li>
-                                <button onClick={() => onTabClick('/collections/build-your-box')}>
-                                    Build Your Box <span style={{ color: "#F04E23" }}>@1199</span>
+                                <button onClick={() => onTabClick('/collections/build-your-own-box')}>
+                                    Build Your Box <span style={{ color: "#F04E23" }}>@1299</span>
                                 </button>
                             </li>
 

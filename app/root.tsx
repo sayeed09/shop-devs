@@ -223,6 +223,7 @@ export function Layout({ children }: { children?: React.ReactNode }) {
         <link rel="stylesheet" href={appStyles}></link>
         <link rel="stylesheet" href={headerStyles}></link>
         <link rel="stylesheet" href={'https://www.oziva.in/cdn/shop/t/10/assets/theme.scss.css'}></link>
+        <meta name="robots" content="noindex, nofollow" />
 
         <Meta />
         <Links />
