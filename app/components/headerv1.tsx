@@ -1,7 +1,5 @@
 import React, { lazy, useContext, useEffect, useState } from "react";
 import { isUserLoginRequired } from "~/scripts/actions/authentication";
-import { AuthenticationContext } from "~/scripts/context/authentication";
-import { Moengage } from "~/scripts/utils/tracking/gaTracking";
 import { Collections, CollectionByHandleData } from "~/scripts/models/home";
 import { useNavigate } from "react-router";
 import { CartContext } from "~/scripts/context/cart";
@@ -12,13 +10,12 @@ import { ReactTyped } from "react-typed";
 import { OPTIONS } from "~/scripts/utils/search/search";
 
 // Lazy-loaded components
-const ChatwootView = lazy(() => import('../scripts/views/chatwoot'));
-const QAB = lazy(() => import('../components/qab'));
+// const ChatwootView = lazy(() => import('../scripts/views/chatwoot'));
+// const QAB = lazy(() => import('../components/qab'));
 
 const isBrowser = typeof window !== "undefined";
 
 const HeaderV1 = ({ concerns, categories }: { concerns: Collections[], categories: Collections[] }) => {
-    const { state: authenticationState, dispatch: AuthenticationDispatch } = useContext(AuthenticationContext);
     const { state: cartState } = useContext(CartContext);
     const [cartTotal, setCartTotal] = useState(0);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -92,7 +89,7 @@ const HeaderV1 = ({ concerns, categories }: { concerns: Collections[], categorie
 
     return (
         <div id="shopify-section-new-header" className="shopify-section">
-            {state && <QAB />}
+            {/* {state && <QAB />} */}
             <section className="oz-site-main-header">
 
                 {/* Top Header */}
@@ -278,7 +275,7 @@ const HeaderV1 = ({ concerns, categories }: { concerns: Collections[], categorie
             </section>
 
             {/* Chatwoot */}
-            {state && isBrowser && <ChatwootView />}
+            {/* {state && isBrowser && <ChatwootView />} */}
         </div>
     );
 };
