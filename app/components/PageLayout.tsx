@@ -41,40 +41,40 @@ export function PageLayout({
   const [categories, setCategories] = useState<Collections[]>([])
   const hasFetched = useRef(false);
 
-  useEffect(() => {
-    if (typeof window === "undefined" || hasFetched.current) return;
+  // useEffect(() => {
+  //   if (typeof window === "undefined" || hasFetched.current) return;
 
-    hasFetched.current = true;
-    fetchData('CONCERN');
-    fetchData('CATEGORY');
-  }, []);
+  //   hasFetched.current = true;
+  //   fetchData('CONCERN');
+  //   fetchData('CATEGORY');
+  // }, []);
 
 
-  const fetchData = (groupType: string) => {
-    (async () => {
-      const { productService } = await import('~/scripts/services/product');
-      const data = await productService.getConcernCategoryData(groupType);
-      if (groupType === "CONCERN") {
-        setConcerns(data.data.collections);
-      } else {
-        setCategories(data.data.collections);
-      }
-    })(); // <-- ✅ This pair of parentheses executes the IIFE
-  };
+  // const fetchData = (groupType: string) => {
+  //   (async () => {
+  //     const { productService } = await import('~/scripts/services/product');
+  //     const data = await productService.getConcernCategoryData(groupType);
+  //     if (groupType === "CONCERN") {
+  //       setConcerns(data.data.collections);
+  //     } else {
+  //       setCategories(data.data.collections);
+  //     }
+  //   })(); // <-- ✅ This pair of parentheses executes the IIFE
+  // };
   return (
     <Aside.Provider>
       {/* <CartProvider> */}
 
-        {/* {header && (
+      {/* {header && (
           <HeaderV1 concerns={concerns} categories={categories} />
         )} */}
-        <main>{children}</main>
-        {/* <Footer
+      <main>{children}</main>
+      {/* <Footer
         footer={footer}
         header={header}
         publicStoreDomain={publicStoreDomain}
       /> */}
-        {/* {!location.pathname.includes('cart') &&
+      {/* {!location.pathname.includes('cart') &&
           <Footer
             concerns={concerns}
             categories={categories}
