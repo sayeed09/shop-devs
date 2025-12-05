@@ -12,7 +12,7 @@ import { MixPanelContext } from '../../context/mixpanelContext';
 import { Provider as DocumentWidthProvider } from '../../context/documentWidth';
 import { Provider as UserContext } from '../../context/user';
 import { productService } from '../../services/product';
-import { GetCartListResponse, GetUpsellResponse } from '../../models/cart/get-response';
+import { GetCartListResponse, GetUpsellResponse, LocalCartLineItem } from '../../models/cart/get-response';
 import { initialScroll, getVariantIds } from '../../utils/product/formatter';
 import {
     SubscriptionData,
@@ -34,6 +34,10 @@ import DesktopFooter from '../../components/productv2/desktop-footer';
 import { isMobile, mutationObserver } from '../../utils/helper';
 import MircroInteraction from '../../components/productv2/micro-interaction';
 import { fireFBPixelEvent } from '../../utils/fbPixelUtils';
+import { CartContext } from '~/scripts/context/cart';
+import { setLocalCartItems } from '~/scripts/actions/cart';
+import { formatCartItemV1 } from '~/scripts/utils/cart/helper';
+import { useNavigate } from 'react-router';
 
 
 
@@ -49,6 +53,8 @@ const ProductV2View = (props: ProductIdDataType) => {
     const [additionalDataFetched, setAdditionalDataFetched] = useState(false);
     const { trackMixpanelEvent } = useContext(MixPanelContext);
     const gaTrackingEvent = useContext(GAContext);
+    const { state: cartState, dispatch: CartDispatch } = useContext(CartContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // handleStickyButton();
@@ -185,19 +191,35 @@ const ProductV2View = (props: ProductIdDataType) => {
                     "Quantity": 1
                 }]
             });
-            productService
-                .addItem(variantId, 1)
-                .then((data: GetCartListResponse) => {
-                    setTimeout(() => {
-                        // Done for Analytics events 
-                        const url = `${window.location.origin}/cart`;
-                        window.location.href = url;
-                    }, 200);
-                })
-                .catch((error) => {
-                    setIsShowLoading(false);
-                    console.log('Buy now variant error', error);
-                });
+            // productService
+            //     .addItem(variantId, 1)
+            //     .then((data: GetCartListResponse) => {
+            //         setTimeout(() => {
+            //             // Done for Analytics events 
+            //             const url = `${window.location.origin}/cart`;
+            //             window.location.href = url;
+            //         }, 200);
+            //     })
+            //     .catch((error) => {
+            //         setIsShowLoading(false);
+            //         console.log('Buy now variant error', error);
+            //     });
+            const payload: any = { id: variantId, quantity: 1 };
+            let currentItems = cartState?.localCartItems ?? [];
+
+            const isPresentInCart = currentItems.some((item) => item.variantId === variantId);
+
+            const updatedItems: LocalCartLineItem[] = isPresentInCart
+                ? currentItems.map((item) =>
+                    item.variantId === variantId
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                )
+                : [...currentItems, formatCartItemV1(payload)];
+            CartDispatch(setLocalCartItems(updatedItems));
+            setTimeout(() => {
+                navigate('/cart')
+            }, 200);
         }
     };
 

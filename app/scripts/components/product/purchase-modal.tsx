@@ -5,6 +5,7 @@ import { productService } from '../../services/product';
 import {
   GetCartListResponse,
   GetUpsellResponse,
+  LocalCartLineItem,
 } from '../../models/cart/get-response';
 import { activeSubscribePlan } from '../../actions/product';
 import {
@@ -26,6 +27,10 @@ import {
 import { MixPanelContext } from '../../context/mixpanelContext';
 import PurchaseModalContent from '../productv2/purchase-modal-content';
 import { fireFBPixelEvent } from '../../utils/fbPixelUtils';
+import { CartContext } from '~/scripts/context/cart';
+import { setLocalCartItems } from '~/scripts/actions/cart';
+import { formatCartItemV1 } from '~/scripts/utils/cart/helper';
+import { useNavigate } from 'react-router';
 
 interface PurchaseModal {
   subScriptionData: SubscriptionDataRes | undefined;
@@ -57,6 +62,8 @@ const PurchaseModal = (props: PurchaseModal) => {
     useState<boolean>(false);
   const [isUpsellProductAddedOnPDP, setIsUpsellProductAddedOnPDP] =
     useState(true);
+  const { state: cartState, dispatch: CartDispatch } = useContext(CartContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getData = async () => {
@@ -185,27 +192,54 @@ const PurchaseModal = (props: PurchaseModal) => {
     if (subscribePlan?.subscription_interval === 1) {
       if (isUpsellProductAdded && upsellList.length > 0) {
         const upsellFirstItem = upsellList[0];
-        await productService
-          .addItem(JSON.parse(upsellFirstItem?.variant_id), 1)
-          .then((data: GetCartListResponse) => {
-            return data;
-          })
-          .catch((error) => {
-            console.log('Get upsell item error', error);
-          });
+        const payload: any = { id: upsellFirstItem?.variant_id, quantity: 1 };
+        let currentItems = cartState?.localCartItems ?? [];
+
+        const isPresentInCart = currentItems.some((item) => item.variantId === upsellFirstItem?.variant_id);
+
+        const updatedItems: LocalCartLineItem[] = isPresentInCart
+          ? currentItems.map((item) =>
+            item.variantId === upsellFirstItem?.variant_id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          )
+          : [...currentItems, formatCartItemV1(payload)];
+        CartDispatch(setLocalCartItems(updatedItems));
+        props.setSubscribeModal(false);
+        props.setIsItemAdded(false);
+        redirect();
       }
-      await productService
-        .addItem(productState.productDetails.id, 1)
-        .then((data: GetCartListResponse) => {
-          props.setSubscribeModal(false);
-          props.setIsItemAdded(false);
-          document.dispatchEvent(new Event('updateCartItemCount'));
-          redirect();
-        })
-        .catch((error) => {
-          setIsShowLoading(false);
-          console.log('Add to cart error', error);
-        });
+      let currentItems = cartState?.localCartItems ?? [];
+
+      const isPresentInCart = currentItems.some((item) => item.variantId === productState.productDetails.id);
+      const payload: any = { id: productState.productDetails.id, quantity: 1 };
+
+      const updatedItems: LocalCartLineItem[] = isPresentInCart
+        ? currentItems.map((item) =>
+          item.variantId === productState.productDetails.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+        : [...currentItems, formatCartItemV1(payload)];
+      CartDispatch(setLocalCartItems(updatedItems));
+
+      setTimeout(() => {
+        props.setSubscribeModal(false);
+        props.setIsItemAdded(false);
+        navigate('/cart')
+      }, 300)
+      // await productService
+      //   .addItem(productState.productDetails.id, 1)
+      //   .then((data: GetCartListResponse) => {
+      //     props.setSubscribeModal(false);
+      //     props.setIsItemAdded(false);
+      //     document.dispatchEvent(new Event('updateCartItemCount'));
+      //     redirect();
+      //   })
+      //   .catch((error) => {
+      //     setIsShowLoading(false);
+      //     console.log('Add to cart error', error);
+      //   });
     } else {
       const subscriptionProductData: SubscriptionProductDetails = {
         compareAtPrice: subscribePlan.compare_at_price,

@@ -3,7 +3,7 @@ import QuantityPicker from './quantitypicker';
 import ConfirmationModal from './confirmationModal';
 import { GAContext } from '../../context/gatracking';
 import { DeleteIcon } from '../../../icons/delete-icon';
-import { CartItem, LineItem } from '../../models/cart/get-response';
+import { CartItem, LineItem, LocalCartLineItem } from '../../models/cart/get-response';
 import { cartService } from '../../services/cart';
 import { CartContext } from '../../context/cart';
 import { cleanPriceString, Moengage } from '../../utils/tracking/gaTracking';
@@ -11,6 +11,7 @@ import {
   getPrimeVariantId,
   formatPriceWithCurrency,
   formatCartRadiumAPIVariant,
+  formatCartAPIVariantV1,
 } from '../../utils/cart/formatter';
 import { TickIcon } from '../../../icons/tickIcon';
 import '../../../scripts/scss/import/_cart-abs.scss';
@@ -24,11 +25,14 @@ import { hostDomain } from '../../utils/endpoints';
 import { isMobile } from '../../utils/helper';
 import CartItemPopup from './cart-item-popup';
 import UpgradeCartPopup from './upgrade-cart-popup';
-import { setShowSnackbar, setShowUpgradeCartOption } from '../../actions/cart';
+import { setLocalCartItems, setShowSnackbar, setShowUpgradeCartOption } from '../../actions/cart';
 import { filterVariants } from '../../utils/cart/helper';
 import { PHMProductId, PHWProductId, SamplingProductID } from '../../utils/product/constants';
 import { ACVShippingDisclaimerVariantIds, EXCLUDE_UPGRADE_SKUS_VARIANTS, FREEBIES_VARIANT_ID } from '../../utils/cart/constants';
 import { fireFBPixelEvent } from '../../utils/fbPixelUtils';
+import { data } from 'react-router';
+import { getProductDetails } from '~/scripts/services/product';
+import productDetail from '~/scripts/views/product/product-detail';
 interface IProps {
   cartItem: LineItem;
   productReview: any;
@@ -121,30 +125,33 @@ const CartItem = ({ cartItem, productReview, itemIndex }: IProps) => {
     } else {
       productIdsObject[cartItem.variant_id] = quantity;
     }
-    productIdsObject[cartItem.variant_id] = quantity;
-    const updateProduct: any = {
-      updates: productIdsObject,
-    };
-    cartService.updateItems(updateProduct).then((data) => {
-      const requestPayload = formatCartRadiumAPIVariant(
-        data,
-        state.discountCode,
-        state.cashApplied,
-      );
-      const upgradeItemsList = localStorage.getItem('upgradedItems') ? JSON.parse(localStorage.getItem('upgradedItems')) : null;
-      if (upgradeItemsList && quantity == 0) {
-        const removedVariant = upgradeItemsList.filter(item => item.variantId != cartItem.variant_id);
-        localStorage.setItem('upgradedItems', JSON.stringify(removedVariant));
-      }
-      getCart(requestPayload)
-        .then(() => {
-          setLoading(false);
-          return data;
-        })
-        .catch(() => {
-          setLoading(false);
-        });
-    });
+    let updatedLocalCart = (state.localCartItems ?? [])
+      .map((item) => {
+        if (item.variantId == cartItem.variant_id) {
+          return quantity !== 0 ? { ...item, quantity } : null;
+        }
+        return item;
+      })
+      .filter((item): item is LocalCartLineItem => item !== null);
+    dispatch && dispatch(setLocalCartItems(updatedLocalCart));
+
+
+    const upgradeItemsList = localStorage.getItem('upgradedItems') ? JSON.parse(localStorage.getItem('upgradedItems')) : null;
+    if (upgradeItemsList && quantity == 0) {
+      const removedVariant = upgradeItemsList.filter(item => item.variantId != cartItem.variant_id);
+      localStorage.setItem('upgradedItems', JSON.stringify(removedVariant));
+    }
+    let variantArr: [] = formatCartAPIVariantV1(upgradeItemsList as LocalCartLineItem[]);
+    let requestPayload: any = { variants: variantArr };
+    getCart(requestPayload)
+      .then(() => {
+        setLoading(false);
+        return data;
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+
   };
   const currentCashAndOfferResponse =
     state.discountAndCashResponse.line_items.filter(
