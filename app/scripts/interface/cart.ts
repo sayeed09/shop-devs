@@ -5,6 +5,7 @@ import {
   GetCartListResponse,
   GetCashResponse,
   GetOfferResponse,
+  LocalCartLineItem,
 } from '../models/cart/get-response';
 import { AddressModel } from '../models/cart/checkout';
 import { AddressList } from './product';
@@ -27,7 +28,9 @@ export type ICartAction =
   | { type: 'SET_PROCEED_TO_CHECKOUT_EXP'; payload: boolean }
   | { type: 'SET_SHOW_UPGRADE_CART_OPTION'; payload: boolean }
   | { type: 'SET_CART_AVAILABLE_OFFERS'; payload: GetOfferResponse[] }
-  | { type: 'SET_SHOW_SNACKBAR'; payload: boolean };
+  | { type: 'SET_SHOW_SNACKBAR'; payload: boolean }
+  | { type: 'SET_LOCAL_CART_ITEMS'; payload: LocalCartLineItem[] };
+
 
 export interface ICartState {
   cart: GetCashResponse;
@@ -43,7 +46,8 @@ export interface ICartState {
   ProceedToCheckout?: boolean;
   showUpgradeCartOption?: boolean;
   showSnackbar?: boolean;
-  offers?: GetOfferResponse[]
+  offers?: GetOfferResponse[];
+  localCartItems?: LocalCartLineItem[]
 }
 
 export interface ICodeVisibility {

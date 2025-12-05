@@ -7,6 +7,7 @@ import {
   GetCartListResponse,
   GetCashResponse,
   GetOfferResponse,
+  LocalCartLineItem,
 } from '../models/cart/get-response';
 
 export const removeItem = (cartItem: GetCartListResponse): ICartAction => ({
@@ -75,4 +76,9 @@ export const setShowSnackbar = (showSnackbar: boolean): ICartAction => ({
 export const setCartAvailableOffers = (offers: GetOfferResponse[]): ICartAction => ({
   type: 'SET_CART_AVAILABLE_OFFERS',
   payload: offers,
+});
+
+export const setLocalCartItems = (items: LocalCartLineItem[]): ICartAction => ({
+  type: 'SET_LOCAL_CART_ITEMS',
+  payload: items,
 });

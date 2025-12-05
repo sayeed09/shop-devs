@@ -307,3 +307,23 @@ export interface InTheNewsData {
 }
 
 export type DataBlock = HighlightsSection | ProductSection | BannerSection | LovedByMillionSection | CertificatesSection | InTheNews;
+
+
+export interface QABResponseModel {
+  name: string
+  message: string
+  link: string
+  bg: Bg
+  channel: string
+  timer: Timer
+}
+
+export interface Bg {
+  style: string
+  image: string
+}
+
+export interface Timer {
+  startAt: string
+  endAt: string
+}

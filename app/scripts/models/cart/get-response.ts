@@ -194,3 +194,9 @@ export interface PriceModel {
   freebiesDiscount?: number;
   orderTotal: number;
 }
+
+
+export interface LocalCartLineItem {
+  variantId: string;
+  quantity: number;
+}

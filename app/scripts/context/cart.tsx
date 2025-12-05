@@ -1,6 +1,7 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { ICartAction, ICartState, IContextModel } from '../interface/cart';
-import { GetCashResponse } from '../models/cart/get-response';
+import { GetCashResponse, LocalCartLineItem } from '../models/cart/get-response';
+import { setLocalCartItems } from '../actions/cart';
 
 const initialState: GetCashResponse = {
   line_items: [],
@@ -19,6 +20,7 @@ const defaultState: ICartState = {
   ProceedToCheckout: false,
   showUpgradeCartOption: true,
   showSnackbar: false,
+  localCartItems: []
 };
 
 const reducer = (state: ICartState, action: ICartAction): ICartState => {
@@ -93,6 +95,11 @@ const reducer = (state: ICartState, action: ICartAction): ICartState => {
         ...state,
         offers: action.payload,
       };
+    case 'SET_LOCAL_CART_ITEMS':
+      return {
+        ...state,
+        localCartItems: action.payload,
+      };
     default:
       return state;
   }
@@ -102,7 +109,19 @@ export const CartContext = React.createContext({} as IContextModel);
 
 export const Provider = ({ children }: any) => {
   const [state, dispatch] = useReducer(reducer, defaultState);
+  const [intialFetch, setInitialFetch] = useState(true);
 
+  useEffect(() => {
+    const localCart = localStorage.getItem('localCartItems') || '[]';
+    const formatted = JSON.parse(localCart) as LocalCartLineItem[];
+    dispatch && dispatch(setLocalCartItems(formatted));
+    setInitialFetch(false)
+  }, [])
+  useEffect(() => {
+    if (state?.localCartItems && !intialFetch) {
+      localStorage.setItem('localCartItems', JSON.stringify(state.localCartItems));
+    }
+  }, [state?.localCartItems]);
   return (
     <CartContext.Provider value={{ state, dispatch }}>
       {children}
