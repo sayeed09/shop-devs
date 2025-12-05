@@ -8,6 +8,7 @@ import { getAccessToken } from "~/scripts/utils/product/formatter";
 import { getEnvironmentValue } from "~/scripts/utils/helper";
 import { ReactTyped } from "react-typed";
 import { OPTIONS } from "~/scripts/utils/search/search";
+import ChatwootView from "~/scripts/views/chatwoot/index.client";
 
 // Lazy-loaded components
 // const ChatwootView = lazy(() => import('../scripts/views/chatwoot'));
@@ -275,7 +276,7 @@ const HeaderV1 = ({ concerns, categories }: { concerns: Collections[], categorie
             </section>
 
             {/* Chatwoot */}
-            {/* {state && isBrowser && <ChatwootView />} */}
+            {state && isBrowser && <ChatwootView />}
         </div>
     );
 };
