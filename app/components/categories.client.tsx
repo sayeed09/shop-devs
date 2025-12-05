@@ -1,11 +1,11 @@
 'use client';
 
 import React, { lazy, useEffect, useState } from "react";
-const Collection = lazy(() => import('../scripts/views/collection'));
 
 import { Provider as MixpanelProvider } from '../scripts/context/mixpanelContext';
 import { Provider as GAProvider } from '../scripts/context/gatracking';
 import { useLocation } from "react-router";
+import Collection from "~/scripts/views/collection";
 const Categoriesv1 = () => {
     const [state, setState] = useState(false)
     useEffect(() => {

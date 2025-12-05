@@ -29,6 +29,7 @@ import { isMobile } from '../../utils/helper';
 import Flickity from 'react-flickity-component';
 import 'flickity-fullscreen';
 import { fireCategoryViewFloodlight } from '../../utils/tracking/yoptima';
+import { useLocation } from 'react-router';
 
 const PRODUCT_FETCH_LIMIT = 18;
 interface IProps {
@@ -68,6 +69,7 @@ const Collection = ({ handle, concernTitle, bannerImageL1, hideCollectionTitle, 
   const { trackMixpanelEvent } = useContext(MixPanelContext);
   const gaTrackingEvent = useContext(GAContext);
   const [bannerImage, setBannerImage] = useState<String>();
+  const location = useLocation();            // ⭐ SSR-Friendly
 
 
   const urlPath = window.location.pathname;
@@ -80,7 +82,7 @@ const Collection = ({ handle, concernTitle, bannerImageL1, hideCollectionTitle, 
     if (handle) {
       getCollectionProducts(handle, 1);
     }
-  }, [handle]);
+  }, [location.pathname, handle]);
   useEffect(() => {
     const pathName = window.location.pathname;
     let handle = "";

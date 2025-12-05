@@ -34,7 +34,7 @@ const ConcernCategoryHeader = ({ groupType, setSelectedGoal, selectedGoal, colle
                     setSelectedCollection(data.data.collections[0].handle);
                 }
             });
-    }, []);
+    }, [collectionHandle]);
 
     const getCollectionProducts = async (handle: string) => {
         const responseData =
@@ -59,7 +59,7 @@ const ConcernCategoryHeader = ({ groupType, setSelectedGoal, selectedGoal, colle
     useEffect(() => {
         if (selectedCollection) getCollectionProducts(selectedCollection);
         else if (collectionHandle) getCollectionProducts(collectionHandle);
-    }, [selectedCollection]);
+    }, [selectedCollection, collectionHandle]);
 
     const handleGoalClick = (concernGoal: Collections) => {
         setSelectedGoal(concernGoal.handle);

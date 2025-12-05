@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { Suspense, useContext, useEffect, useState } from 'react';
 import '../../scss/oziva-site.scss';
 import '../../scss/import/product-common.scss';
 
@@ -38,6 +38,7 @@ import { CartContext } from '~/scripts/context/cart';
 import { setLocalCartItems } from '~/scripts/actions/cart';
 import { formatCartItemV1 } from '~/scripts/utils/cart/helper';
 import { useNavigate } from 'react-router';
+import CustomerReviews from '~/components/customer-reviews.client';
 
 
 
@@ -288,6 +289,9 @@ const ProductV2View = (props: ProductIdDataType) => {
                                             isItemAdded={isItemAdded}
                                             isLoading={isLoading}
                                         />
+                                        <Suspense>
+                                            <CustomerReviews productId={props.productId} title={productDetail?.title as string} />
+                                        </Suspense>
                                         {!additionalDataFetched && <SectionSkeleton />}
                                         <MircroInteraction />
                                         <FooterSeo />
