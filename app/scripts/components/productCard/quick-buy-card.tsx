@@ -61,7 +61,7 @@ const QuickBuyCard = () => {
 
   const trackingQuickBuy = () => {
     const moeEventName = 'quick_buy_session';
-    Moengage.track_event(moeEventName, {
+    (window as any).Moengage.track_event(moeEventName, {
       productId: productDetails?.id,
     });
   };
@@ -75,7 +75,7 @@ const QuickBuyCard = () => {
       variantId: variantDetails?.id,
     });
     const moeEventName = 'add_to_cart';
-    Moengage.track_event(moeEventName, {
+    (window as any).Moengage.track_event(moeEventName, {
       productId: productDetails?.id,
       event_from: 'quick_buy',
     });

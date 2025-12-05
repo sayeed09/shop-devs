@@ -11,6 +11,10 @@ import '../../../scripts/scss/import/_product-cards.scss';
 import { DownArrow } from '../../../icons/down-arrow';
 import { GAContext } from '../../context/gatracking';
 import { fireFBPixelEvent } from '../../utils/fbPixelUtils';
+import { LocalCartLineItem } from '~/scripts/models/cart/get-response';
+import { setLocalCartItems } from '~/scripts/actions/cart';
+import { formatCartItemV1 } from '~/scripts/utils/cart/helper';
+import { CartContext } from '~/scripts/context/cart';
 
 interface IATCButtonProps {
   item: IProduct;
@@ -26,28 +30,49 @@ const AddToCartButton = (props: IATCButtonProps) => {
   const [variantId, setVariantId] = useState();
   const [openModal, setOpenModal] = useState(false);
   const { trackMixpanelEvent } = useContext(MixPanelContext);
+  const { state: cartState, dispatch: CartDispatch } = useContext(CartContext);
 
-  const addToCart = (variantId) => {
+  const addToCart = (variantId: string) => {
     setIsShowLoading(true);
     setVariantId(variantId);
     const payload: any = { id: variantId, quantity: 1 };
-    productService
-      .addItems(payload)
-      .then((res) => {
-        const increaseCartCount = new CustomEvent("updateCartItemCount", {})
-        document.dispatchEvent(increaseCartCount)
-        setIsShowLoading(false);
-        setShowSnakbar(true);
-        trackingAPI(res);
-        setOpenModal(false);
-      })
-      .catch((e) => {
-        console.log('Product not available', e);
-      });
+    let currentItems = cartState?.localCartItems ?? [];
+
+    const isPresentInCart = currentItems.some((item) => item.variantId === variantId);
+
+    const updatedItems: LocalCartLineItem[] = isPresentInCart
+      ? currentItems.map((item) =>
+        item.variantId === variantId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+      : [...currentItems, formatCartItemV1(payload)];
+    CartDispatch(setLocalCartItems(updatedItems));
+    trackingAPI(item);
+
+    setTimeout(() => {
+      setIsShowLoading(false);
+      setShowSnakbar(true);
+      setOpenModal(false);
+    }, 400)
+
+    // productService
+    //   .addItems(payload)
+    //   .then((res) => {
+    //     const increaseCartCount = new CustomEvent("updateCartItemCount", {})
+    //     document.dispatchEvent(increaseCartCount)
+    //     setIsShowLoading(false);
+    //     setShowSnakbar(true);
+    //     trackingAPI(res);
+    //     setOpenModal(false);
+    //   })
+    //   .catch((e) => {
+    //     console.log('Product not available', e);
+    //   });
   };
 
 
-  const trackingAPI = (productDetails) => {
+  const trackingAPI = (productDetails: IProduct) => {
 
     if (isSearchPage) {
       const authorizationToken: UserLoginValue | null = getAccessToken();
@@ -56,32 +81,32 @@ const AddToCartButton = (props: IATCButtonProps) => {
         attributes.phone = authorizationToken?.phone;
       }
       attributes.search_date = Date.now();
-      attributes.search_result = { productId: productDetails.product_id, variantId: productDetails.variantId };
-      Moengage.track_event('search_bar_results_a2c', attributes);
+      attributes.search_result = { productId: productDetails.productId, variantId: productDetails.variantId };
+      (window as any).Moengage.track_event('search_bar_results_a2c', attributes);
     }
     fireFBPixelEvent({
       event: "AddToCart",
-      productId: productDetails.product_id,
-      productTitle: productDetails.product_title,
-      price: productDetails.price / 100,
-      variantId: productDetails.variant_id,
+      productId: productDetails.productId,
+      productTitle: productDetails.title,
+      price: +productDetails.price / 100,
+      variantId: productDetails.variantId,
     });
     const eventName = 'add_to_cart';
     const eventAttributes = {
-      product_name: productDetails.product_title,
-      product_id: productDetails.product_id.toString(),
-      variant_id: productDetails.variant_id.toString(),
-      price: productDetails?.price / 100,
+      product_name: productDetails.title,
+      product_id: productDetails.productId.toString(),
+      variant_id: productDetails.variantId.toString(),
+      price: +productDetails?.price / 100,
       quantity: 1
     };
-    Moengage.track_event(eventName, eventAttributes);
+    (window as any).Moengage.track_event(eventName, eventAttributes);
     const gaAttributes: any[] = [];
     gaAttributes.push({
-      item_id: productDetails.product_id,
-      item_name: productDetails.product_title,
+      item_id: productDetails.productId,
+      item_name: productDetails.title,
       currency: 'INR',
       item_brand: 'OZiva',
-      price: productDetails.price / 100,
+      price: +productDetails.price / 100,
       quantity: 1,
     });
     gaTrackingEvent('add_to_cart', { items: gaAttributes });
@@ -90,10 +115,10 @@ const AddToCartButton = (props: IATCButtonProps) => {
       $page_title: document.title,
       $brand: "OZiva",
       cart: [{
-        "Product Name": productDetails.product_title,
-        "Product Price": productDetails.price / 100,
-        "Product ID": productDetails.product_id,
-        "Variant ID": productDetails.variant_id,
+        "Product Name": productDetails.title,
+        "Product Price": +productDetails.price / 100,
+        "Product ID": productDetails.productId,
+        "Variant ID": productDetails.variantId,
         "Quantity": 1
       }]
     });
@@ -106,7 +131,7 @@ const AddToCartButton = (props: IATCButtonProps) => {
       product_id: item.productId,
       quantity: 1
     };
-    Moengage.track_event(eventName, eventAttributes);
+    (window as any).Moengage.track_event(eventName, eventAttributes);
     gaTrackingEvent('select_flavour_size', {
       items: [{
         item_id: item.productId,

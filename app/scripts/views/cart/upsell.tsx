@@ -128,7 +128,7 @@ const Upsell = () => {
               benifit_chip: item.benefits,
               event_from: 'upsell',
             };
-            Moengage.track_event('add_to_cart', moeAttributes);
+            (window as any).Moengage.track_event('add_to_cart', moeAttributes);
             fireFBPixelEvent({
               event: "AddToCart",
               productId: item.product_id,

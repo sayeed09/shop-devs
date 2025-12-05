@@ -46,7 +46,7 @@ const useSearch = () => {
             }
             attributes.search_date = Date.now();
             attributes.search_term = searchTerm;
-            Moengage.track_event('search_bar_no_results', attributes);
+            (window as any).Moengage.track_event('search_bar_no_results', attributes);
         }
     }, [emptyResults])
 
@@ -71,7 +71,7 @@ const useSearch = () => {
             attributes.phone = authorizationToken?.phone;
         }
         attributes.collection = selectedCollection.name;
-        Moengage.track_event('search_concerns_view_more', attributes);
+        (window as any).Moengage.track_event('search_concerns_view_more', attributes);
         setHasMoreItems(false);
         if (products.length == PRODUCT_FETCH_LIMIT)
             setPageNo((pageNo) => pageNo + 1);
@@ -126,7 +126,7 @@ const useSearch = () => {
         }
         attributes.search_date = Date.now();
         attributes.search_term = searchTerm;
-        Moengage.track_event('search_view_more', attributes);
+        (window as any).Moengage.track_event('search_view_more', attributes);
     }
 
     const fetchSearchResults = async () => {
@@ -149,14 +149,14 @@ const useSearch = () => {
                 attributes.search_date = Date.now();
                 attributes.search_term = searchTerm;
                 attributes.result_count = searchResults.payload.total;
-                Moengage.track_event('search_no_result', attributes);
+                (window as any).Moengage.track_event('search_no_result', attributes);
             }
             else {
                 const attributes: any = {};
                 attributes.search_date = Date.now();
                 attributes.search_term = searchTerm;
                 attributes.result_count = searchResults.payload.total;
-                Moengage.track_event('search_result', attributes);
+                (window as any).Moengage.track_event('search_result', attributes);
             }
 
         } else {
@@ -186,14 +186,14 @@ const useSearch = () => {
     //             attributes.search_date = Date.now();
     //             attributes.search_term = searchTerm;
     //             attributes.result_count = autoSuggestionResults.payload.products.total;
-    //             Moengage.track_event('search_no_result', attributes);
+    //             (window as any).Moengage.track_event('search_no_result', attributes);
     //         }
     //         else {
     //             const attributes: any = {};
     //             attributes.search_date = Date.now();
     //             attributes.search_term = searchTerm;
     //             attributes.result_count = autoSuggestionResults.payload.products.total;
-    //             Moengage.track_event('search_result', attributes);
+    //             (window as any).Moengage.track_event('search_result', attributes);
     //         }
 
     //     } else {

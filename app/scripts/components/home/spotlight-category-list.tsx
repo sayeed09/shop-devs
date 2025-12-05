@@ -11,7 +11,7 @@ const SpotlightCategoryList = (props: IProps) => {
             let url = link.split('/');
             let collectionName = url[url.length - 1].replaceAll('-', '_');
             const moeEventName = `homepage_${collectionName}`;
-            Moengage.track_event(moeEventName);
+            (window as any).Moengage.track_event(moeEventName);
             window.location.href = link
         }
         return <div

@@ -13,6 +13,7 @@ import {
   GetCartListResponse,
   GetCashResponse,
   LineItem,
+  LocalCartLineItem,
 } from '../../models/cart/get-response';
 import { cartService } from '../../services/cart';
 import CashCoupon from '../cart/cashandcoupon';
@@ -33,6 +34,7 @@ import {
 } from '../../utils/product/formatter';
 import {
   formatCartAPIVariant,
+  formatCartAPIVariantV1,
   getPrimeVariantId,
   getVariantIdsName,
 } from '../../utils/cart/formatter';
@@ -90,7 +92,7 @@ const CartPage = (props: any) => {
   useEffect(() => {
     fetchCartItems();
 
-  }, []);
+  }, [state?.localCartItems]);
   const subscriptionData: SubscriptionProductDetails | null = getSubscriptionDataFromStorage();
 
   useEffect(() => {
@@ -154,11 +156,17 @@ const CartPage = (props: any) => {
       });
   };
 
+  useEffect(() => {
+    if (state.localCartItems?.length === 0)
+      dispatch(setInitialCartLoading(false));
+
+  }, [])
+
   const fetchCartItems = async () => {
     await addToCartFromCookie();
-    cartService.getCartItems().then((data: GetCartListResponse) => {
-      let variantArr: variantArrProps[] = formatCartAPIVariant(data);
-      checkAllBYOBVaraiantsInCart(data.items?.map((item) => item.variant_id) as number[]);
+    if (state.localCartItems && state.localCartItems?.length > 0) {
+      let variantArr: variantArrProps[] = formatCartAPIVariantV1(state.localCartItems as LocalCartLineItem[]);
+      checkAllBYOBVaraiantsInCart(state.localCartItems?.map((item) => Number(item.variantId)) as number[]);
       let requestPayload: any = { variants: variantArr };
       if (
         sessionStorage.getItem('coupon_code') ||
@@ -175,32 +183,34 @@ const CartPage = (props: any) => {
         requestPayload.cashApply = true;
         dispatch(setCashApplied(true));
       }
-      getCart(requestPayload).then((data: GetCashResponse) => {
-        checkIfBYOBItemsInStorage(data)
-        dispatch(setCartItems(data));
-        viewCartEvent(data);
-        dispatch(setInitialCartLoading(false));
-        if (sessionStorage.getItem('ozivacash_apply_check') !== 'applied') setAutoAppliedCoupon(true);
-        const mixpanelCart = data.line_items.map((item, index) => {
-          return {
-            "Product Name": item.title,
-            "Product Price": item.price / 100,
-            "Product ID": item.product_id,
-            "Variant ID": item.variant_id,
-            "Quantity": item.quantity
-          }
-        });
-        trackMixpanelEvent("Cart Viewed", {
-          $currency: 'INR',
-          $page_title: document.title,
-          $brand: "OZiva",
-          cart: mixpanelCart,
-          "Order Total": data?.order_total && data?.order_total / 100,
-          "Discount Code": data?.discount_code,
-          // $discount_code: props.discountCode,
+      setTimeout(() => {
+        getCart(requestPayload).then((data: GetCashResponse) => {
+          checkIfBYOBItemsInStorage(data)
+          dispatch(setCartItems(data));
+          viewCartEvent(data);
+          dispatch(setInitialCartLoading(false));
+          if (sessionStorage.getItem('ozivacash_apply_check') !== 'applied') setAutoAppliedCoupon(true);
+          const mixpanelCart = data.line_items.map((item, index) => {
+            return {
+              "Product Name": item.title,
+              "Product Price": item.price / 100,
+              "Product ID": item.product_id,
+              "Variant ID": item.variant_id,
+              "Quantity": item.quantity
+            }
+          });
+          trackMixpanelEvent("Cart Viewed", {
+            $currency: 'INR',
+            $page_title: document.title,
+            $brand: "OZiva",
+            cart: mixpanelCart,
+            "Order Total": data?.order_total && data?.order_total / 100,
+            "Discount Code": data?.discount_code,
+            // $discount_code: props.discountCode,
+          })
         })
-      })
-    });
+      }, 200)
+    }
     const authorizationToken: UserLoginValue | null = getAccessToken();
     if (
       authorizationToken &&
@@ -297,7 +307,7 @@ const CartPage = (props: any) => {
       price: price,
       quantity: quantity,
     };
-    Moengage.track_event(eventName, moeAttributes);
+    (window as any).Moengage.track_event(eventName, moeAttributes);
     fireCartViewFloodlight();
   };
   const addToCartFromCookie = async () => {
@@ -320,7 +330,7 @@ const CartPage = (props: any) => {
     return <Loader />;
   }
   if (!checkIfSubscriptionCart()) {
-    if (state.cart.line_items.length === 0 && !state.initialCartLoading) {
+    if (state.localCartItems?.length === 0 && !state.initialCartLoading) {
       sessionStorage.setItem('login_coupon_code', '');
       return (
         // EMPTY CART

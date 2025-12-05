@@ -74,7 +74,7 @@ const CollectionSection = ({ collections, index, sectionRefs, isHorizontal }: IP
         }
         setSelectedItem(formatItem);
         gaTrackingEvent('product_card_click', trackingItem);
-        Moengage.track_event('product_card_click', trackingItem);
+        (window as any).Moengage.track_event('product_card_click', trackingItem);
 
     }
     return (

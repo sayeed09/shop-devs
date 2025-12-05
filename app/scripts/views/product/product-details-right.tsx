@@ -217,7 +217,7 @@ const ProductDetailRight = (props: ProductDetailRightModal) => {
   };
   const trackingEvent = () => {
     const moeEventName = 'pdp_clk_review';
-    Moengage.track_event(moeEventName, {});
+    (window as any).Moengage.track_event(moeEventName, {});
   };
 
   return !props.directSubscriptionCart ? (

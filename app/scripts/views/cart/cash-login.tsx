@@ -69,7 +69,7 @@ const CashLogin = (props: any) => {
             discount: data.total_discount / 100,
           };
 
-          Moengage.track_event(eventName, moeAttributes);
+          (window as any).Moengage.track_event(eventName, moeAttributes);
           gaTrackingEvent('apply_oziva_cash', {});
         } else {
           sessionStorage.setItem('ozivacash_apply_check', 'not applied');

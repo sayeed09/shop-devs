@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './header';
 import OfferSection from './offer-section';
 import OfferHeader from './offer-header';
-import CartPage from '../cart/cart-page';
+import CartPage from './cart-page';
 import '../../scss/oziva-cart.scss';
 import { Provider as CartProvider } from '../../context/cart';
 import { Provider as UserProvider } from '../../context/user';
@@ -67,18 +67,18 @@ const CartView = () => {
                           }`}
                       >
                         {/* CART PAGE */}
-                        <CartPage
-                          setOfferVisible={setOfferVisible}
-                          setDocumentWidth={documentWidth}
-                          setShowPopup={setShowPopup}
-                          setOpenPopup={setOpenPopup}
-                          setIsDisplayConfeti={setIsDisplayConfeti}
-                          setRedeemableCashData={setRedeemableCashData}
-                        />
+                          <CartPage
+                            setOfferVisible={setOfferVisible}
+                            setDocumentWidth={documentWidth}
+                            setShowPopup={setShowPopup}
+                            setOpenPopup={setOpenPopup}
+                            setIsDisplayConfeti={setIsDisplayConfeti}
+                            setRedeemableCashData={setRedeemableCashData}
+                          />
                       </main>
                       {/* END CONTENT AREA */}
                       {/* OFFER SECTION */}
-                      {
+                      {/* {
                         !checkIfSubscriptionCart() &&
                         <OfferSection
                           setOfferVisible={setOfferVisible}
@@ -92,7 +92,7 @@ const CartView = () => {
                           isDispalyConfeti={isDispalyConfeti}
                           redeemableCashData={redeemableCashData}
                         />
-                      }
+                      } */}
                     </div>
                   </div>
                 </CartProvider>

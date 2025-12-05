@@ -20,7 +20,7 @@ const SubscriptionPlanItem = (props: SubscriptionPlanItemModal) => {
       product_name: productState.productTitle,
       product_id: props.productId,
     };
-    Moengage.track_event(event_name, event_attributes);
+    (window as any).Moengage.track_event(event_name, event_attributes);
   };
 
   return (

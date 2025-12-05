@@ -171,7 +171,7 @@ const PurchaseModal = (props: PurchaseModal) => {
         "Quantity": 1
       }]
     });
-    Moengage.track_event(eventName, eventAttributes);
+    (window as any).Moengage.track_event(eventName, eventAttributes);
     const moeEventName = `pdp_buy_now_${subscribePlan?.subscription_interval}_months`;
     const moeEventAttributes = {
       product_name: productState.productTitle,
@@ -181,7 +181,7 @@ const PurchaseModal = (props: PurchaseModal) => {
       quantity: 1,
       subscription_id: subscribePlan.plan_id,
     };
-    Moengage.track_event(moeEventName, moeEventAttributes);
+    (window as any).Moengage.track_event(moeEventName, moeEventAttributes);
     if (subscribePlan?.subscription_interval === 1) {
       if (isUpsellProductAdded && upsellList.length > 0) {
         const upsellFirstItem = upsellList[0];
@@ -235,7 +235,7 @@ const PurchaseModal = (props: PurchaseModal) => {
         product_id: props.productId,
         subscription_duration: `${subscribePlan?.subscription_interval} Months`,
       };
-      Moengage.track_event(event_name, event_attributes);
+      (window as any).Moengage.track_event(event_name, event_attributes);
       setTimeout(() => {
         const url = `${window.location.origin}/cart?view=subscription`;
         window.location.href = url;
@@ -251,7 +251,7 @@ const PurchaseModal = (props: PurchaseModal) => {
         product_name: productState.productTitle,
         product_id: props.productId,
       };
-      Moengage.track_event(eventName, eventAttributes);
+      (window as any).Moengage.track_event(eventName, eventAttributes);
       gaTrackingEvent('pdp_subscription_change', {
         subscription_duration: `${selectedPlan?.subscription_interval} Months`,
         items: [
@@ -286,7 +286,7 @@ const PurchaseModal = (props: PurchaseModal) => {
         ],
       };
       gaTrackingEvent(eventName, gaAttr);
-      Moengage.track_event(eventName, eventAttributes);
+      (window as any).Moengage.track_event(eventName, eventAttributes);
     }
     setIsUpsellProductAddedOnPDP((prevState) => !prevState);
   };

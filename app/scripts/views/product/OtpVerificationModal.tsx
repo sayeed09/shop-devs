@@ -156,7 +156,7 @@ const OtpVerification = (props: OtpVerificationModal) => {
         .otpVerify(otpData)
         .then((data: OtpVerifyData) => {
           fireOTPVerifyFloodlight();
-          Moengage.track_event('Submit_OTP_click', { otp: otpInput.trim(), phone: props.mobileInput });
+          (window as any).Moengage.track_event('Submit_OTP_click', { otp: otpInput.trim(), phone: props.mobileInput });
           gaTrackingEvent('verified_otp', { otp: otpInput.trim(), phone: props.mobileInput });
           setShowLoading(false);
           props.setIsShowOtpModal(false);

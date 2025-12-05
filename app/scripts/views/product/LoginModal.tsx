@@ -47,7 +47,7 @@ const LoginModal = (props: LoginModalInt) => {
     loginService
       .sendOtp(loginData)
       .then((data) => {
-        Moengage.track_event('Submit_mobilenum_click', { phone: props.mobileInput });
+        (window as any).Moengage.track_event('Submit_mobilenum_click', { phone: props.mobileInput });
         gaTrackingEvent('send_otp', { phone: props.mobileInput });
         props.setIsShowLoginModal && props.setIsShowLoginModal(false);
         data.shiprocketOtpToken && AuthenticationDispatch(shipRocketValidationToken(data.shiprocketOtpToken))

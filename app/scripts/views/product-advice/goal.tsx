@@ -38,7 +38,7 @@ const Goal = (props: IGoalComponentProps) => {
     const eventAttributes = {
       goal: payload?.goal?.toString()
     };
-    Moengage.track_event(eventName, eventAttributes);
+    (window as any).Moengage.track_event(eventName, eventAttributes);
   };
 
   const onDivClick = () => {

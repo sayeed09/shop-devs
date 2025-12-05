@@ -21,12 +21,12 @@ const Regrowth = () => {
     };
 
     useEffect(() => {
-        Moengage.track_event('hair_test_landing_page_view', {});
+        (window as any).Moengage.track_event('hair_test_landing_page_view', {});
     }, []);
     return (
         <div className='QuizResultPage QuizLandingPage regrowthLanding'>
             <section onClick={() => {
-                Moengage.track_event('hair_test_landing_page_test', {});
+                (window as any).Moengage.track_event('hair_test_landing_page_test', {});
                 window.location.href = `/pages/hair-test/1?ref=landing_page`;
             }} className='QuizLandingPage-banner-section position-relative'>
                 <img src={require('../../../assets/landing_page_web.png').default} alt="Oziva" className='hide-on-mobile w-100' />
@@ -34,7 +34,7 @@ const Regrowth = () => {
                 <div className='QuizLandingPage-banner-buttons'>
                     {resultCaseId && <button onClick={(e) => {
                         e.stopPropagation()
-                        Moengage.track_event('hair_test_landing_page_results', {});
+                        (window as any).Moengage.track_event('hair_test_landing_page_results', {});
                         window.location.href = `/pages/hair-test/result?caseId=${resultCaseId}&ref=landing_page`;
                     }} className='btn view-result-button'>VIEW YOUR RESULT</button>}
                 </div>

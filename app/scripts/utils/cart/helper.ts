@@ -1,5 +1,5 @@
 import { ICartState } from '../../interface/cart';
-import { CartItem, PriceModel } from '../../models/cart/get-response';
+import { CartItem, LocalCartLineItem, PriceModel } from '../../models/cart/get-response';
 import { getFromCookie } from '../product/formatter';
 import {
   qbOfferEndDate,
@@ -151,3 +151,11 @@ export const totalSavingsPrice = (priceModel: PriceModel) => {
     ? subscriptionData.compareAtPrice - subscriptionData.price
     : priceModel.discount + priceModel.freebiesDiscount + (priceModel.orderTotal - priceModel.subtotal);
 };
+
+export const formatCartItemV1 = (request: { id: string, quantity: number }) => {
+  const item: LocalCartLineItem = {
+    quantity: request.quantity,
+    variantId: request.id
+  }
+  return item;
+}

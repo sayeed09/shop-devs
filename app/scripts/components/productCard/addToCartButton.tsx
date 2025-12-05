@@ -60,7 +60,7 @@ const AddToCartButton = (props: IATCButtonProps) => {
       attributes.search_date = Date.now();
       attributes.result_url = findSearchQuery();
       attributes.search_result = { productId: productDetails.product_id, variantId: productDetails.variantId };
-      Moengage.track_event('search_bar_results_a2c', attributes);
+      (window as any).Moengage.track_event('search_bar_results_a2c', attributes);
     }
     fireFBPixelEvent({
       event: "AddToCart",
@@ -77,7 +77,7 @@ const AddToCartButton = (props: IATCButtonProps) => {
       price: productDetails.price / 100,
       quantity: 1
     };
-    Moengage.track_event(eventName, eventAttributes);
+    (window as any).Moengage.track_event(eventName, eventAttributes);
     const gaAttributes: any[] = [];
     gaAttributes.push({
       item_id: productDetails.product_id,

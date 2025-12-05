@@ -42,7 +42,7 @@ const Gender = (props: IGenderComponentProps) => {
       gender:gender
     };
       
-    Moengage.track_event(eventName, eventAttributes);
+    (window as any).Moengage.track_event(eventName, eventAttributes);
 
   };
 

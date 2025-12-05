@@ -110,7 +110,7 @@ const Concerns = (props) => {
                 concerns: concernNames.toString()
               };
               
-              Moengage.track_event(eventName, eventAttributes);
+              (window as any).Moengage.track_event(eventName, eventAttributes);
               getRecommendProduct(selectConcern);
             }}
             className="btn or-btn waves-effect waves-dark"

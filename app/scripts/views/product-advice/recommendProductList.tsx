@@ -60,7 +60,7 @@ const RecommendProductList = (props) => {
       phone: getAccessToken ? getAccessToken()?.phone : '',
       items:eventAttribute
     };
-    Moengage.track_event(eventName, eventAttributes);
+    (window as any).Moengage.track_event(eventName, eventAttributes);
     
   }, []);
 
@@ -175,7 +175,7 @@ const RecommendProductList = (props) => {
       sub_total: discountAndPrice?.order_subtotal,
       total_dicount: discountAndPrice?.total_discount
     };
-    Moengage.track_event(eventName, eventAttributes);
+    (window as any).Moengage.track_event(eventName, eventAttributes);
     gaTrackingEvent(eventName, eventAttributes);
   };
 

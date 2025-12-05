@@ -117,7 +117,7 @@ const CartItem = ({ cartItem, productReview, itemIndex }: IProps) => {
         "Order Total": state?.cart?.order_total && state?.cart?.order_total / 100,
       });
 
-      Moengage.track_event(eventName, eventAttributes);
+      (window as any).Moengage.track_event(eventName, eventAttributes);
     } else {
       productIdsObject[cartItem.variant_id] = quantity;
     }
@@ -167,7 +167,7 @@ const CartItem = ({ cartItem, productReview, itemIndex }: IProps) => {
       quantity: quantity,
       event_from: "cart"
     };
-    Moengage.track_event(moeEventName, moeAttributes);
+    (window as any).Moengage.track_event(moeEventName, moeAttributes);
     const gaAttributes: any = [];
     const item: any = {
       item_id: cartItem.product_id,
@@ -253,7 +253,7 @@ const CartItem = ({ cartItem, productReview, itemIndex }: IProps) => {
       variant_id: cartItem.variant_id,
       cart_amount: state.cart.order_total,
     };
-    Moengage.track_event('cart_upgrade_skus', moeAttributes);
+    (window as any).Moengage.track_event('cart_upgrade_skus', moeAttributes);
     gaTrackingEvent('cart_upgrade_skus', { items: [{ item_id: cartItem.product_id, item_name: cartItem.product_title, item_variant: cartItem.variant_title, price: cartItem.price / 100, quantity: 1 }] });
     setUpgradeCartPopup(cartItem);
   }

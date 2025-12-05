@@ -139,13 +139,13 @@ const ContactUsView = () => {
   }
 
   const handleChatwoot = () => {
-    Moengage.track_event('contact_us_consult', {});
+    (window as any).Moengage.track_event('contact_us_consult', {});
     const event = new CustomEvent('triggerChatWoot');
     document.dispatchEvent(event);
   };
 
   const handleTrackOrder = () => {
-    Moengage.track_event('contact_us_consult', {});
+    (window as any).Moengage.track_event('contact_us_consult', {});
     window.location.href = '/pages/order-history';
   }
 

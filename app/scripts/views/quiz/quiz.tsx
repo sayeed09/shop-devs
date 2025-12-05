@@ -51,7 +51,7 @@ const Quiz = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    Moengage.track_event('hair_test_initiated', {});
+    (window as any).Moengage.track_event('hair_test_initiated', {});
     getQuiz(1); //id=1 for hair quiz later on to be picked by query param etc
   }, []);
 
@@ -185,7 +185,7 @@ const Quiz = () => {
       await createCase(
         userPhoneResponse.response[0],
       );
-      Moengage.track_event('hair_test_start_time', { time: new Date() });
+      (window as any).Moengage.track_event('hair_test_start_time', { time: new Date() });
       setCurrentQuestion(quiz?.questions[personalQuestions.length]);
       setPrevQuestions(prevQuestions => [...prevQuestions, currentQuestion?.id])
       return;
@@ -236,7 +236,7 @@ const Quiz = () => {
     if (data) {
       //fetch results on ternary question submit
       if (!data.nextQuestionId) {
-        Moengage.track_event('hair_test_end_time', { time: new Date() });
+        (window as any).Moengage.track_event('hair_test_end_time', { time: new Date() });
         setToLocalStorage(HAIR_QUIZ_RESULT_KEY, caseId);
         window.location.href = `${ResultPageUrl}?caseId=${caseId}&ref=submit`;
       } else {
@@ -261,7 +261,7 @@ const Quiz = () => {
       phone: userResponses.find((item) => item.questionId == PersonalQuestion.Phone)?.response[0],
       caseId: caseId
     }
-    Moengage.track_event("hair_test_continue_btn", eventAttributes);
+    (window as any).Moengage.track_event("hair_test_continue_btn", eventAttributes);
   }
   const handleOnClickFromStart = () => {
     setMinQuestionsToAnswer(Number(quiz?.minPath) + personalQuestions.length);
@@ -274,7 +274,7 @@ const Quiz = () => {
       phone: userResponses.find((item) => item.questionId == PersonalQuestion.Phone)?.response[0],
       caseId: caseId
     }
-    Moengage.track_event("hair_test_start_from_beginning_btn", eventAttributes);
+    (window as any).Moengage.track_event("hair_test_start_from_beginning_btn", eventAttributes);
   }
   const handleClearError = (questionId: number) => {
     setInputFieldErr([...inputFieldErr.filter((item) => item.questionId != questionId), { questionId: questionId, error: false }])

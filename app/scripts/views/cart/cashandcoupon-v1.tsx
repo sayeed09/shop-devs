@@ -160,7 +160,7 @@ const CashCouponV1 = ({ documentWidth, setOfferVisible, setOpenPopup, setShowPop
       createGACartItemList(state.cart.line_items),
     );
     gaTrackingEvent(event_name, { items: ga_attributes });
-    Moengage.track_event(moeEventName, moeAttributes);
+    (window as any).Moengage.track_event(moeEventName, moeAttributes);
   };
 
   const viewOffer = () => {
@@ -179,7 +179,7 @@ const CashCouponV1 = ({ documentWidth, setOfferVisible, setOpenPopup, setShowPop
       product_id: string_cart.product_id.toString(),
       variant_id: string_cart.ids.toString(),
     };
-    Moengage.track_event(event_name, event_attributes);
+    (window as any).Moengage.track_event(event_name, event_attributes);
     gaTrackingEvent('view_offers', { source: 'Cart' });
   };
 

@@ -113,7 +113,7 @@ const VideoTestimonials = ({ productDetail, productId }: Props) => {
             video_interaction: true,
             video_name: selectedVideo.name,
         };
-        Moengage.track_event(eventName, eventAttributes);
+        (window as any).Moengage.track_event(eventName, eventAttributes);
         const gaAttributes: any[] = [];
         gaAttributes.push({
             item_id: productDetails.product_id,
@@ -176,7 +176,7 @@ const VideoTestimonials = ({ productDetail, productId }: Props) => {
             index: index + 1
         };
         const eventName = 'video_played'
-        Moengage.track_event(eventName, eventAttributes);
+        (window as any).Moengage.track_event(eventName, eventAttributes);
         gaTrackingEvent(eventName, eventAttributes);
     }
     const handleShopNow = (item: TestimonialModel) => {
@@ -191,7 +191,7 @@ const VideoTestimonials = ({ productDetail, productId }: Props) => {
             index: index + 1
         };
         const eventName = 'shop_now_pdp'
-        Moengage.track_event(eventName, eventAttributes);
+        (window as any).Moengage.track_event(eventName, eventAttributes);
         gaTrackingEvent(eventName, eventAttributes);
         setOpenModal(true);
     }

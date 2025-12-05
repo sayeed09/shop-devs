@@ -248,7 +248,7 @@ const Footer = () => {
       quantity: quantity,
     };
     gaTrackingEvent(event_name, ga_attributes);
-    Moengage.track_event(moeEventName, moeAttributes);
+    (window as any).Moengage.track_event(moeEventName, moeAttributes);
   };
   const cart_items: any = getVariantIdsName(state.cart.line_items);
   const cart_items_id: number[] = cart_items.ids;

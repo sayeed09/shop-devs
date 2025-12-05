@@ -86,7 +86,7 @@ const SubscriptionView = (props: ProductIdDataType) => {
         product_name: productDetail.title,
         product_id: props.productId.toString(),
       };
-      Moengage.track_event(event_name, event_attributes);
+      (window as any).Moengage.track_event(event_name, event_attributes);
       setIsShowLoading(false);
     }
   };

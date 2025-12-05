@@ -51,7 +51,7 @@ const SubTopicSection = ({
 
   const handleSelect = (subtopic: Subtopic, level: number) => {
     if (subtopic.link) {
-      Moengage.track_event(
+      (window as any).Moengage.track_event(
         `limechat_websource_${subtopic.title.replace(/\s+/g, '_').toLowerCase()}`
       );
       window.open(subtopic.link);

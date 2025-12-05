@@ -140,7 +140,7 @@ const ProductV2View = (props: ProductIdDataType) => {
                 product_name: productDetail?.title,
                 product_id: props.productId.toString(),
             };
-            Moengage.track_event(event_name, event_attributes);
+            (window as any).Moengage.track_event(event_name, event_attributes);
             setIsShowLoading(false);
         } else {
             let selectedVariant = productDetail?.variants.filter((item) => {
@@ -155,7 +155,7 @@ const ProductV2View = (props: ProductIdDataType) => {
             });
             const event_name = 'add_to_cart';
 
-            Moengage.track_event(event_name, {
+            (window as any).Moengage.track_event(event_name, {
                 product_name: productDetail?.title,
                 product_id: productDetail?.id.toString(),
                 price: cleanPriceString(selectedVariant[0]?.price),

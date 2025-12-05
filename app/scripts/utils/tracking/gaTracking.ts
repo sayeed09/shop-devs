@@ -5,11 +5,11 @@ let dataLayer = (window as any).dataLayer || [];
 export const Moengage = (window as any).Moengage;
 
 export const loggedInUserEvent = () => {
-  if(window.location.pathname.indexOf('/products/') > -1) {
+  if (window.location.pathname.indexOf('/products/') > -1) {
     const urlParams = new URLSearchParams(window.location.search);
     const handle = window.location.pathname.split('/products/')[1];
     const varaintId = urlParams.get('variant');
-    Moengage.track_event('PRODUCT_PAGE_VIEW', {
+    (window as any).Moengage.track_event('PRODUCT_PAGE_VIEW', {
       handle: handle,
       varaintId: varaintId
     });

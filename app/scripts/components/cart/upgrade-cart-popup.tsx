@@ -52,7 +52,7 @@ const UpgradeCartPopup = ({ setUpgradeCartPopup, filteredVariants, upgradeCartPo
                 variant_id: upgradeCartPopup.variant_id,
                 cart_amount: state.cart.order_total,
             };
-            Moengage.track_event('update_cart_skus', moeAttributes);
+            (window as any).Moengage.track_event('update_cart_skus', moeAttributes);
             // dispatch(setShowUpgradeCartOption(false));
             dispatch(setShowSnackbar(true));
             const upgradedItemList: any[] = [];

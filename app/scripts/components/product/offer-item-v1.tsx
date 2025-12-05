@@ -41,7 +41,7 @@ const OfferItemV1 = (props: OfferItemModal) => {
       source: 'PDP', offer_code: props.item?.code
     };
     gaTrackingEvent('apply_coupon_pdp', { source: 'PDP', offer_code: props.item?.code });
-    Moengage.track_event(event_name, event_attributes);
+    (window as any).Moengage.track_event(event_name, event_attributes);
     if (ProductState && ProductState?.productDetails?.id) {
       const payload: any = { id: ProductState?.productDetails?.id, quantity: 1 };
       productService

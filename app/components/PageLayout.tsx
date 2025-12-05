@@ -72,7 +72,7 @@ export function PageLayout({
     <Aside.Provider>
       <CartProvider>
 
-        {header && (
+        {header && !location.pathname.includes('cart') && (
           <HeaderV1 concerns={concerns} categories={categories} />
         )}
         <main>{children}</main>

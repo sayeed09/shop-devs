@@ -60,7 +60,7 @@ const upsellItem = (props: upsellItemModal) => {
           }]
         };
         gaTrackingEvent(event_name, gaAttr);
-        Moengage.track_event(event_name, event_attributes);
+        (window as any).Moengage.track_event(event_name, event_attributes);
       })
       .catch((error) => {
         console.log('Get upsell item error', error);

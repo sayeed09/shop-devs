@@ -131,7 +131,7 @@ const OfferItem = (props: any) => {
 
           gaTrackingEvent(select_promotion_event_name, select_promotion_ga_attributes);
           gaTrackingEvent(event_name, ga_attributes);
-          Moengage.track_event(moeEventName, moeAttributes);
+          (window as any).Moengage.track_event(moeEventName, moeAttributes);
           setTimeout(() => {
             props.setOpenPopup(false);
           }, 3000);

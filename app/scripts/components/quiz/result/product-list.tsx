@@ -37,7 +37,7 @@ const ProductList = ({ productResponseList, reviews }: Props) => {
     } else if (prevIndex < index) {
       eventName = `hair_test_product_recommendation_next`;
     }
-    Moengage.track_event(eventName, {value: value});
+    (window as any).Moengage.track_event(eventName, {value: value});
     prevIndex = index;
   }
 

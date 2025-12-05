@@ -123,7 +123,7 @@ const OfferNudge = ({ setOpenPopup }: IProps) => {
 
                     gaTrackingEvent(select_promotion_event_name, select_promotion_ga_attributes);
                     gaTrackingEvent(event_name, ga_attributes);
-                    Moengage.track_event(event_name, event_attributes);
+                    (window as any).Moengage.track_event(event_name, event_attributes);
                     setLoader(false);
                 })
                 .catch((error) => {

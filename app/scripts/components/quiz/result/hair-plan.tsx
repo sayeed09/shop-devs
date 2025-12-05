@@ -36,7 +36,7 @@ const HairPlan = ({ productResponseList }: Props) => {
         }
       }),
     };
-    Moengage.track_event(eventName, eventAttributes);
+    (window as any).Moengage.track_event(eventName, eventAttributes);
     setIsLoading(true);
     const currentItems: string[] = JSON.parse(getFromLocalStorage(HAIR_QUIZ_PRODUCTS_KEY) || JSON.stringify([]));
 
@@ -107,7 +107,7 @@ const HairPlan = ({ productResponseList }: Props) => {
   };
 
   const handleScroll = () => {
-    Moengage.track_event('hair_test_result_sticky_button', {});
+    (window as any).Moengage.track_event('hair_test_result_sticky_button', {});
     const { current } = divRef
     if (current !== null) {
       current.scrollIntoView({ behavior: "smooth" })

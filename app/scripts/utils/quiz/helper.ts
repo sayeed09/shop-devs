@@ -105,7 +105,7 @@ export const triggerMoengageEvents = (userResponses: SaveUserRequestModel[], cur
     };
   }
 
-  Moengage.track_event(eventName, eventAttributes);
+  (window as any).Moengage.track_event(eventName, eventAttributes);
 
 }
 

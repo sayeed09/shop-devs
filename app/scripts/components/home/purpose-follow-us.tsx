@@ -11,7 +11,7 @@ const PurposeAndFollowUs = () => {
         if (authorizationToken && authorizationToken.accessToken) {
             event_attributes.phone = authorizationToken.phone
         }
-        Moengage.track_event(event_name, event_attributes);
+        (window as any).Moengage.track_event(event_name, event_attributes);
         if (href) {
             window.location.href = href;
         }

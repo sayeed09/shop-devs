@@ -63,7 +63,7 @@ const ConcernCategoryHeader = ({ groupType, setSelectedGoal, selectedGoal, colle
 
     const handleGoalClick = (concernGoal: Collections) => {
         setSelectedGoal(concernGoal.handle);
-        Moengage.track_event('concern_goal_tab', {
+        (window as any).Moengage.track_event('concern_goal_tab', {
             goal: concernGoal.name,
             handle: concernGoal.handle,
         });

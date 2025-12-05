@@ -24,7 +24,7 @@ const trackAddToCart = (
         0
     );
 
-    (window as any).Moengage.track_event("add_to_cart_v2", {
+    (window as any).(window as any).Moengage.track_event("add_to_cart_v2", {
         product_id: items.map((item) => item.product_id),
         variant_id: items.map((item) => item.variant_id),
         total_price: totalPrice,

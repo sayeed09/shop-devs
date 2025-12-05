@@ -17,6 +17,7 @@ import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import headerStyles from '~/styles/header.css?url';
 import { PageLayout } from './components/PageLayout';
+import { useEffect } from 'react';
 
 export type RootLoader = typeof loader;
 
@@ -144,7 +145,75 @@ function loadDeferredData({ context }: Route.LoaderArgs) {
 
 export function Layout({ children }: { children?: React.ReactNode }) {
   const nonce = useNonce();
+  useEffect(() => {
+    function loadScripts() {
+      // 🟢 Google Tag Manager
+      (function (w, d, s, l, i) {
+        (w as any)[l] = (w as any)[l] || [];
+        (w as any)[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        const f = d.getElementsByTagName(s)[0];
+        const j = d.createElement(s);
+        const dl = l !== 'dataLayer' ? '&l=' + l : '';
+        j.defer = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-NTD8C4');
 
+      // 🟣 Google Ads + GA4
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function gtag(...args: any[]) {
+        window.dataLayer.push(args);
+      };
+      window.gtag('js', new Date());
+      window.gtag('config', 'AW-937014386');
+      window.gtag('config', 'G-2Q9JM93R8H');
+
+      // 🟠 MoEngage
+      (function (i, s, o, g, r, a, m, n) {
+        (i as any).moengage_object = r;
+        const t: Record<string, any> = {};
+        const q = (f: string) => {
+          return function (...args: any[]) {
+            ((i as any).moengage_q = (i as any).moengage_q || []).push({ f, a: args });
+          };
+        };
+        const fns = [
+          'track_event', 'add_user_attribute', 'add_first_name', 'add_last_name',
+          'add_email', 'add_mobile', 'add_user_name', 'add_gender', 'add_birthday',
+          'destroy_session', 'add_unique_user_id', 'moe_events', 'call_web_push',
+          'track', 'location_type_attribute',
+        ];
+        fns.forEach((fn) => (t[fn] = q(fn)));
+        a = s.createElement(o);
+        m = s.getElementsByTagName(o)[0];
+        (a as HTMLScriptElement).async = true;
+        (a as HTMLScriptElement).src = g;
+        m.parentNode?.insertBefore(a, m);
+        (i as any).moe = (i as any).moe || function (...args: any[]) {
+          n = args[0];
+          return t;
+        };
+        (a as HTMLScriptElement).onload = function () {
+          if (n) (i as any)[r] = (window as any).moe(n);
+        };
+      })(
+        window,
+        document,
+        'script',
+        'https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js',
+        'Moengage'
+      );
+
+      (window as any).Moengage = (window as any).moe({
+        app_id: 'Z4JGV1DYJZ1TC2TYDLCBC93G_DEBUG',
+        debug_logs: 1,
+        swPath: '/tools/moengage/sw.js',
+        swScope: '/',
+      });
+    }
+
+    loadScripts();
+  }, []);
   return (
     <html lang="en">
       <head>

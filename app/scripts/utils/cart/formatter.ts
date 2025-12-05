@@ -12,6 +12,7 @@ import {
   GetCartListResponse,
   GetCashResponse,
   LineItem,
+  LocalCartLineItem,
 } from '../../models/cart/get-response';
 import { getAccessToken } from '../../utils/product/formatter';
 import {
@@ -145,28 +146,29 @@ export const getCartItems = (cart: ICartState) => {
   return currentLineItems;
 };
 export const getCheckoutURL = () => {
-  let redirect_base_url = `https://checkout.${hostDomainUrl}/`;
-  if ((window as any).ENVIRONMENT === 'dev') {
-    redirect_base_url = `https://checkout.dev.${hostDomainUrl}/`;
-  }
-  if (
-    (window as any).ENVIRONMENT === 'prod' &&
-    (window as any).Shopify?.theme?.id == '120350801979'
-  ) {
-    //preprod theme id)
-    redirect_base_url = `https://checkout-preprod.dev.${hostDomainUrl}/`;
-  }
-  const hostName = window.location.hostname;
-  if (hostName == "expertsdev.oziva.in") {
-    redirect_base_url = `https://checkout-experts.dev.oziva.in`;
-  }
-  if (hostName == "experts.oziva.in") {
-    redirect_base_url = `https://checkout.experts.oziva.in`;
-  }
-  if (hostName == "wellness.oziva.in") {
-    redirect_base_url = `https://checkout.wellness.oziva.in`;
-  }
-  return redirect_base_url;
+  return `https://checkout.oziva.in/`
+  // let redirect_base_url = `https://checkout.${hostDomainUrl}/`;
+  // if ((window as any).ENVIRONMENT === 'dev') {
+  //   redirect_base_url = `https://checkout.dev.${hostDomainUrl}/`;
+  // }
+  // if (
+  //   (window as any).ENVIRONMENT === 'prod' &&
+  //   (window as any).Shopify?.theme?.id == '120350801979'
+  // ) {
+  //   //preprod theme id)
+  //   redirect_base_url = `https://checkout-preprod.dev.${hostDomainUrl}/`;
+  // }
+  // const hostName = window.location.hostname;
+  // if (hostName == "expertsdev.oziva.in") {
+  //   redirect_base_url = `https://checkout-experts.dev.oziva.in`;
+  // }
+  // if (hostName == "experts.oziva.in") {
+  //   redirect_base_url = `https://checkout.experts.oziva.in`;
+  // }
+  // if (hostName == "wellness.oziva.in") {
+  //   redirect_base_url = `https://checkout.wellness.oziva.in`;
+  // }
+  // return redirect_base_url;
 };
 
 export const getPrimeVariantId = () => {
@@ -307,3 +309,11 @@ export const getUpdateRequestModel = (values: AddressList) => {
 };
 
 
+
+export const formatCartAPIVariantV1 = (data: LocalCartLineItem[]) => {
+  let response: VariantRequestModel[] = [];
+  data?.forEach((item) => {
+    response.push({ id: Number(item?.variantId), quantity: item?.quantity });
+  });
+  return response;
+};

@@ -18,7 +18,7 @@ const Result = () => {
   const [resultsData, setResultsData] = useState<QuizResultResponse>();
 
   useEffect(() => {
-    Moengage.track_event('hair_test_results_page_view', {
+    (window as any).Moengage.track_event('hair_test_results_page_view', {
       url: window.location.href
     });
     const searchQuery = new URLSearchParams(window.location.search);

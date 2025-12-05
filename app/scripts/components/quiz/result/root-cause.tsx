@@ -13,7 +13,7 @@ const RootCause = ({ diagnosis }: Props) => {
     const handleTabClick = (label: string) => {
         const eventName = `hair_test_result_${label.toLowerCase()}_tab_clicked`;
         const eventAttributes = {};
-        Moengage.track_event(eventName, eventAttributes);
+        (window as any).Moengage.track_event(eventName, eventAttributes);
         setSelectedTab(label)
     }
 

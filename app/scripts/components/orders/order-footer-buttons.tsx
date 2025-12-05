@@ -32,7 +32,7 @@ export const OrderFooterButtons = ({ orderDetails, setShowCancelPopup, selectedO
 
     if (lineItem && lineItem?.items.length > 0) {
       lineItem?.items.forEach(item => {
-        Moengage.track_event(moeEventName, {
+        (window as any).Moengage.track_event(moeEventName, {
           productId: item.product_id,
           event_from: "order_list"
         });
