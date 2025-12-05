@@ -15,7 +15,7 @@ import {
 } from '~/components/SearchFormPredictive';
 import { SearchResultsPredictive } from '~/components/SearchResultsPredictive';
 import HeaderV1 from './headerv1';
-import { CartProvider } from './cart-provider';
+import { Provider as CartProvider } from '~/scripts/context/cart';
 
 interface PageLayoutProps {
   cart: Promise<CartApiQueryFragment | null>;
@@ -38,11 +38,11 @@ export function PageLayout({
     <Aside.Provider>
       <CartProvider>
 
-      {/* {header && (
+        {header && (
           <HeaderV1 concerns={[]} categories={[]} />
-        )} */}
-      <main>{children}</main>
-      {/* <Footer
+        )}
+        <main>{children}</main>
+        {/* <Footer
         footer={footer}
         header={header}
         publicStoreDomain={publicStoreDomain}

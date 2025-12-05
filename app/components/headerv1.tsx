@@ -26,7 +26,7 @@ const HeaderV1 = ({ concerns, categories }: { concerns: Collections[], categorie
     const navigate = useNavigate();
 
     const [collectionData, setCollectionData] = useState<CollectionByHandleData>();
-
+    console.log(cartState, 'cartState')
     // const cart = useCart();
 
     const [state, setState] = useState(false)
