@@ -16,7 +16,6 @@
   "dependencies": {
     "@mikecousins/react-pdf": "^7.1.0",
     "@moengage/web-sdk": "^2.60.5",
-    "@remix-run/react": "^2.17.1",
     "@sentry/browser": "^8.13.0",
     "@sentry/react": "^8.13.0",
     "@shopify/hydrogen": "2025.7.0",

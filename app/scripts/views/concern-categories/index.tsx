@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from "@remix-run/react";
 
 import '../../../scripts/scss/import/_concern-category.scss';
 import Collection from '../collection';
 import ConcernCategoryHeader from '../../components/concern-categories/header';
+import { useLocation } from 'react-router';
 
 const ConcernCategories = () => {
     const location = useLocation();                // ⭐ SSR-safe hook
