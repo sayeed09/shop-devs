@@ -156,12 +156,6 @@ const CartPage = (props: any) => {
       });
   };
 
-  useEffect(() => {
-    if (state.localCartItems?.length === 0)
-      dispatch(setInitialCartLoading(false));
-
-  }, [])
-
   const fetchCartItems = async () => {
     await addToCartFromCookie();
     if (state.localCartItems && state.localCartItems?.length > 0) {
