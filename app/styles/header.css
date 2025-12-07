@@ -451,6 +451,7 @@ border-bottom: 3px solid #6CB657;
     overflow: auto;
     padding: 0 !important;
     display: flex;
+    flex-direction: column;
 }
 
 .oz-sub-menu>li {
@@ -483,9 +484,9 @@ border-bottom: 3px solid #6CB657;
     color: #7E7E7E !important;
 }
 
-.oz-sub-menu>li:nth-child(even) {
+/* .oz-sub-menu>li:nth-child(even) {
     background: #F5F5F5;
-}
+} */
 
 .oz-sub-menu li a:hover,
 .oz-sub-menu li button:hover {
@@ -1320,4 +1321,3 @@ button.mobile-menu-purpose:focus {
     line-height: 14px;
     letter-spacing: 0.18px;
 }
-

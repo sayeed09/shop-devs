@@ -34,7 +34,12 @@ const ConcernCategoryHeader = ({ groupType, setSelectedGoal, selectedGoal, colle
                     setSelectedCollection(data.data.collections[0].handle);
                 }
             });
-    }, [collectionHandle]);
+
+    }, []);
+
+    useEffect(() => {
+        if (collectionHandle) setSelectedCollection(collectionHandle)
+    }, [collectionHandle])
 
     const getCollectionProducts = async (handle: string) => {
         const responseData =
@@ -80,7 +85,7 @@ const ConcernCategoryHeader = ({ groupType, setSelectedGoal, selectedGoal, colle
     }
 
     const topHeight = document.getElementById('shopify-section-new-header')?.clientHeight || 60;
-
+    console.log(selectedCollection, 'selectedCollection')
 
     return (
         <>
