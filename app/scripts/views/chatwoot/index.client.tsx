@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ChatwootWidget from './ChatwootView';
 import { getAccessToken } from '../../utils/product/formatter';
 import { UserLoginValue } from '../../interface/product';
@@ -14,13 +14,14 @@ import '../../views/prime/prime.scss';
 import AuthErrorPopup from '../../components/authentication/auth-error-popup';
 import '../../../scripts/scss/import/_product-cards.scss';
 import SearchPage from '../search';
-import { Provider as AuthenticationProvider } from '../../context/authentication';
+import { AuthenticationContext, Provider as AuthenticationProvider } from '../../context/authentication';
 import { loggedInUserEvent } from '../../utils/tracking/gaTracking';
 import { Provider as GAProvider } from '../../context/gatracking';
 import ChatlineRestrictionAccess from './chatline-restrictions-popup';
 import { AnalyticsService } from '../../services/analytics';
 import { fireFBPixelEvent } from '../../utils/fbPixelUtils';
 import '../../scss/import/_supersale.scss';
+import { isUserLoginRequired } from '~/scripts/actions/authentication';
 
 export default function ChatwootView() {
   const [chatBubble, setChatBubble] = useState<boolean>(false);
@@ -46,6 +47,7 @@ export default function ChatwootView() {
   const identityHash = queryParams.get('identityHash');
   const phone = queryParams.get('phone');
   let authorizationToken: UserLoginValue | null = getAccessToken();
+  const { state: authenticationState, dispatch: AuthenticationDispatch } = useContext(AuthenticationContext);
 
   useEffect(() => {
     document.getElementById('PBarNextFrameWrapper')?.remove();
@@ -206,6 +208,17 @@ export default function ChatwootView() {
     // );
 
   }, []);
+
+  useEffect(() => {
+    if (authenticationState?.isLoginRequired) {
+      setIsShowLoginModal(true)
+    }
+  }, [authenticationState?.isLoginRequired])
+  useEffect(() => {
+    if (!isShowLoginModal) {
+      AuthenticationDispatch && AuthenticationDispatch(isUserLoginRequired(false));
+    }
+  }, [isShowLoginModal])
   return <>
     <AuthenticationProvider>
       <GAProvider>

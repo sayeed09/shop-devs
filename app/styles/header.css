@@ -391,6 +391,13 @@
     padding-right: 0px;
 }
 
+.oz-menu-listing {
+    button {
+        display: flex !important;
+        gap: 4px;
+    }
+}
+
 .oz-menu-sec ul.oz-menu-listing li {
     list-style: none;
 }

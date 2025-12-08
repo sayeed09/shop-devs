@@ -9,6 +9,7 @@ import { getEnvironmentValue } from "~/scripts/utils/helper";
 import { ReactTyped } from "react-typed";
 import { OPTIONS } from "~/scripts/utils/search/search";
 import ChatwootView from "~/scripts/views/chatwoot/index.client";
+import { AuthenticationContext } from "~/scripts/context/authentication";
 
 // Lazy-loaded components
 // const ChatwootView = lazy(() => import('../scripts/views/chatwoot'));
@@ -25,8 +26,10 @@ const HeaderV1 = ({ concerns, categories }: { concerns: Collections[], categorie
     const [categoriesTabOpen, setCategoriesTabOpen] = useState(false);
     const [state, setState] = useState(false);
     const navigate = useNavigate();
+    const { state: authenticationState, dispatch: AuthenticationDispatch } = useContext(AuthenticationContext);
 
     const [collectionData, setCollectionData] = useState<CollectionByHandleData>();
+
 
     useEffect(() => {
         if (!isBrowser) return;
@@ -51,12 +54,13 @@ const HeaderV1 = ({ concerns, categories }: { concerns: Collections[], categorie
     const OZHamburgerTab = () => setHamMenuOpen(prev => !prev);
 
     const LoginHandlerCaller = () => {
-        // AuthenticationDispatch && AuthenticationDispatch(isUserLoginRequired(true));
+        AuthenticationDispatch && AuthenticationDispatch(isUserLoginRequired(true));
     }
 
 
     const LogoutHandlerCaller = () => {
         // AuthenticationDispatch && AuthenticationDispatch(isUserLoginRequired(true));
+        setIsLoggedIn(false);
         if (!isBrowser) return;
         const hostNameDomain = window.location.hostname;
         document.cookie = `AUTH_DATA${getEnvironmentValue()}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=${hostNameDomain}; path=/;`;
@@ -268,7 +272,7 @@ const HeaderV1 = ({ concerns, categories }: { concerns: Collections[], categorie
                                         <path d="M5.37794 19L6.08808 15.7135C5.17534 14.2785 4.81928 12.5609 5.0867 10.8828C5.35412 9.20473 6.22664 7.68159 7.54057 6.59915C8.85449 5.51671 10.5195 4.94936 12.2233 5.00355C13.927 5.05774 15.5523 5.72975 16.7944 6.89348C18.0364 8.05722 18.8097 9.6327 18.9693 11.3244C19.1288 13.016 18.6636 14.7075 17.6609 16.0816C16.6583 17.4557 15.187 18.4179 13.5233 18.7876C11.8595 19.1574 10.1176 18.9093 8.62431 18.0899L5.37794 19Z" fill="#25D366" stroke="white" />
                                         <path d="M14.5407 12.94C14.3885 12.8389 14.2364 12.7884 14.0842 12.9906L13.4755 13.7996C13.3233 13.9007 13.2219 13.9513 13.019 13.8501C12.2581 13.4456 11.1929 12.9906 10.2799 11.4738C10.2291 11.2715 10.3306 11.1704 10.432 11.0693L10.8885 10.3614C10.99 10.2603 10.9393 10.1592 10.8885 10.0581L10.2799 8.59179C10.1277 8.1873 9.97551 8.23786 9.82334 8.23786H9.41754C9.31609 8.23786 9.11319 8.28842 8.91029 8.49067C7.79435 9.60301 8.25087 11.1704 9.06247 12.1816C9.21464 12.3839 10.2291 14.2041 12.4103 15.1647C14.0335 15.8726 14.3885 15.7715 14.8451 15.6703C15.403 15.6198 15.961 15.1647 16.2146 14.7097C16.2653 14.558 16.519 13.9007 16.3161 13.7996" fill="white" />
                                     </svg>
-                                    Help
+                                    <span> Help</span>
                                 </button>
                             </li>
                         </ul>
