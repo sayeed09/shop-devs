@@ -127,22 +127,22 @@ const ProductV2View = (props: ProductIdDataType) => {
             });
     }
 
-    // const buySubscription = (variantId: string) => {
-    //     productService
-    //         .getSubscription(variantId)
-    //         .then((data: SubscriptionData) => {
-    //             setIsShowLoading(false);
-    //             if (data?.data?.subscribable == true) {
-    //                 setSubscriptionData(data);
-    //             } else {
-    //                 setSubscriptionData(data);
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             setIsShowLoading(false);
-    //             console.log('Buy subscription plan error', error);
-    //         });
-    // };
+    const buySubscription = (variantId: string) => {
+        productService
+            .getSubscription(variantId)
+            .then((data: SubscriptionData) => {
+                setIsShowLoading(false);
+                if (data?.data?.subscribable == true) {
+                    setSubscriptionData(data);
+                } else {
+                    setSubscriptionData(data);
+                }
+            })
+            .catch((error) => {
+                setIsShowLoading(false);
+                console.log('Buy subscription plan error', error);
+            });
+    };
     const buyNowVariant = (variantId: string) => {
         if (!isBrowser) return
         setIsShowLoading(true);
@@ -200,56 +200,56 @@ const ProductV2View = (props: ProductIdDataType) => {
                     "Quantity": 1
                 }]
             });
-            // productService
-            //     .addItem(variantId, 1)
-            //     .then((data: GetCartListResponse) => {
-            //         setTimeout(() => {
-            //             // Done for Analytics events 
-            //             const url = `${window.location.origin}/cart`;
-            //             window.location.href = url;
-            //         }, 200);
-            //     })
-            //     .catch((error) => {
-            //         setIsShowLoading(false);
-            //         console.log('Buy now variant error', error);
-            //     });
-            // const payload: any = { id: variantId, quantity: 1 };
-            // let currentItems = cartState?.localCartItems ?? [];
+            productService
+                .addItem(variantId, 1)
+                .then((data: GetCartListResponse) => {
+                    setTimeout(() => {
+                        // Done for Analytics events 
+                        const url = `${window.location.origin}/cart`;
+                        window.location.href = url;
+                    }, 200);
+                })
+                .catch((error) => {
+                    setIsShowLoading(false);
+                    console.log('Buy now variant error', error);
+                });
+            const payload: any = { id: variantId, quantity: 1 };
+            let currentItems = cartState?.localCartItems ?? [];
 
-            // const isPresentInCart = currentItems.some((item) => item.variantId === variantId);
+            const isPresentInCart = currentItems.some((item) => item.variantId === variantId);
 
-            // const updatedItems: LocalCartLineItem[] = isPresentInCart
-            //     ? currentItems.map((item) =>
-            //         item.variantId === variantId
-            //             ? { ...item, quantity: item.quantity + 1 }
-            //             : item
-            //     )
-            //     : [...currentItems, formatCartItemV1(payload)];
-            // CartDispatch(setLocalCartItems(updatedItems));
-            // setTimeout(() => {
-            //     navigate('/cart')
-            // }, 200);
+            const updatedItems: LocalCartLineItem[] = isPresentInCart
+                ? currentItems.map((item) =>
+                    item.variantId === variantId
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                )
+                : [...currentItems, formatCartItemV1(payload)];
+            CartDispatch(setLocalCartItems(updatedItems));
+            setTimeout(() => {
+                navigate('/cart')
+            }, 200);
         }
     };
 
-    // useEffect(() => {
-    //     if (productDetail) {
-    //         getUpsellData();
-    //     }
-    // }, [productDetail]);
-    // const getUpsellData = () => {
-    //     cartService
-    //         .getUpsellList(getVariantIds(productDetail))
-    //         .then((data: GetUpsellResponse[]) => {
-    //             if (data.length > 0) {
-    //                 setIsUpsellAvailable(true);
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             setIsUpsellAvailable(false);
-    //             console.log('Get upsell data error', error);
-    //         });
-    // };
+    useEffect(() => {
+        if (productDetail) {
+            getUpsellData();
+        }
+    }, [productDetail]);
+    const getUpsellData = () => {
+        cartService
+            .getUpsellList(getVariantIds(productDetail))
+            .then((data: GetUpsellResponse[]) => {
+                if (data.length > 0) {
+                    setIsUpsellAvailable(true);
+                }
+            })
+            .catch((error) => {
+                setIsUpsellAvailable(false);
+                console.log('Get upsell data error', error);
+            });
+    };
     if (isLoading || productDetail?.variants?.length == 0) {
         return <SkeletonPdp
             productImage={props.productImage}
