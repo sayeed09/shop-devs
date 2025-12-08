@@ -256,6 +256,7 @@ const getQuery = (
 };
 
 function createCountdown() {
+  if (typeof window === "undefined") return
   const maxTime = 2 * 60 + 33; // Maximum time in seconds (2 hours and 33 minutes)
   const minTime = 47 * 60; // Minimum time in seconds (47 minutes)
   const storageKey = 'countdownTime';

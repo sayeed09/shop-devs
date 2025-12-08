@@ -1,10 +1,13 @@
 /* eslint-disable */
 
-let dataLayer = (window as any).dataLayer || [];
+import { isBrowser } from "~/root";
 
-export const Moengage = (window as any).Moengage;
+let dataLayer = isBrowser && (window as any).dataLayer || [];
+
+export const Moengage = isBrowser && (window as any).Moengage || null;
 
 export const loggedInUserEvent = () => {
+  if (!isBrowser) return
   if (window.location.pathname.indexOf('/products/') > -1) {
     const urlParams = new URLSearchParams(window.location.search);
     const handle = window.location.pathname.split('/products/')[1];

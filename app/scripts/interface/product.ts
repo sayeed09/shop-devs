@@ -23,10 +23,11 @@ export interface ProductImageModal {
   variantIds: number[];
 }
 export interface ProductIdDataType {
-  productId: string;
+  productId?: string;
   productImage?: string;
   loadingImage?: string;
   loadingText?: string;
+  productData:productDetailsModal
 }
 export interface ProductVariant {
   oldPrice?: number | undefined;

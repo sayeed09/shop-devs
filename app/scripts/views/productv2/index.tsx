@@ -39,6 +39,7 @@ import { setLocalCartItems } from '~/scripts/actions/cart';
 import { formatCartItemV1 } from '~/scripts/utils/cart/helper';
 import { useNavigate } from 'react-router';
 import CustomerReviews from '~/components/customer-reviews.client';
+import { isBrowser } from '~/root';
 
 
 
@@ -63,10 +64,12 @@ const ProductV2View = (props: ProductIdDataType) => {
         getProductDetails(props.productId);
     }, []);
     useEffect(() => {
+        if (!isBrowser) return
         window.addEventListener('hashchange', hashHandler, false);
     }, [openSubscribeModal]);
 
     const hashHandler = () => {
+        if (!isBrowser) return
         if (window.location.hash.indexOf('PurchaseOptions') == 1) {
             setSubscribeModal(true);
         } else if (
@@ -78,6 +81,7 @@ const ProductV2View = (props: ProductIdDataType) => {
         }
     };
     const getProductDetails = (productId?: any) => {
+        if (!isBrowser) return
         const UrlParams = new URLSearchParams(window.location.search);
         const tofOfFunnel = UrlParams.get('topOfFunnel') == 'true' ? true : false;
         productService
@@ -93,6 +97,8 @@ const ProductV2View = (props: ProductIdDataType) => {
     };
 
     const getAdditionalProductDetails = (productId: string) => {
+        if (!isBrowser) return
+
         const UrlParams = new URLSearchParams(window.location.search);
         const tofOfFunnel = UrlParams.get('topOfFunnel') == 'true' ? true : false;
         const fetchCombo = props.productId == productId ? false : true;
@@ -121,23 +127,24 @@ const ProductV2View = (props: ProductIdDataType) => {
             });
     }
 
-    const buySubscription = (variantId: string) => {
-        productService
-            .getSubscription(variantId)
-            .then((data: SubscriptionData) => {
-                setIsShowLoading(false);
-                if (data?.data?.subscribable == true) {
-                    setSubscriptionData(data);
-                } else {
-                    setSubscriptionData(data);
-                }
-            })
-            .catch((error) => {
-                setIsShowLoading(false);
-                console.log('Buy subscription plan error', error);
-            });
-    };
+    // const buySubscription = (variantId: string) => {
+    //     productService
+    //         .getSubscription(variantId)
+    //         .then((data: SubscriptionData) => {
+    //             setIsShowLoading(false);
+    //             if (data?.data?.subscribable == true) {
+    //                 setSubscriptionData(data);
+    //             } else {
+    //                 setSubscriptionData(data);
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             setIsShowLoading(false);
+    //             console.log('Buy subscription plan error', error);
+    //         });
+    // };
     const buyNowVariant = (variantId: string) => {
+        if (!isBrowser) return
         setIsShowLoading(true);
         if (subscriptionState?.data?.subscribable) {
             window.location.hash = 'PurchaseOptions';
@@ -149,7 +156,8 @@ const ProductV2View = (props: ProductIdDataType) => {
             };
             (window as any).Moengage.track_event(event_name, event_attributes);
             setIsShowLoading(false);
-        } else {
+        }
+         else {
             let selectedVariant = productDetail?.variants.filter((item) => {
                 return item.id == variantId;
             });
@@ -179,7 +187,7 @@ const ProductV2View = (props: ProductIdDataType) => {
                 quantity: 1,
             };
             gaAttributes.push(item);
-            gaTrackingEvent(event_name, { items: gaAttributes });
+            // gaTrackingEvent(event_name, { items: gaAttributes });
             trackMixpanelEvent("Product Added", {
                 $currency: 'INR',
                 $page_title: document.title,
@@ -205,43 +213,43 @@ const ProductV2View = (props: ProductIdDataType) => {
             //         setIsShowLoading(false);
             //         console.log('Buy now variant error', error);
             //     });
-            const payload: any = { id: variantId, quantity: 1 };
-            let currentItems = cartState?.localCartItems ?? [];
+            // const payload: any = { id: variantId, quantity: 1 };
+            // let currentItems = cartState?.localCartItems ?? [];
 
-            const isPresentInCart = currentItems.some((item) => item.variantId === variantId);
+            // const isPresentInCart = currentItems.some((item) => item.variantId === variantId);
 
-            const updatedItems: LocalCartLineItem[] = isPresentInCart
-                ? currentItems.map((item) =>
-                    item.variantId === variantId
-                        ? { ...item, quantity: item.quantity + 1 }
-                        : item
-                )
-                : [...currentItems, formatCartItemV1(payload)];
-            CartDispatch(setLocalCartItems(updatedItems));
-            setTimeout(() => {
-                navigate('/cart')
-            }, 200);
+            // const updatedItems: LocalCartLineItem[] = isPresentInCart
+            //     ? currentItems.map((item) =>
+            //         item.variantId === variantId
+            //             ? { ...item, quantity: item.quantity + 1 }
+            //             : item
+            //     )
+            //     : [...currentItems, formatCartItemV1(payload)];
+            // CartDispatch(setLocalCartItems(updatedItems));
+            // setTimeout(() => {
+            //     navigate('/cart')
+            // }, 200);
         }
     };
 
-    useEffect(() => {
-        if (productDetail) {
-            getUpsellData();
-        }
-    }, [productDetail]);
-    const getUpsellData = () => {
-        cartService
-            .getUpsellList(getVariantIds(productDetail))
-            .then((data: GetUpsellResponse[]) => {
-                if (data.length > 0) {
-                    setIsUpsellAvailable(true);
-                }
-            })
-            .catch((error) => {
-                setIsUpsellAvailable(false);
-                console.log('Get upsell data error', error);
-            });
-    };
+    // useEffect(() => {
+    //     if (productDetail) {
+    //         getUpsellData();
+    //     }
+    // }, [productDetail]);
+    // const getUpsellData = () => {
+    //     cartService
+    //         .getUpsellList(getVariantIds(productDetail))
+    //         .then((data: GetUpsellResponse[]) => {
+    //             if (data.length > 0) {
+    //                 setIsUpsellAvailable(true);
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             setIsUpsellAvailable(false);
+    //             console.log('Get upsell data error', error);
+    //         });
+    // };
     if (isLoading || productDetail?.variants?.length == 0) {
         return <SkeletonPdp
             productImage={props.productImage}
@@ -251,78 +259,7 @@ const ProductV2View = (props: ProductIdDataType) => {
 
     return (
         <>
-            <SentryProvider>
-                <UserContext>
-                    <DocumentWidthProvider>
-                        <ProductProvider>
-                            <div className="oziva-body product-container-v2">
-                                <div className="oziva-mob-container">
-                                    <main className="oziva-pdp-content-area oziva-pdp-web">
-                                        <ProductV2
-                                            productId={props.productId}
-                                            subscriptionState={subscriptionState as SubscriptionData}
-                                            openSubscribeModal={openSubscribeModal}
-                                            setSubscribeModal={setSubscribeModal}
-                                            setSubscriptionData={setSubscriptionData}
-                                            buyNowVariant={buyNowVariant}
-                                            initialScroll={initialScroll}
-                                            buySubscription={buySubscription}
-                                            isShowLoading={isShowLoading}
-                                            productDetail={productDetail as productDetailsModal}
-                                            setBuyButtonLoader={setBuyButtonLoader}
-                                            buttonLoader={buttonLoader}
-                                            directSubscriptionCart={false}
-                                            isUpsellAvailable={isUpsellAvailable}
-                                            setIsItemAdded={setIsItemAdded}
-                                            isItemAdded={isItemAdded}
-                                            setIsShowLoading={setIsShowLoading}
-                                            getAdditionalProductDetails={getAdditionalProductDetails}
-                                        />
-                                        <ProductBottomSectionV2
-                                            productId={props.productId}
-                                            buyNowVariant={buyNowVariant}
-                                            isShowLoading={isShowLoading}
-                                            setBuyButtonLoader={setBuyButtonLoader}
-                                            buttonLoader={buttonLoader}
-                                            initialScroll={initialScroll}
-                                            productDetail={productDetail as productDetailsModal}
-                                            isItemAdded={isItemAdded}
-                                            isLoading={isLoading}
-                                        />
-                                        <Suspense>
-                                            <CustomerReviews productId={props.productId} title={productDetail?.title as string} />
-                                        </Suspense>
-                                        {!additionalDataFetched && <SectionSkeleton />}
-                                        <MircroInteraction />
-                                        <FooterSeo />
-                                        {isMobile() ?
-                                            <MobileFooter
-                                                productId={props.productId}
-                                                buyNowVariant={buyNowVariant}
-                                                isShowLoading={isShowLoading}
-                                                productDetail={productDetail as productDetailsModal}
-                                                isUpsellAvailable={isUpsellAvailable}
-                                                setIsItemAdded={setIsItemAdded}
-                                                isItemAdded={isItemAdded}
-                                                setSubscribeModal={setSubscribeModal}
-                                            /> :
-                                            <DesktopFooter
-                                                productId={props.productId}
-                                                buyNowVariant={buyNowVariant}
-                                                isShowLoading={isShowLoading}
-                                                productDetail={productDetail as productDetailsModal}
-                                                setIsItemAdded={setIsItemAdded}
-                                                isItemAdded={isItemAdded}
-                                                setSubscribeModal={setSubscribeModal}
-                                            />
-                                        }
-                                    </main>
-                                </div>
-                            </div>
-                        </ProductProvider>
-                    </DocumentWidthProvider>
-                </UserContext>
-            </SentryProvider >
+            <h2>Hhhh</h2>
         </>
     );
 };

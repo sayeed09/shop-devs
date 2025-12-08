@@ -54,6 +54,11 @@ async function loadCriticalData({ context, params, request }: Route.LoaderArgs) 
     // Add other queries here, so that they are loaded in parallel
   ]);
 
+  const [product2] = await Promise.all([
+    axios.get(`https://api.prod.oziva.in/catalog/product/details/v2/${product.data.data.id}?topOfFunnel=false&inStock=true&expand=sections,seo,footer,faq&pageSource=pdp`),
+  ]);
+
+
   // if (!product?.id) {
   //   throw new Response(null, {status: 404});
   // }
@@ -61,7 +66,7 @@ async function loadCriticalData({ context, params, request }: Route.LoaderArgs) 
   // The API handle might be localized, so redirect to the localized handle
   // redirectIfHandleIsLocalized(request, { handle, data: product });
   return {
-    product: product.data,
+    product: product2.data,
   };
 }
 
@@ -85,7 +90,7 @@ export default function Product() {
 
 
   return (
-    <ProductView productId={product.data.id} />
+    <ProductView productData={product.data} />
   );
 }
 

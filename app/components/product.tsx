@@ -4,11 +4,11 @@ import { Provider as MixpanelProvider } from '../scripts/context/mixpanelContext
 import { Provider as GAProvider } from '../scripts/context/gatracking';
 
 
-const ProductClient = ({ productId }) => {
+const ProductClient = ({ productData }) => {
     return <>
         <MixpanelProvider>
             <GAProvider>
-                <ProductV2View productId={productId} />
+                <ProductV2View productData={productData} />
             </GAProvider>
         </MixpanelProvider>
 

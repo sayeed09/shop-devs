@@ -1,10 +1,10 @@
 import React, { Suspense } from "react";
-import ProductClient from "./product.client";
+import ProductClient from "./product";
 
-const ProductView = ({ productId }) => {
+const ProductView = ({ productData }) => {
     return <>
         <Suspense fallback={<div>Loading...</div>}>
-            <ProductClient productId={productId} />
+            <ProductClient productData={productData} />
         </Suspense>
 
     </>

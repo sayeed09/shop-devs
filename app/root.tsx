@@ -20,6 +20,7 @@ import { PageLayout } from './components/PageLayout';
 import { useEffect } from 'react';
 
 export type RootLoader = typeof loader;
+export const isBrowser = typeof window !== "undefined";
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
