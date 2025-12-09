@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { IconDescription } from "../../../models/product/productv2";
 import { SectionHeader } from "../common";
-import parse from 'html-react-parser';
 import { GAContext } from "../../../context/gatracking";
 
 interface Props {
@@ -28,14 +27,12 @@ const IconDescriptionComponent = ({ iconDescriptions, sectionHeader, className }
                         <span className="arrow-icon" />
                     </div>
                     {selectedItem.title === item.title &&
-                        <div className={`description hide-on-web ${selectedItem.title == item.title ? 'active' : ''}`}>
-                            {parse(item.description)}
+                        <div dangerouslySetInnerHTML={{ __html: item.description }} className={`description hide-on-web ${selectedItem.title == item.title ? 'active' : ''}`}>
                         </div>
                     }
                 </React.Fragment>))}
             </div>
-            <div className="description hide-on-mobile">
-                {parse(selectedItem.description)}
+            <div dangerouslySetInnerHTML={{ __html: selectedItem.description }} className="description hide-on-mobile">
             </div>
         </div >
     </section >

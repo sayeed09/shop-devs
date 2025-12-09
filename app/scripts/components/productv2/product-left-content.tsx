@@ -27,14 +27,14 @@ interface ProductLeftContentModal {
 
 
 const ProductLeftContent = (props: ProductLeftContentModal) => {
-  const ComparisonImage = ({ item }: { item: Section }) => item ? <ImageComparison headerSection={item?.header as string} imageComparisons={getImageList(item?.comparisons as Comparison[])} /> : null;
+  // const ComparisonImage = ({ item }: { item: Section }) => item ? <ImageComparison headerSection={item?.header as string} imageComparisons={getImageList(item?.comparisons as Comparison[])} /> : null;
   const Article = ({ item }: { item: Section }) => item ? <Articles sectionHeader={item.header as string} articleSection={item.articleSection as ArticleSection[]} productId={props.productId} className={'uds-597-control'} /> : null;
   const IconDescription = ({ item }: { item: Section }) => item ? <IconDescriptionComponent sectionHeader={item.header as string} iconDescriptions={item.iconDescriptions as IconDescription[]} className='uds-597-control' /> : null;
   const Image = ({ item }: { item: Section }) => item ? <Banner title={item?.header} desktopImage={item.desktop as string} mobileImage={item.mobile as string} index={item.sort as number} showDisclaimer={isItAtLastPostion(props?.productDetail?.sections?.filter((sec) => sec.type === "Image") as Section[], item)} buyNowVariant={props.buyNowVariant} /> : null
   const GoogleReview = ({ item }: { item: Section }) => item ? <GoogleReviews googleReview={item.googleReview as GoogleReviewsModel} header={item.header as string} customeClassName='uds-557-control' /> : null;
 
   const componentsMap = {
-    ComparisonImage,
+    // ComparisonImage,
     Article,
     IconDescription,
     Image,
@@ -45,7 +45,7 @@ const ProductLeftContent = (props: ProductLeftContentModal) => {
     <>
       <div className="page-content-left-sec pdp-left-data clearfix product-v2-row gcsk-1630-Control">
         <BadgeIcons className={props?.productDetail?.recommendedByExperts?.title ? '' : 'footer-sec-border'} v1 />
-        {props.productDetail.labReportSection ? <LabReportsSection productId={props.productId} labReportsSection={props.productDetail.labReportSection}/> : null}
+        {props.productDetail.labReportSection ? <LabReportsSection productId={props.productId} labReportsSection={props.productDetail.labReportSection} /> : null}
         <RecommendedExpert productDetail={props?.productDetail} />
         <ProductOffer
           initialScroll={props.initialScroll}

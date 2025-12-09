@@ -1,11 +1,11 @@
 
-export const getENVSpecificPrimeItemId: string = (window as any).ENVIRONMENT === 'dev' ? '6568121663532' : '6567722811451';
+export const getENVSpecificPrimeItemId: string = '6567722811451';
 
 export const MOST_SELLING_VARIANTS = [20020265582651, 20052546682939, 34368633700411];
 
 export const PHWDuplicateProductID = '7236934631483';
 
-export const SamplingProductID: string = (window as any).ENVIRONMENT === 'dev' ? '7657849847852' : '7307881021499';
+export const SamplingProductID: string = '7307881021499';
 
 export const ACVMoringProductID = '7294052073531';
 export const ACVMoringDuplicateProductID = '7418024656955';
@@ -16,11 +16,10 @@ export const HairVitaminsProductID = '4484402872379';
 export const HairVitaminsCopyProductID = '7316665499707';
 export const GlutaFizzyProductID = '7237175476283';
 
-export const HVProductId = (window as any).ENVIRONMENT === 'dev' ? '7158222356524' : '4484402872379';
-export const FertilityProductId = (window as any).ENVIRONMENT === 'dev' ? '7158222356524' : '7318886023227';
+export const HVProductId = '4484402872379';
+export const FertilityProductId = '7318886023227';
 
-export const SUBSCRIPTION_PREPAID_PRODUCTS = (window as any).ENVIRONMENT === 'dev' ? [6568118779948,
-    6568118681644] : [
+export const SUBSCRIPTION_PREPAID_PRODUCTS = [
     2262376448059,
     2277916082235,
     4484540432443,

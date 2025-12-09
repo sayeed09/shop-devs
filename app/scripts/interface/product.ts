@@ -27,7 +27,8 @@ export interface ProductIdDataType {
   productImage?: string;
   loadingImage?: string;
   loadingText?: string;
-  productData:productDetailsModal
+  productData: productDetailsModal;
+  variantId: string;
 }
 export interface ProductVariant {
   oldPrice?: number | undefined;

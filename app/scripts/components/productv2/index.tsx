@@ -45,10 +45,20 @@ interface ProductDetailModal {
 const ProductV2 = (props: ProductDetailModal) => {
     const { state: productState, dispatch: productDispatch } = useContext(ProductContext);
     const gaTrackingEvent = useContext(GAContext);
+    const getImageListV1 = () => {
+        let productDetails: ProductImageModal[] = [];
 
+        if (productState?.productDetails?.id) {
+            productDetails = props.productDetail.images;
+        }
+        let selectedVariantImages = productDetails?.filter((item) => item.variantIds.indexOf(Number(productState?.productDetails?.id)) > -1);
+        let commonImages = productDetails.filter((item) => item.variantIds.length == 0);
+        return [...selectedVariantImages, ...commonImages];
+
+    }
     const [variantArray, setVariantArray] = useState<ProductVariant[]>([]);
     const { trackMixpanelEvent, mixpanelExp } = useContext(MixPanelContext);
-    const [imageList, setImageList] = useState<ProductImageModal[]>([]);
+    const [imageList, setImageList] = useState<ProductImageModal[]>(getImageListV1());
     const [isComboVariantSelected, setIsComboVariantSelected] = useState(false);
 
 
@@ -99,6 +109,7 @@ const ProductV2 = (props: ProductDetailModal) => {
 
 
     }, [productState?.productDetails?.id]);
+
 
     const getImageList = () => {
         let productDetails: ProductImageModal[] = [];

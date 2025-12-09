@@ -9,9 +9,9 @@ export const Provider = ({ children, disableSdk }: any) => {
   const [mixpanelExp, setMixpanelExp] = useState<string | undefined>();
 
   const trackMixpanelEvent = (event_name: string, attribute: any) => {
-    if (!disableSdk) {
-      mixpanel.track(event_name, attribute);
-    }
+    // if (!disableSdk) {
+    //   mixpanel.track(event_name, attribute);
+    // }
   };
 
   const getDistinctIdAndFlag = async () => {
@@ -38,29 +38,29 @@ export const Provider = ({ children, disableSdk }: any) => {
   };
   useEffect(() => {
     if (!disableSdk) {
-      if (!(mixpanel as any)._initCalled) {
-        mixpanel.init('75f794f03ef5e3b85919d0507c5510fa', {
-          ignore_dnt: true,
-          debug: true,
-          track_pageview: true,
-          cross_subdomain_cookie: true,
-          persistence: 'cookie',
-          api_host: 'https://api.mixpanel.com',
-          //@ts-ignore
-          // record_heatmap_data: true,
-          //@ts-ignore
-          // flags: {
-          //   context: {
-          //     custom_properties: {
-          //       url: isMobile() ? window.location.pathname : '',
-          //     },
-          //   },
-          // },
-        });
-        (mixpanel as any)._initCalled = true;
-      }
+      // if (!(mixpanel as any)._initCalled) {
+        // mixpanel.init('75f794f03ef5e3b85919d0507c5510fa', {
+        //   ignore_dnt: true,
+        //   debug: true,
+        //   track_pageview: true,
+        //   cross_subdomain_cookie: true,
+        //   persistence: 'cookie',
+        //   api_host: 'https://api.mixpanel.com',
+        //   //@ts-ignore
+        //   // record_heatmap_data: true,
+        //   //@ts-ignore
+        //   // flags: {
+        //   //   context: {
+        //   //     custom_properties: {
+        //   //       url: isMobile() ? window.location.pathname : '',
+        //   //     },
+        //   //   },
+        //   // },
+        // });
+        // (mixpanel as any)._initCalled = true;
+      // }
 
-      getDistinctIdAndFlag();
+      // getDistinctIdAndFlag();
     }
   }, [disableSdk]);
 

@@ -4,10 +4,11 @@ import { EasyReturnsFooterIcon } from '../../../../icons/easy-returns-footer';
 import { ProductModalCloseIcon } from '../../../../icons/product-modal-close';
 import { SecureIcon } from '../../../../icons/secure-icon';
 import { hideScroll, initialScroll } from '../../../utils/product/formatter';
-import Flickity from 'react-flickity-component';
-import 'flickity-fullscreen';
+
 import { cartGoogleReviews } from '../../../utils/cart/constants';
 import { generateRatedStarYellow } from '../google-reviews/ratings-review';
+import { isBrowser } from '~/root';
+import { useLocation } from 'react-router';
 
 export const ICONS = [
     {
@@ -56,63 +57,7 @@ export const GoogleReviewflickityOptions = {
     cellAlign: 'left'
 };
 
-export const Variant3 = ({ rerenderCarousel }: { rerenderCarousel: boolean }) => {
-    const [isCarouselRerender, setIsCarouselRerender] = useState<boolean>(false);
 
-    useEffect(() => {
-        if (rerenderCarousel) {
-            setIsCarouselRerender(!isCarouselRerender);
-        }
-    }, [rerenderCarousel]);
-    return (
-        <>
-            <div className='footer-icons-v3'>
-                <div className='cart-google-reviews-header'>
-                    <div className='title'>We are Trusted by Millions!</div>
-                    <img src="https://cdn.shopify.com/s/files/1/2393/2199/files/google-icon-logo_1.svg?v=1723620685" className='google-logo' />
-                    <img src="https://cdn.shopify.com/s/files/1/0366/1004/8044/files/filled_star.svg?v=1724055254" className='rated-star' />
-                    <div>4.7 stars</div>
-                </div>
-
-                <div className='cart-google-reviews-container'>
-                    <div className='cart-google-reviews-list'>
-                        <Flickity
-                            className="carousel carousel-main"
-                            elementType={'div'}
-                            options={GoogleReviewflickityOptions}
-                            reloadOnUpdate
-                        >
-                            {cartGoogleReviews.map((item) => {
-                                return (
-                                    <div key={item.reviewer} className="cart-google-review-item">
-                                        <div className='reviewer-image'>
-                                            <img src={item.image} alt={item.reviewer} />
-                                        </div>
-
-                                        <div className='review-details'>
-                                            <div className='review-heading'>
-                                                <div className='reviewer'>
-                                                    {item.reviewer}
-                                                </div>
-                                                <div className='timeago'>
-                                                    {item.timeAgo}
-                                                </div>
-                                            </div>
-                                            <div className='cart-review-item-stars'>
-                                                {generateRatedStarYellow(5)}
-                                            </div>
-                                            <div className='review'>{item.review}</div>
-                                        </div>
-                                    </div>
-                                )
-                            })}
-                        </Flickity>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
-}
 
 const BadgeIcons = ({ v1, className }: { v1?: boolean, className?: string }) => {
     const [modalContent, setModalContent] = useState<{
@@ -122,7 +67,7 @@ const BadgeIcons = ({ v1, className }: { v1?: boolean, className?: string }) => 
     }>();
     const [rerenderCarousel, setRerenderCarousel] = useState(false);
     const iconList = ICONS;
-    const pathname = window.location.pathname;
+    const pathname = useLocation();
 
     // Experiment UDS-523
 
@@ -130,6 +75,7 @@ const BadgeIcons = ({ v1, className }: { v1?: boolean, className?: string }) => 
         setRerenderCarousel(true);
     }
     useEffect(() => {
+        if (!isBrowser) return
         window.addEventListener('rerenderGoogleReviews', handleRerenderCarousel);
 
         return () => {
@@ -200,7 +146,7 @@ const BadgeIcons = ({ v1, className }: { v1?: boolean, className?: string }) => 
             <div className='footer-horizontal-line'></div>
 
             {/* //UDS-523 Experiment */}
-            {pathname === '/cart' && <section className={`footer-icons ${v1 ? 'footer-icons-v2' : 'footer-icons-control'} ${className}`}>
+            {pathname.pathname === '/cart' && <section className={`footer-icons ${v1 ? 'footer-icons-v2' : 'footer-icons-control'} ${className}`}>
                 <div className='footer-icons-v1-title cart-declutter-experiment'>Trusted by Millions for a Reason</div>
                 <div className='footer-icons-container'>
                     {ICONS.map((item, index) => <div className="footer-icons-col" key={index}>
@@ -246,7 +192,6 @@ const BadgeIcons = ({ v1, className }: { v1?: boolean, className?: string }) => 
                     </div>
                 )}
             </section>}
-            {/* //UDS-523 Experiment end */}
         </>
     );
 };

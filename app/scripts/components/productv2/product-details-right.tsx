@@ -390,12 +390,12 @@ const ProductDetailRight = (props: ProductDetailRightModal) => {
                 CONTINUE SHOPPING
               </a>
             </div>
-            {props.isUpsellAvailable && (
+            {/* {props.isUpsellAvailable && (
               <PopupModal
                 productId={props.productId}
                 productDetail={props.productDetail}
               />
-            )}
+            )} */}
           </div>
         )
       }

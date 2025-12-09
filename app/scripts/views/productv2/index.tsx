@@ -47,7 +47,7 @@ const ProductV2View = (props: ProductIdDataType) => {
     const [subscriptionState, setSubscriptionData] = useState<SubscriptionData>();
     const [openSubscribeModal, setSubscribeModal] = useState(false);
     const [isShowLoading, setIsShowLoading] = useState(false);
-    const [productDetail, setProductDetails] = useState<productDetailsModal>();
+    const [productDetail, setProductDetails] = useState<productDetailsModal>(props.productData);
     const [buttonLoader, setBuyButtonLoader] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [isUpsellAvailable, setIsUpsellAvailable] = useState<boolean>(false);
@@ -57,11 +57,10 @@ const ProductV2View = (props: ProductIdDataType) => {
     const gaTrackingEvent = useContext(GAContext);
     const { state: cartState, dispatch: CartDispatch } = useContext(CartContext);
     const navigate = useNavigate();
-
     useEffect(() => {
         // handleStickyButton();
         mutationObserver();
-        getProductDetails(props.productId);
+        getAdditionalProductDetails(props.productData.id)
     }, []);
     useEffect(() => {
         if (!isBrowser) return
@@ -157,7 +156,7 @@ const ProductV2View = (props: ProductIdDataType) => {
             (window as any).Moengage.track_event(event_name, event_attributes);
             setIsShowLoading(false);
         }
-         else {
+        else {
             let selectedVariant = productDetail?.variants.filter((item) => {
                 return item.id == variantId;
             });
@@ -250,16 +249,90 @@ const ProductV2View = (props: ProductIdDataType) => {
                 console.log('Get upsell data error', error);
             });
     };
-    if (isLoading || productDetail?.variants?.length == 0) {
-        return <SkeletonPdp
-            productImage={props.productImage}
-            loadingImage={props.loadingImage}
-            loadingText={props.loadingText} />;
-    }
+    // if (isLoading || productDetail?.variants?.length == 0) {
+    //     return <SkeletonPdp
+    //         productImage={props.productImage}
+    //         loadingImage={props.loadingImage}
+    //         loadingText={props.loadingText} />;
+    // }
+    debugger;
 
     return (
         <>
-            <h2>Hhhh</h2>
+            <SentryProvider>
+                <UserContext>
+                    <DocumentWidthProvider>
+                        <ProductProvider productDetails={props.productData} variantId={props.variantId}>
+                            <div className="oziva-body product-container-v2">
+                                <div className="oziva-mob-container">
+                                    <main className="oziva-pdp-content-area oziva-pdp-web">
+                                        <ProductV2
+                                            variantId={props.variantId}
+                                            productId={props.productData.id}
+                                            subscriptionState={subscriptionState as SubscriptionData}
+                                            openSubscribeModal={openSubscribeModal}
+                                            setSubscribeModal={setSubscribeModal}
+                                            setSubscriptionData={setSubscriptionData}
+                                            buyNowVariant={buyNowVariant}
+                                            initialScroll={initialScroll}
+                                            buySubscription={buySubscription}
+                                            isShowLoading={isShowLoading}
+                                            productDetail={productDetail as productDetailsModal}
+                                            setBuyButtonLoader={setBuyButtonLoader}
+                                            buttonLoader={buttonLoader}
+                                            directSubscriptionCart={false}
+                                            isUpsellAvailable={isUpsellAvailable}
+                                            setIsItemAdded={setIsItemAdded}
+                                            isItemAdded={isItemAdded}
+                                            setIsShowLoading={setIsShowLoading}
+                                            getAdditionalProductDetails={getAdditionalProductDetails}
+                                        />
+                                        <ProductBottomSectionV2
+                                            productId={props.productData.id}
+                                            buyNowVariant={buyNowVariant}
+                                            isShowLoading={isShowLoading}
+                                            setBuyButtonLoader={setBuyButtonLoader}
+                                            buttonLoader={buttonLoader}
+                                            initialScroll={initialScroll}
+                                            productDetail={productDetail as productDetailsModal}
+                                            isItemAdded={isItemAdded}
+                                            isLoading={isLoading}
+                                        />
+                                        <Suspense>
+                                            <CustomerReviews productId={props.productData.id} title={productDetail?.title as string} />
+                                        </Suspense>
+
+                                        {/* {!additionalDataFetched && <SectionSkeleton />} */}
+                                        <MircroInteraction />
+                                        <FooterSeo />
+                                        {isMobile() ?
+                                            <MobileFooter
+                                                productId={props.productData.id}
+                                                buyNowVariant={buyNowVariant}
+                                                isShowLoading={isShowLoading}
+                                                productDetail={productDetail as productDetailsModal}
+                                                isUpsellAvailable={isUpsellAvailable}
+                                                setIsItemAdded={setIsItemAdded}
+                                                isItemAdded={isItemAdded}
+                                                setSubscribeModal={setSubscribeModal}
+                                            /> :
+                                            <DesktopFooter
+                                                productId={props.productData.id}
+                                                buyNowVariant={buyNowVariant}
+                                                isShowLoading={isShowLoading}
+                                                productDetail={productDetail as productDetailsModal}
+                                                setIsItemAdded={setIsItemAdded}
+                                                isItemAdded={isItemAdded}
+                                                setSubscribeModal={setSubscribeModal}
+                                            />
+                                        }
+                                    </main>
+                                </div>
+                            </div>
+                        </ProductProvider>
+                    </DocumentWidthProvider>
+                </UserContext>
+            </SentryProvider >
         </>
     );
 };

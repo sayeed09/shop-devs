@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import {
   IProductState,
   IProductAction,
@@ -74,7 +74,21 @@ const reducer = (
 
 export const ProductContext = React.createContext({} as IProductContextModel);
 
-export const Provider = ({ children }: any) => {
+export const Provider = ({ children, productDetails, variantId }: any) => {
+  const currentVariant = productDetails.variants.find((item) => item.id == variantId);
+  const currentImage = productDetails.images.find((item) => String(item.id) == String(currentVariant?.imageId));
+  const defaultState: IProductState = {
+    productDetails: currentVariant,
+    productAllVariant: null,
+    selectedImage: currentImage,
+    seoData: null,
+    subscriptionPlan: null,
+    selectedOption: [],
+    productTitle: null,
+    componentState: null,
+    productReview: null
+  };
+
   const [state, dispatch] = useReducer(reducer, defaultState);
 
   return (

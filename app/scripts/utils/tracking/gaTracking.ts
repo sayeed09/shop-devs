@@ -2,9 +2,8 @@
 
 import { isBrowser } from "~/root";
 
-let dataLayer = isBrowser && (window as any).dataLayer || [];
 
-export const Moengage = isBrowser && (window as any).Moengage || null;
+export const Moengage = null;
 
 export const loggedInUserEvent = () => {
   if (!isBrowser) return

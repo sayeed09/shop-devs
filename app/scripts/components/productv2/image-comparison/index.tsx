@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
-import Flickity from "react-flickity-component";
-import 'flickity-fullscreen';
+// import Flickity from "react-flickity-component";
+// import 'flickity-fullscreen';
 import { SectionHeader } from "../common";
 import { ImageComparisonModel } from "../../../models/product/productv2";
 import Slider from "./slider";
@@ -28,7 +28,7 @@ const ImageComparison = ({ imageComparisons, headerSection }: Props) => {
 
     return <section className="img-comparion-container">
         <div className="header-container">
-            <SectionHeader title={headerSection} />
+            {/* <SectionHeader title={headerSection} /> */}
 
             <div className="next-prev-btns hide-on-mobile">
                 <Buttons

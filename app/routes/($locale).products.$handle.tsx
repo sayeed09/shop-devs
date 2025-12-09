@@ -32,7 +32,12 @@ export async function loader(args: Route.LoaderArgs) {
   // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
 
-  return { ...deferredData, ...criticalData };
+  const url = new URL(args.request.url);
+  const searchParams = new URLSearchParams(url.search);
+  const variantId = searchParams.get('variant');
+
+
+  return { ...deferredData, ...criticalData, variantId: variantId };
 }
 
 /**
@@ -55,7 +60,7 @@ async function loadCriticalData({ context, params, request }: Route.LoaderArgs) 
   ]);
 
   const [product2] = await Promise.all([
-    axios.get(`https://api.prod.oziva.in/catalog/product/details/v2/${product.data.data.id}?topOfFunnel=false&inStock=true&expand=sections,seo,footer,faq&pageSource=pdp`),
+    axios.get(`https://api.prod.oziva.in/catalog/product/details/v2/${product.data.data.id}?topOfFunnel=false&inStock=true&expand=newBenefits,variants,,images,clinicalStudy&pageSource=pdp`),
   ]);
 
 
@@ -83,14 +88,14 @@ function loadDeferredData({ context, params }: Route.LoaderArgs) {
 }
 
 export default function Product() {
-  const { product } = useLoaderData<typeof loader>();
+
+  const { product, variantId } = useLoaderData<typeof loader>();
 
   // Optimistically selects a variant with given available variant information
 
 
-
   return (
-    <ProductView productData={product.data} />
+    <ProductView productData={product.data} variantId={variantId} />
   );
 }
 

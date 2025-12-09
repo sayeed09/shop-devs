@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { isBrowser } from '~/root';
 
 export const DocumentWidthContext = React.createContext({} as any);
 
-export const Provider= ({ children }:any) => {
+export const Provider = ({ children }: any) => {
   const [documentWidth, setDocumentWidth] = useState(
-    document.documentElement.clientWidth,
+    768,
   );
   useEffect(() => {
+    if (!isBrowser) return
     window.addEventListener('load', function (event) {
       setDocumentWidth(document.documentElement.clientWidth);
     });

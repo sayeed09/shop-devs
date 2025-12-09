@@ -50,7 +50,7 @@ const MobileFooter = (props: MobileFooterModal) => {
         setProductLeftCount(remainingProductsInStock(props.productId));
 
     }, [productState.productTitle]);
-
+    console.log(props.productDetail, 'components/productv2/mobile-footer.tsx:55:3')
     const isVariantAvailable =
         props.productDetail?.variants.filter((item) => item.inventoryQuantity > 0)
             .length > 0;

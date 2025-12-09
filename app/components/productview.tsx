@@ -1,11 +1,9 @@
 import React, { Suspense } from "react";
 import ProductClient from "./product";
 
-const ProductView = ({ productData }) => {
+const ProductView = ({ productData, variantId }) => {
     return <>
-        <Suspense fallback={<div>Loading...</div>}>
-            <ProductClient productData={productData} />
-        </Suspense>
+        <ProductClient productData={productData} variantId={variantId} />
 
     </>
 }

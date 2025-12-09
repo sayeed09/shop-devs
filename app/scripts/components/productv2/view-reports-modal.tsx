@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { ProductModalCloseIcon } from '../../../icons/product-modal-close';
-import parse from 'html-react-parser';
 import { productService } from '../../services/product';
 import { ButtonLoader } from '../../../icons/button-loader';
 import { ILabReportSection } from '../../interface/product';
@@ -75,8 +74,8 @@ const ViewReportsModal = ({ setViewReports, productId, labReportsSection }: IPro
                                     <div className='lap-report-content'>
                                         <div className='lab-report-title'>{labReportsSection.heading}</div>
                                         <div className='lab-report-description'>
-                                            <div className='reports-description'>
-                                                {parse(labReportsSection.content)}
+                                            <div className='reports-description' dangerouslySetInnerHTML={{ __html: labReportsSection.content }}>
+
                                             </div>
                                         </div>
                                     </div>
