@@ -29,6 +29,7 @@ export interface ProductIdDataType {
   loadingText?: string;
   productData: productDetailsModal;
   variantId: string;
+  isMobile: boolean;
 }
 export interface ProductVariant {
   oldPrice?: number | undefined;

@@ -75,7 +75,6 @@ const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ imageList, options, noFul
         emblaMainApi?.scrollNext();
     }, [emblaMainApi]);
     
-    debugger;
     return (
         <div className="embla pdp-product-slider position-relative">
             <div className="embla__viewport main-slider" ref={emblaMainRef}>

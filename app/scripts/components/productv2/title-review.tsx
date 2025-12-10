@@ -16,16 +16,11 @@ interface clinicalStudyProps {
 }
 
 export const TitleAndReview = ({ productId, title, newBenefitChips, reviewsRating, expTitle }: Props) => (<>
-
     <div className="title-review-mobile-sec hide-on-web">
         <h1 className={'product-title product-title-control'}>
             {title}
         </h1>
-        <h1 className={'product-title product-title-exp'}>
-            {expTitle}
-        </h1>
-        {title ? <div className="product-title-subtext">{title.split('-').splice(1)}</div> : null}
-        <ForWithRatings reviewsRating={reviewsRating} newBenefitChips={newBenefitChips} productId={productId} isExp={true}/>
+        <ForWithRatings reviewsRating={reviewsRating} newBenefitChips={newBenefitChips} productId={productId} isExp={true} />
     </div>
 </>
 );

@@ -35,9 +35,15 @@ export async function loader(args: Route.LoaderArgs) {
   const url = new URL(args.request.url);
   const searchParams = new URLSearchParams(url.search);
   const variantId = searchParams.get('variant');
+  const userAgent = args.request.headers.get('user-agent') || '';
+
+  const isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      userAgent,
+    );
 
 
-  return { ...deferredData, ...criticalData, variantId: variantId };
+  return { ...deferredData, ...criticalData, variantId: variantId, isMobile: isMobile };
 }
 
 /**
@@ -89,13 +95,13 @@ function loadDeferredData({ context, params }: Route.LoaderArgs) {
 
 export default function Product() {
 
-  const { product, variantId } = useLoaderData<typeof loader>();
+  const { product, variantId, isMobile } = useLoaderData<typeof loader>();
 
   // Optimistically selects a variant with given available variant information
 
 
   return (
-    <ProductView productData={product.data} variantId={variantId} />
+    <ProductView productData={product.data} variantId={variantId} isMobile={isMobile} />
   );
 }
 

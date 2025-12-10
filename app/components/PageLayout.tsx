@@ -72,12 +72,12 @@ export function PageLayout({
           )}
           <main>{children}</main>
 
-          {!location.pathname.includes('cart') &&
+          {/* {!location.pathname.includes('cart') &&
             <Footer
               concerns={concerns}
               categories={categories}
             />
-          }
+          } */}
         </CartProvider>
       </AuthenticationProvider>
 

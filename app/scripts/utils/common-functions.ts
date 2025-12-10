@@ -104,8 +104,9 @@ export const getOrderTrackingStatuses = (orderTrackingStatusList: Track[] | unde
 };
 
 export const remainingProductsInStock = (productId: string) => {
-    if (typeof window === "undefined") return 0;
     const productLeft = Math.floor(Math.random() * (99 - 49 + 1)) + 49;
+
+    if (typeof window === "undefined") return productLeft;
     const productLeftFromStorage = sessionStorage.getItem("productLeftObject") ? JSON.parse(sessionStorage.getItem("productLeftObject")!) : {};
     if (productLeftFromStorage[productId]) return productLeftFromStorage[productId];
     productLeftFromStorage[productId] = productLeft;

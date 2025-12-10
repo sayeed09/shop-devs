@@ -55,11 +55,83 @@ const RightStickyCard = (props: ProductRightContectModal) => {
                   ? convertImageSize(productState?.selectedImage?.src, 50, 50) :
                   convertImageSize(productState?.selectedImage?.src, 300, 300)
             }
-            alt={productState?.productTitle}
+            alt={productState.productTitle}
             className="w-100"
             height="100%"
           />
-
+        </div>
+        {productState?.productReview?.averageRating &&
+          <div className='review-sec'>
+            <div>{productState?.productReview?.averageRating}</div>
+            <span className='divider' />
+            <div className="rating-icon rating-filled-icon"></div>
+            <div>{productState?.productReview?.numberOfReviews} Reviews</div>
+          </div>}
+        <div>
+          <span className="font-normal h3">{productState.productTitle}</span>
+          <p>
+            {productState.productDetails?.price !=
+              productState.productDetails?.compareAtPrice && (
+                <span className="text-off-gray">
+                  <span>MRP:</span>{' '}
+                  <span className="text-decoration">
+                    {formatPriceWithCurrency(productState.productDetails?.compareAtPrice)}
+                  </span>
+                </span>
+              )}
+            <span className="f-14">{formatPriceWithCurrency(productState.productDetails?.price)}</span>
+          </p>
+          {productState.productDetails?.compareAtPrice -
+            productState.productDetails?.price >
+            0 && (
+              <p className="text-orangeVibrantShade subtitle-small font-medium">
+                You Save :
+                {formatPriceWithCurrency(productState.productDetails?.compareAtPrice -
+                  productState.productDetails?.price)}
+              </p>
+            )}
+          {productDetail.newBenefitChips?.for &&
+            <div className='for-with-sec'>
+              <div className='item'>
+                <div className='title'>FOR</div>
+                <div className='desc'>{productDetail.newBenefitChips?.for}</div>
+              </div>
+              <div className='item'>
+                <div className='title'>WITH</div>
+                <div className='desc'>{productDetail.newBenefitChips?.with}</div>
+              </div>
+            </div>}
+          {props.productDetail.variants.filter(
+            (item) => item.inventoryQuantity > 0,
+          ).length > 0 && (
+              <div className="mt-16">
+                {props.isShowLoading && props.buttonLoader == 'bottomButton' ? (
+                  <div
+                    className="btn btn-primary d-block text-center"
+                    style={{ height: '41.8px', padding: '6px' }}
+                  >
+                    <ButtonLoader />
+                  </div>
+                ) : (
+                  <a
+                    // href="#PurchaseOptions"
+                    className="btn btn-primary d-block text-center"
+                    onClick={() => handleClick()}
+                    style={
+                      getOZParameterWRTQueryParam() === '2'
+                        ? { padding: '11.5px 10.5px' }
+                        : {}
+                    }
+                  >
+                    {getOZParameterWRTQueryParam() === '2'
+                      ? !props.isItemAdded
+                        ? `ADD TO CART - ${formatPriceWithCurrency(productState.productDetails?.price)}`
+                        : `GO TO CART`
+                      : `BUY NOW - ${formatPriceWithCurrency(productState.productDetails?.price)}`}
+                  </a>
+                )}
+              </div>
+            )}
         </div>
       </div>
     </div >

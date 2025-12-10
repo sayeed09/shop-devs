@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { Suspense, useContext, useEffect } from 'react';
 import { GAContext } from '../../context/gatracking';
 import { ProductContext } from '../../context/product';
 import '../../../scripts/scss/import/_desktop_sticky_bar.scss';
@@ -72,7 +72,9 @@ const DesktopFooter = (props: IDesktopFooter) => {
         <div className='fixed-container'>
             <div className="desktopFooter">
                 <div className='header'>
-                    {remainingProductsInStock(props.productDetail.id) && <div className='sellingOutText'><FooterNudge productLeftCount={remainingProductsInStock(props.productDetail.id)} /></div>}
+                    <Suspense>
+                        <div className='sellingOutText'><FooterNudge productLeftCount={remainingProductsInStock(props.productDetail.id) || 490} /></div>
+                    </Suspense>
                 </div>
                 <div className='content'>
                     <div className='productInfo'>

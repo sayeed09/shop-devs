@@ -40,6 +40,8 @@ import { formatCartItemV1 } from '~/scripts/utils/cart/helper';
 import { useNavigate } from 'react-router';
 import CustomerReviews from '~/components/customer-reviews.client';
 import { isBrowser } from '~/root';
+import Loader from '../cart/loader';
+import Customer from '~/components/customer';
 
 
 
@@ -255,7 +257,6 @@ const ProductV2View = (props: ProductIdDataType) => {
     //         loadingImage={props.loadingImage}
     //         loadingText={props.loadingText} />;
     // }
-    debugger;
 
     return (
         <>
@@ -298,14 +299,14 @@ const ProductV2View = (props: ProductIdDataType) => {
                                             isItemAdded={isItemAdded}
                                             isLoading={isLoading}
                                         />
-                                        <Suspense>
-                                            <CustomerReviews productId={props.productData.id} title={productDetail?.title as string} />
+                                        <Suspense fallback={<Loader />}>
+                                            <Customer productId={props.productData.id} title={productDetail?.title as string} />
                                         </Suspense>
 
                                         {/* {!additionalDataFetched && <SectionSkeleton />} */}
                                         <MircroInteraction />
                                         <FooterSeo />
-                                        {isMobile() ?
+                                        {props.isMobile ?
                                             <MobileFooter
                                                 productId={props.productData.id}
                                                 buyNowVariant={buyNowVariant}

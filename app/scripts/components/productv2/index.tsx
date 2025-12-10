@@ -226,8 +226,8 @@ const ProductV2 = (props: ProductDetailModal) => {
                             </div>
                         )}
                         {/* sale banner  */}
-                        {isMobile() &&
-                            <img className='pt-16' src="https://cdn.shopify.com/s/files/1/2393/2199/files/B1G4-final.png?v=1762338125" />}
+                        {/* {isMobile() &&
+                            <img className='pt-16' src="https://cdn.shopify.com/s/files/1/2393/2199/files/B1G4-final.png?v=1762338125" />} */}
                         <ProductDetailRight
                             productId={props.productId}
                             productDetail={props.productDetail}

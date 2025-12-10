@@ -90,9 +90,9 @@ const HeaderV1 = ({ concerns, categories }: { concerns: Collections[], categorie
 
     useEffect(() => {
         if (!isBrowser) return;
-        fetch('/api/cart')
-            .then((response) => response.json())
-            .then((data) => console.log(data, 'cart API response'));
+        // fetch('/api/cart')
+        //     .then((response) => response.json())
+        //     .then((data) => console.log(data, 'cart API response'));
     }, []);
 
     return (

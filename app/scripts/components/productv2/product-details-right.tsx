@@ -232,6 +232,7 @@ const ProductDetailRight = (props: ProductDetailRightModal) => {
 
 
   return !props.directSubscriptionCart ? (
+
     <div className="col p-16 border borderGray rounded-border product-dtl">
       <h1 className='hide-on-mobile'>
         {productState?.productTitle}
