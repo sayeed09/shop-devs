@@ -67,6 +67,12 @@ export function links() {
     { rel: 'icon', type: 'image/svg+xml', href: favicon },
   ];
 }
+export const headers: Route.HeadersFunction = () => {
+  return {
+    "Oxygen-Cache-Control": "public, max-age=1800",
+    Vary: "Accept",
+  };
+};
 
 export async function loader(args: Route.LoaderArgs) {
   // Start fetching non-critical data without blocking time to first byte
@@ -78,10 +84,7 @@ export async function loader(args: Route.LoaderArgs) {
   // const { storefront, env } = args.context;
 
   return Response.json({}, {
-    headers: {
-      "Cache-Control":
-        "public, max-age=0, s-maxage=1800, stale-while-revalidate=86400",
-    },
+
   });
 }
 
