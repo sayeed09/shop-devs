@@ -55,7 +55,7 @@ export async function loader(args: Route.LoaderArgs) {
       'Content-Type': 'application/json',
       // Cache for 1 hour, serve stale for 23 hours
       'Oxygen-Cache-Control': 'public, max-age=3600, stale-while-revalidate=82800',
-      'Vary': 'Oxygen-Custom-Visitor-ID', // Recommended for personalization
+      Vary: 'Accept-Language, Accept-Encoding',
     },
   });
 }
