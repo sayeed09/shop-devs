@@ -131,7 +131,7 @@ export async function loader(args: Route.LoaderArgs) {
 // }
 
 export function Layout({ children }: { children?: React.ReactNode }) {
-  const nonce = useNonce();
+  // const nonce = useNonce();
   useEffect(() => {
     function loadScripts() {
       // 🟢 Google Tag Manager
