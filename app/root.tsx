@@ -70,12 +70,12 @@ export function links() {
 
 export async function loader(args: Route.LoaderArgs) {
   // Start fetching non-critical data without blocking time to first byte
-  const deferredData = loadDeferredData(args);
+  // const deferredData = loadDeferredData(args);
 
-  // Await the critical data required to render initial state of the page
-  const criticalData = await loadCriticalData(args);
+  // // Await the critical data required to render initial state of the page
+  // const criticalData = await loadCriticalData(args);
 
-  const { storefront, env } = args.context;
+  // const { storefront, env } = args.context;
 
   return Response.json({}, {
     headers: {
