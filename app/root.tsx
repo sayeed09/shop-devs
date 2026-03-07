@@ -1,4 +1,4 @@
-import { Analytics, getShopAnalytics, useNonce } from '@shopify/hydrogen';
+import { Analytics, getShopAnalytics } from '@shopify/hydrogen';
 import {
   Outlet,
   useRouteError,
@@ -131,7 +131,6 @@ export async function loader(args: Route.LoaderArgs) {
 // }
 
 export function Layout({ children }: { children?: React.ReactNode }) {
-  // const nonce = useNonce();
   useEffect(() => {
     function loadScripts() {
       // 🟢 Google Tag Manager
@@ -217,8 +216,8 @@ export function Layout({ children }: { children?: React.ReactNode }) {
       </head>
       <body>
         {children}
-        <ScrollRestoration nonce={'nonce'} />
-        <Scripts nonce={'nonce'} />
+        <ScrollRestoration />
+        <Scripts />
       </body>
     </html>
   );
