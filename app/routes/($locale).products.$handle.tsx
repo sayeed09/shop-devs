@@ -16,7 +16,7 @@ export const meta: Route.MetaFunction = ({ data }) => {
 export const headers: Route.HeadersFunction = () => {
   return {
     "Oxygen-Cache-Control": "public, max-age=1800",
-    Vary: "Accept",
+    // Vary: "Accept",
   };
 };
 
