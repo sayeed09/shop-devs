@@ -43,7 +43,19 @@ export async function loader(args: Route.LoaderArgs) {
     );
 
 
-  return { ...deferredData, ...criticalData, variantId: variantId, isMobile: isMobile };
+  const data = {
+    ...deferredData,
+    ...criticalData,
+    variantId,
+    isMobile,
+  };
+
+  return new Response(JSON.stringify(data), {
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "public, max-age=1800, stale-while-revalidate=86400",
+    },
+  });
 }
 
 /**
