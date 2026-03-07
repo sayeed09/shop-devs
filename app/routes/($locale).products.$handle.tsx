@@ -50,14 +50,11 @@ export async function loader(args: Route.LoaderArgs) {
     isMobile,
   };
 
-  return new Response(JSON.stringify(data), {
+
+  return Response.json(data, {
     headers: {
-      'Content-Type': 'application/json',
-      // Cache for 1 hour, serve stale for 23 hours
-      'Oxygen-Cache-Control': 'public, max-age=3600, stale-while-revalidate=82800',
-      'Cache-Control':
-        'public, s-maxage=3600, stale-while-revalidate=3600',
-      Vary: 'Accept-Language, Accept-Encoding',
+      'Cache-Control': 'public, max-age=3600, stale-while-revalidate=82800',
+      Vary: 'User-Agent',
     },
   });
 }
