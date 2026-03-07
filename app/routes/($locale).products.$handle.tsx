@@ -2,6 +2,7 @@ import { redirect, useLoaderData } from 'react-router';
 import type { Route } from './+types/products.$handle';
 import axios from 'axios';
 import ProductView from '~/components/productview';
+import { useEffect } from 'react';
 
 export const meta: Route.MetaFunction = ({ data }) => {
   return [
@@ -56,5 +57,8 @@ function loadDeferredData({ context, params }: Route.LoaderArgs) {
 }
 
 export default function Product() {
+  useEffect(() => {
+    console.log("Insidiidd")
+  }, [])
   return <h2>Hello world</h2>;
 }
