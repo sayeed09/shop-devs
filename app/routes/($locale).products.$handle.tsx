@@ -27,27 +27,11 @@ export const meta: Route.MetaFunction = ({ data }) => {
 
 export async function loader(args: Route.LoaderArgs) {
   // Start fetching non-critical data without blocking time to first byte
-  const deferredData = loadDeferredData(args);
 
-  // Await the critical data required to render initial state of the page
-  const criticalData = await loadCriticalData(args);
-
-  const url = new URL(args.request.url);
-  const searchParams = new URLSearchParams(url.search);
-  const variantId = searchParams.get('variant');
-  const userAgent = args.request.headers.get('user-agent') || '';
-
-  const isMobile =
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      userAgent,
-    );
 
 
   const data = {
-    ...deferredData,
-    ...criticalData,
-    variantId,
-    isMobile,
+
   };
 
 
