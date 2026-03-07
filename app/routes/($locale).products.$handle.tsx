@@ -52,8 +52,10 @@ export async function loader(args: Route.LoaderArgs) {
 
   return new Response(JSON.stringify(data), {
     headers: {
-      "Content-Type": "application/json",
-      "Cache-Control": "public, max-age=1800, stale-while-revalidate=86400",
+      'Content-Type': 'application/json',
+      // Cache for 1 hour, serve stale for 23 hours
+      'Oxygen-Cache-Control': 'public, max-age=3600, stale-while-revalidate=82800',
+      'Vary': 'Oxygen-Custom-Visitor-ID', // Recommended for personalization
     },
   });
 }
