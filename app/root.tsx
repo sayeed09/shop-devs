@@ -140,7 +140,7 @@ function loadDeferredData({ context }: Route.LoaderArgs) {
   return {
     // cart: cart.get(),
     // isLoggedIn: customerAccount.isLoggedIn(),
-    footer,
+    // footer,
   };
 }
 
