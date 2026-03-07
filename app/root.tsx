@@ -138,8 +138,8 @@ function loadDeferredData({ context }: Route.LoaderArgs) {
       return null;
     });
   return {
-    cart: cart.get(),
-    isLoggedIn: customerAccount.isLoggedIn(),
+    // cart: cart.get(),
+    // isLoggedIn: customerAccount.isLoggedIn(),
     footer,
   };
 }
