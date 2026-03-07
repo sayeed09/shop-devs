@@ -114,7 +114,8 @@ export default function Product() {
 
 
   return (
-    <ProductView productData={product.data} variantId={variantId} isMobile={isMobile} />
+    <h2>Hwlllo world</h2>
+    // <ProductView productData={product.data} variantId={variantId} isMobile={isMobile} />
   );
 }
 
