@@ -57,6 +57,7 @@ function loadDeferredData({ context, params }: Route.LoaderArgs) {
 }
 
 export default function Product() {
+  console.log("aaan")
   useEffect(() => {
     console.log("Insidiidd")
   }, [])
