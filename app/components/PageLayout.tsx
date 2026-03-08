@@ -67,9 +67,9 @@ export function PageLayout({
       <AuthenticationProvider >
         <CartProvider>
 
-          {header && !location.pathname.includes('cart') && (
+          {/* {header && !location.pathname.includes('cart') && (
             <HeaderV1 concerns={concerns} categories={categories} />
-          )}
+          )} */}
           <main>{children}</main>
 
           {/* {!location.pathname.includes('cart') &&
